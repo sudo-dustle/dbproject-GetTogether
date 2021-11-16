@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import controller.user.*;
 import controller.comm.*;
 import controller.message.*;
+import controller.member.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -44,6 +45,9 @@ public class RequestMapping {
         mappings.put("/community/update", new UpdateCommunityController());
         
         mappings.put("/message/list", new ListMessageController());
+        mappings.put("/message/detail", new ViewMessageDetailController());
+        
+        mappings.put("/member/search", new SearchMemberController());
         
         logger.info("Initialized Request Mapping!");
     }

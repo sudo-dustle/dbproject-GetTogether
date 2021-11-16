@@ -25,7 +25,7 @@ table, tr, td, th{
 }
 
 .message-table-box {
-	margin: 20px auto auto 20px;
+	margin: 30px 20px auto 20px;
 	text-align: center;
 }
 
@@ -37,12 +37,43 @@ table, tr, td, th{
 	color: skyblue;
 }
 
+.message-detail {
+	margin: 20px;
+}
+
+.message-content {
+	padding: 10px 0;
+}
+
+.message-detail-box th{
+	width: 105px;
+}
+
+.checkbox{
+	width: 30px
+}
+
+.message-table {
+	margin: 20px;	
+}
+
+.message-table td{
+	margin: 20px 0;
+	background-color: white;
+	text-align: left;
+	padding: 3px 10px;;
+}
+
 button {
 	color: var(--fontcolor);
 	padding: 5px;
 	border: 1px solid var(--banner);
 	background-color: var(--banner);
 	border-radius: 5px;
+}
+
+button:hover {
+	color: white;
 }
 
 h2 {
