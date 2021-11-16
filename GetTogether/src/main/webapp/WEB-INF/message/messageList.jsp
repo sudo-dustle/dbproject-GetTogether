@@ -23,19 +23,19 @@
 			<div>
 				<h2>쪽지함</h2>
 			</div>
-			<div id="message-type" class="message-type">
+			<div class="message-type">
 				<button type="button">받은 쪽지</button>
 				<button type="button">보낸 쪽지</button>
 			</div>
-			<div id="message-table">
+			<div>
 				<table>
 				<thead>
 					<tr>
-						<th>
+						<th class="checkbox">
 							<input type="checkbox" onclick="selectAll(this)">
 						</th>
-						<th width="80px">보낸 사람</th>
-						<th width="80px">받은 사람</th>
+						<th width="90px">보낸 사람</th>
+						<th width="90px">받은 사람</th>
 						<th>제목</th>
 						<th width="150px">보낸 날짜</th>
 					</tr>
@@ -43,13 +43,13 @@
 				<tbody>
 					<c:forEach var="msg" items="${messageList}">
 					<tr>
-						<td>
+						<td class="checkbox">
 							<input type="checkbox" name="select" value='${msg.id}'>
 						</td>
 						<td>${msg.sender.name}</td>
 						<td>${msg.receiver.name}</td>
 						<td>
-							<a class="message-title" href="<c:url value='/detail/'>
+							<a class="message-title" href="<c:url value='/message/detail'>
 								<c:param name='id' value='${msg.id}'/>
 								</c:url>
 							">${msg.title}</a>

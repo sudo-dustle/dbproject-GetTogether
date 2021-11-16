@@ -45,6 +45,7 @@ public class RequestMapping {
         mappings.put("/community/update", new UpdateCommunityController());
         
         mappings.put("/message/list", new ListMessageController());
+        mappings.put("/message/detail", new ViewMessageDetailController());
         
         mappings.put("/member/search", new SearchMemberController());
         
