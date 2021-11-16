@@ -50,8 +50,8 @@
 						<td>${msg.receiver.name}</td>
 						<td>
 							<a class="message-title" href="<c:url value='/detail/'>
-							<c:param name='id' value='${msg.id}'/>
-							</c:url>
+								<c:param name='id' value='${msg.id}'/>
+								</c:url>
 							">${msg.title}</a>
 						</td>
 						<td>
