@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <head>
-<title>memberRecommand</title>
+<title>memberRecommend</title>
 <style>
 			.member-container {
 				display: flex;
@@ -79,14 +79,14 @@
 				</div>
 			</div>
 			<div class="member-container">
-			<c:forEach var="recommandMember" items="${recommandMemberList}">
+			<c:forEach var="recommandMember" items="${recommendMemberList}">
 					<div class="member-box">
 						<ul>
 							<li>김*가</li>
 							<div class="member-option-list">
-								<button class="option-button">${recommandMember.name}</button>
-								<button class="option-button">${recommandMember.language}</button>
-								<button class="option-button">${recommandMember.language}</button>
+								<button class="option-button">${recommendMember.name}</button>
+								<button class="option-button">${recommendMember.language}</button>
+								<button class="option-button">${recommendMember.language}</button>
 							</div>
 						</ul>
 					</div>
