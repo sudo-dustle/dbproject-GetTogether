@@ -4,10 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.Message;
-import model.User;
+import model.dao.MessageDAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListMessageController implements Controller{
@@ -15,18 +15,15 @@ public class ListMessageController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		// 우리는 Member지만 임시로 해놨습니다..
 //    	if (!UserSessionUtils.hasLogined(request.getSession())) {
 //            return "redirect:/user/login/form";		// login form 요청으로 redirect
 //        }
-    	
-    	//아직 DAO가 없어서 임시로 객체만 생성
-    	List<Message> messageList = new ArrayList<Message>();
-    	User sender = new User();
-    	sender.setName("김보냈습니다");
-    	User receiver = new User();
-    	receiver.setName("박박디라라");
-    	Message msg = new Message(0, sender, receiver, "제목 하하ㅏ", "메세지내용블라블라블라. 잘 부탁드립니다다다");
-    	messageList.add(msg);
+    	//mnum을 가져오는 함수가 필요하다..
+    	int mnum = 2;
+    	//UserSessionUtils.getLoginUserNumber(request.getSession());
+    	MessageDAO msgDAO = new MessageDAO();
+    	List<Message> messageList = msgDAO.findReceivedMessageList(mnum);
     	request.setAttribute("messageList", messageList);
 		return "/message/messageList.jsp";
 	}
