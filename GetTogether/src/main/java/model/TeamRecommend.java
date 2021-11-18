@@ -1,23 +1,23 @@
 package model;
 import java.util.Date;
 import java.util.List;
-public class TeamRecommand {
+public class TeamRecommend {
 	private String title;
 	private String subtitle;
 	private int lookupcnt;
 	private List<Member> memberList;
 	private List<Project> projectList;
 
-	public TeamRecommand() {}
+	public TeamRecommend() {}
 	
-	public TeamRecommand(String title, String subtitle, int lookupcnt) {
+	public TeamRecommend(String title, String subtitle, int lookupcnt) {
 		super();
 		this.title = title;
 		this.subtitle = subtitle;
 		this.lookupcnt = lookupcnt;
 	}
 
-	public TeamRecommand(List<Member> memberList, List<Project> projectList) {
+	public TeamRecommend(List<Member> memberList, List<Project> projectList) {
 		super();
 		this.memberList = memberList;
 		this.projectList = projectList;

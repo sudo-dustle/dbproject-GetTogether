@@ -2,7 +2,7 @@ package model;
 import java.util.Date;
 import java.util.List;
 
-public class MemberRecommand {
+public class MemberRecommend {
 	
 	private String mname;
 	private String language;
@@ -11,7 +11,7 @@ public class MemberRecommand {
 	
 	
 	
-	public MemberRecommand(String mname, String language) {
+	public MemberRecommend(String mname, String language) {
 		super();
 		this.mname = mname;
 		this.language = language;
@@ -33,7 +33,7 @@ public class MemberRecommand {
 		this.language = language;
 	}
 
-	public MemberRecommand(List<Member> memberList, List<Project> projectList) {
+	public MemberRecommend(List<Member> memberList, List<Project> projectList) {
 		super();
 		this.memberList = memberList;
 		this.projectList = projectList;

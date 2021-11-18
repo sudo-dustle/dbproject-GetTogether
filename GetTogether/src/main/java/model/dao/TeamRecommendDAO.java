@@ -6,36 +6,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Member;
-import model.MemberRecommand;
+import model.MemberRecommend;
 import model.Project;
-import model.TeamRecommand;
+import model.TeamRecommend;
 
-public class TeamRecommandDAO {
+public class TeamRecommendDAO {
 private JDBCUtil jdbcUtil = null;
 	
-	public TeamRecommandDAO() {			
+	public TeamRecommendDAO() {			
 		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
 	}
 
 	/**
 	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환
 	 */
-	public List<TeamRecommand> findRecomandTeam() throws SQLException {
+	public List<TeamRecommend> findRecomendTeam() throws SQLException {
         String sql = "SELECT title, subtitle, lookupcnt " 
         		   + "FROM project" ;
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
-			List<TeamRecommand> teamRecommandList = new ArrayList<TeamRecommand>();	
+			List<TeamRecommend> teamRecommendList = new ArrayList<TeamRecommend>();	
 			while (rs.next()) {
-				TeamRecommand teamRecommand = new TeamRecommand(		
+				TeamRecommend teamRecommend = new TeamRecommend(		
 					rs.getString("title"),
 					rs.getString("subtitle"),
 					rs.getInt("lookupcnt"));
-				teamRecommandList.add(teamRecommand);			
+				teamRecommendList.add(teamRecommend);			
 			}		
-			return teamRecommandList;					
+			return teamRecommendList;					
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();

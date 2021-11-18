@@ -6,33 +6,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Member;
-import model.MemberRecommand;
+import model.MemberRecommend;
 
-public class MemberRecommandDAO {
+public class MemberRecommendDAO {
 private JDBCUtil jdbcUtil = null;
 	
-	public MemberRecommandDAO() {			
+	public MemberRecommendDAO() {			
 		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
 	}
 
 	/**
 	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환
 	 */
-	public List<MemberRecommand> findRecommandMember() throws SQLException {
+	public List<MemberRecommend> findRecommendMember() throws SQLException {
         String sql = "SELECT mname, language " 
         		   + "FROM member" ;
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
-			List<MemberRecommand> memberRecommand = new ArrayList<MemberRecommand>();	
+			List<MemberRecommend> memberRecommend = new ArrayList<MemberRecommend>();	
 			while (rs.next()) {
-				MemberRecommand memberRecommandList = new MemberRecommand(		
+				MemberRecommend memberRecommendList = new MemberRecommend(		
 					rs.getString("mname"),
 					rs.getString("language"));
-				memberRecommand.add(memberRecommandList);			
+				memberRecommend.add(memberRecommendList);			
 			}		
-			return memberRecommand;					
+			return memberRecommend;					
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
