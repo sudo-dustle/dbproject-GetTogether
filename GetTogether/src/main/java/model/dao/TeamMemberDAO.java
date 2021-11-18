@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Project;
 import model.TeamMember;
-import model.User;
+import model.Member;
 
 public class TeamMemberDAO {
 	private JDBCUtil jdbcUtil = null;
