@@ -16,6 +16,10 @@
 			checkbox.checked = allCheck.checked;
 		});
 	}
+	
+	const createMessage = () => {
+		location.href="/GetTogether/message/create/form";
+	}
 </script>
 </head>
 <body>
@@ -62,7 +66,7 @@
 				</tbody>
 				</table>
 				<div id="message-type" class="message-type">
-					<button type="button">쪽지 쓰기</button>
+					<button type="button" onclick="createMessage();">쪽지 쓰기</button>
 					<button type="button">쪽지 삭제</button>
 				</div>
 			</div>

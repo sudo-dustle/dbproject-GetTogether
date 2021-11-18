@@ -4,9 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Member;
 import model.Project;
 import model.TeamMember;
-import model.User;
 
 public class TeamMemberDAO {
 	private JDBCUtil jdbcUtil = null;
@@ -14,7 +15,7 @@ public class TeamMemberDAO {
 	public TeamMemberDAO() {			
 		jdbcUtil = new JDBCUtil();	// JDBCUtil °´Ã¼ »ý¼º
 	}
-	public int create(Project project,Member member) throws SQLException{
+	public int create(Project project, Member member) throws SQLException{
 		String sql = "INSERT INTO USERINFO VALUES (?, ?, false)";
 		Object[] param = new Object[] {project.getPid(), member.getMnum()};
 		jdbcUtil.setSqlAndParameters(sql, param);

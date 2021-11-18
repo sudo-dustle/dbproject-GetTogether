@@ -41,8 +41,10 @@ table, tr, td, th{
 	margin: 20px;
 }
 
-.message-content {
-	padding: 10px 0;
+.message-content textarea {
+	width:100%;
+	min-height: 300px;
+	resize: vertical;
 }
 
 .message-detail-box th{
@@ -62,6 +64,11 @@ table, tr, td, th{
 	background-color: white;
 	text-align: left;
 	padding: 3px 10px;;
+}
+
+.message-table input {
+	width: 100%;
+	height: 80%;
 }
 
 button {

@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Message {
 	private int id;
-	private User receiver;
-	private User sender;
+	private Member receiver;
+	private Member sender;
 	private String title;
 	private Date sendDate;
 	private String content;
@@ -13,9 +13,24 @@ public class Message {
 	
 	public Message() {}
 	
-	public Message(int id, User receiver, User sender, String title, String content) {
+	//check용..
+	public Message(int id, Member receiver, Member sender, String title, Date sendDate, String content,
+			boolean checked) {
 		super();
 		this.id = id;
+		this.receiver = receiver;
+		this.sender = sender;
+		this.title = title;
+		this.sendDate = sendDate;
+		this.content = content;
+		this.checked = checked;
+	}
+
+
+
+	//create용 자동지정 생성
+	public Message(Member receiver, Member sender, String title, String content) {
+		super();
 		this.receiver = receiver;
 		this.sender = sender;
 		this.title = title;
@@ -30,16 +45,16 @@ public class Message {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public User getReceiver() {
+	public Member getReceiver() {
 		return receiver;
 	}
-	public void setReceiver(User receiver) {
+	public void setReceiver(Member receiver) {
 		this.receiver = receiver;
 	}
-	public User getSender() {
+	public Member getSender() {
 		return sender;
 	}
-	public void setSender(User sender) {
+	public void setSender(Member sender) {
 		this.sender = sender;
 	}
 	public String getTitle() {

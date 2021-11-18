@@ -38,18 +38,19 @@ const deleteMessage = () => {
 			</tr>
 			<tr>
 				<th>보낸 사람</th>
-				<td>${message.sender.name}</td>
+				<td><%-- ${message.sender.name} --%></td>
 			</tr>
 			<tr>
 				<th>받은 사람</th>
-				<td>${message.receiver.name}</td>
+				<td><%-- ${message.receiver.name} --%></td>
 			</tr>
 			<tr>
 				<th>보낸 시각</th>
 				<td><fmt:formatDate value="${message.sendDate}" pattern="yyyy-MM-dd hh:mm" /></td>
 			</tr>		
 			<tr>
-				<td class="message-content" colspan="2">${message.content}</td>
+				<td class="message-content" colspan="2">
+				<div class="message-content">${message.content}</div></td>
 			</tr>
 		</table>
 			<div id="message-type" class="message-type">
