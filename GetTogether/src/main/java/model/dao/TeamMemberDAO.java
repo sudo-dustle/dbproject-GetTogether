@@ -4,30 +4,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Member;
 import model.Project;
 import model.TeamMember;
 import model.Member;
+
 
 public class TeamMemberDAO {
 	private JDBCUtil jdbcUtil = null;
 	
 	public TeamMemberDAO() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil °´Ã¼ »ı¼º
+		jdbcUtil = new JDBCUtil();	// JDBCUtil ê°ì²´ ìƒì„±
 	}
-	public int create(Project project,Member member) throws SQLException{
+	public int create(Project project, Member member) throws SQLException{
 		String sql = "INSERT INTO USERINFO VALUES (?, ?, false)";
 		Object[] param = new Object[] {project.getPid(), member.getMnum()};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();	// insert ë¬¸ ì‹¤í–‰
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹İÈ¯
+			jdbcUtil.close();	// resource ë°˜í™˜
 		}		
 		return 0;
 	}
@@ -36,24 +39,24 @@ public class TeamMemberDAO {
 	public List<TeamMember> findMembersInProject(int pid) throws SQLException {
         String sql = "SELECT Mnum FROM TeamMember "
      				+ "WHERE pid = ? and approve = true";                         
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtilì— queryë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 		
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
-			List<TeamMember> memList = new ArrayList<TeamMember>();	// memberµéÀÇ ¸®½ºÆ® »ı¼º
+			ResultSet rs = jdbcUtil.executeQuery();		// query ì‹¤í–‰
+			List<TeamMember> memList = new ArrayList<TeamMember>();	// memberë“¤ì˜ ë¦¬ìŠ¤íŠ¸ ìƒì„±
 			while (rs.next()) {
-				TeamMember member = new TeamMember(			// °´Ã¼¸¦ »ı¼ºÇÏ¿© ÇöÀç ÇàÀÇ Á¤º¸¸¦ ÀúÀå
+				TeamMember member = new TeamMember(			// ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ í˜„ì¬ í–‰ì˜ ì •ë³´ë¥¼ ì €ì¥
 					pid,
 					rs.getInt("mnum"),
 					rs.getBoolean("approve"));
-				memList.add(member);			// List¿¡ ÇÁÁ§ °´Ã¼ ÀúÀå
+				memList.add(member);			// Listì— í”„ì  ê°ì²´ ì €ì¥
 			}		
 			return memList;					
 				
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹İÈ¯
+			jdbcUtil.close();		// resource ë°˜í™˜
 		}
 		return null;
 	}
@@ -61,16 +64,16 @@ public class TeamMemberDAO {
 	public int getNumberOfUsersInProject(int pid) {
 		String sql = "SELECT COUNT(mnum) FROM TeamMember "
      				+ "WHERE pid = ? and approve = true";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtilì— queryë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 		
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
+			ResultSet rs = jdbcUtil.executeQuery();		// query ì‹¤í–‰
 			rs.next();										
 			return rs.getInt(1);			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹İÈ¯
+			jdbcUtil.close();		// resource ë°˜í™˜
 		}
 		return 0;
 	}
