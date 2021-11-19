@@ -4,9 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import controller.user.UserSessionUtils;
 import model.Message;
-import model.dao.MessageDAO;
 import model.service.MessageManager;
 
 import java.util.List;
