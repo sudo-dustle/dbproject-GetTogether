@@ -31,7 +31,8 @@ private JDBCUtil jdbcUtil = null;
 					rs.getString("mname"),
 					rs.getString("language"));
 				memberRecommend.add(memberRecommendList);			
-			}		
+			}
+			System.out.print(memberRecommend);
 			return memberRecommend;					
 			
 		} catch (Exception ex) {
