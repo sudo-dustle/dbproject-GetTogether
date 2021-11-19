@@ -53,10 +53,10 @@ public class MemberDAO {
 		String query = "SELECT seq_mnum, mid, passwd, mname, date, phonenum, email, school, major, field, language, experience"
 				+ "FROM Member WHERE mnum=?";
 		
-		jdbcUtil.setSql(query);
+	//	jdbcUtil.setSql(query);
 		
 		Object[] param = new Object[] {mid};
-		jdbcUtil.setParameters(param);
+	//	jdbcUtil.setParameters(param);
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();

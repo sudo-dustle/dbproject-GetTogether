@@ -9,6 +9,7 @@ import controller.user.*;
 import controller.comm.*;
 import controller.message.*;
 import controller.member.*;
+import controller.project.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -20,8 +21,8 @@ public class RequestMapping {
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
-        mappings.put("/user/login", new LoginController());
-        mappings.put("/user/logout", new LogoutController());
+     //   mappings.put("/user/login", new LoginController());
+     //   mappings.put("/user/logout", new LogoutController());
         mappings.put("/user/list", new ListUserController());
         mappings.put("/user/view", new ViewUserController());
         
@@ -47,10 +48,16 @@ public class RequestMapping {
         mappings.put("/message/list", new ListMessageController());
         mappings.put("/message/detail", new ViewMessageDetailController());
         mappings.put("/message/create/form", new ForwardController("/message/form.jsp"));
-        mappings.put("/message/create", new CreateMessageController());
+      //  mappings.put("/message/create", new CreateMessageController());
         
         mappings.put("/member/search", new SearchMemberController());
         
+        mappings.put("/project/new/form", new ForwardController("/project/form.jsp"));
+        mappings.put("/project/new", new CreateProjectController());
+        mappings.put("/project/update/form", new UpdateProjectController());
+        mappings.put("/project/update", new UpdateProjectController());
+        //mappings.put("/project/list", new DeleteProjectController());
+        mappings.put("/project/detail",new ViewProjectDetailController());
         logger.info("Initialized Request Mapping!");
     }
 
