@@ -50,8 +50,8 @@
 						<td class="checkbox">
 							<input type="checkbox" name="select" value='${msg.id}'>
 						</td>
-						<td>${msg.sender.name}</td>
-						<td>${msg.receiver.name}</td>
+						<td>${msg.sender.mname}</td>
+						<td>${msg.receiver.mname}</td>
 						<td>
 							<a class="message-title" href="<c:url value='/message/detail'>
 								<c:param name='id' value='${msg.id}'/>

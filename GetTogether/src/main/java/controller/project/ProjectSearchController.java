@@ -9,11 +9,11 @@ public class ProjectSearchController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ProjectManager manager = ProjectManager.getInstance();
-		List <Project> projectList = manager.findProject();
-		
-		request.setAttribute("projectList", projectList);
-		
+//		ProjectManager manager = ProjectManager.getInstance();
+//		List <Project> projectList = manager.findProject();
+//		
+//		request.setAttribute("projectList", projectList);
+//		
 		return "/project/projectSearch.jsp";
 	}
 	

@@ -6,9 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.user.*;
+import controller.user.LogoutController;
 import controller.comm.*;
 import controller.message.*;
 import controller.member.*;
+import controller.member.LoginController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
