@@ -16,8 +16,26 @@ public class Member {
 	private String language;
 	private String experience;
 	
-	public Member() {};
+	public Member() {}
 	
+	//시퀀스(mnum)없는 생성자
+	public Member(String mid, String passwd, String mname, Date date, String phonenum, String email,
+			String school, String major, String field, String language, String experience)
+	{
+		this.mid = mid;
+		this.passwd = passwd;
+		this.mname = mname;
+		this.date = date;
+		this.phonenum = phonenum;
+		this.email = email;
+		this.school = school;
+		this.major = major;
+		this.field = field;
+		this.language = language;
+		this.experience = experience;
+	}
+	
+	//시퀀스(mnum)있는 생성자
 	public Member(int mnum, String mid, String passwd, String mname, Date date, String phonenum, String email,
 			String school, String major, String field, String language, String experience)
 	{
@@ -112,7 +130,12 @@ public class Member {
 	public boolean checkPassword(String passwd) {
 		if(passwd == null)
 			return false;
-		return false;
+		else if(passwd != this.passwd) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 }

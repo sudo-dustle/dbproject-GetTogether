@@ -4,9 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import controller.user.UserSessionUtils;
 import model.Message;
-import model.dao.MessageDAO;
+import model.service.MessageManager;
 
 import java.util.List;
 
@@ -22,8 +21,8 @@ public class ListMessageController implements Controller{
     	//mnum을 가져오는 함수가 필요하다..
     	int mnum = 2;
     	//UserSessionUtils.getLoginUserNumber(request.getSession());
-    	MessageDAO msgDAO = new MessageDAO();
-    	List<Message> messageList = msgDAO.findReceivedMessageList(mnum);
+    	MessageManager msgManager = MessageManager.getInstance();
+    	List<Message> messageList = msgManager.findReceivedMessageList(mnum);
     	request.setAttribute("messageList", messageList);
 		return "/message/messageList.jsp";
 	}
