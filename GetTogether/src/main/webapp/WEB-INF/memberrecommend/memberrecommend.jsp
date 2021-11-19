@@ -21,14 +21,11 @@
 				</div>
 			</div>
 			<div class="member-container">
-			<div class="member-box">
-			</div>
 				<c:forEach var="recommendMember" items="${memberRecommendList}">
 					<div class="member-box">
 						<ul>
 							<li>${recommendMember.mname}</li>
 							<div class="member-option-list">
-								<button class="option-button">${recommendMember.language}</button>
 								<button class="option-button">${recommendMember.language}</button>
 							</div>
 						</ul>
