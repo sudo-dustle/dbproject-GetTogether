@@ -9,6 +9,7 @@ import controller.user.*;
 import controller.comm.*;
 import controller.message.*;
 import controller.member.*;
+import controller.memberrecommend.ListMemberRecommendController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -20,8 +21,8 @@ public class RequestMapping {
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
-        mappings.put("/user/login", new LoginController());
-        mappings.put("/user/logout", new LogoutController());
+//        mappings.put("/user/login", new LoginController());
+//        mappings.put("/user/logout", new LogoutController());
         mappings.put("/user/list", new ListUserController());
         mappings.put("/user/view", new ViewUserController());
         
@@ -44,6 +45,9 @@ public class RequestMapping {
         mappings.put("/community/create", new CreateCommunityController());
         mappings.put("/community/update", new UpdateCommunityController());
         
+        mappings.put("/memberrecommend/memberrecommend", new ListMemberRecommendController());
+        mappings.put("/message/create/form", new ForwardController("/message/form.jsp"));
+
         mappings.put("/message/list", new ListMessageController());
         mappings.put("/message/detail", new ViewMessageDetailController());
         mappings.put("/message/create/form", new ForwardController("/message/form.jsp"));
