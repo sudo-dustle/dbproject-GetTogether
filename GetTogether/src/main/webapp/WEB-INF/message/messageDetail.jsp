@@ -38,11 +38,11 @@ const deleteMessage = () => {
 			</tr>
 			<tr>
 				<th>보낸 사람</th>
-				<td><%-- ${message.sender.name} --%></td>
+				<td>${message.sender.mname}</td>
 			</tr>
 			<tr>
 				<th>받은 사람</th>
-				<td><%-- ${message.receiver.name} --%></td>
+				<td>${message.receiver.mname}</td>
 			</tr>
 			<tr>
 				<th>보낸 시각</th>

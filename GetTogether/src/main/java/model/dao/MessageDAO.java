@@ -30,10 +30,7 @@ public class MessageDAO {
 		java.sql.Date date1 = new java.sql.Date(time);
 		Object[] param = new Object[] {message.getTitle(), date1,
 				message.getContent(), message.isChecked()?'T':'F', message.getSender().getMnum(),
-						message.getReceiver().getMnum()};		
-		logger.info(message.getReceiver().getMnum() +"/" +  
-				message.getSender().getMnum() + "/" + message.getTitle()+ message.getSendDate()+
-				message.getContent()+ message.isChecked());
+						message.getReceiver().getMnum()};
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 						
 		try {				
@@ -87,11 +84,16 @@ public class MessageDAO {
 			Message msg;
 			if (rs.next()) {
 				Member sender = new Member();
-				sender.setMnum(2);
-				sender.setMname("2번");
+				sender.setMnum(rs.getInt("sender"));
 				Member receiver = new Member();
-				receiver.setMnum(3);
-				receiver.setMname("3번");
+				receiver.setMnum(rs.getInt("receiver"));
+				boolean checked;
+				if (rs.getString("checked").equals("F")) {
+					checked = false;
+				}
+				else {
+					checked = true;
+				}
 				msg = new Message (
 					rs.getInt("msg_id"),
 					receiver,
@@ -99,7 +101,7 @@ public class MessageDAO {
 					rs.getString("title"),
 					rs.getDate("sendDate"),
 					rs.getString("content"),
-					rs.getBoolean("checked")
+					checked
 					);
 				return msg;
 			}
@@ -167,12 +169,20 @@ public class MessageDAO {
 				+ "RECEIVER FROM MESSAGE WHERE SENDER=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mNum});
 		try {
-			MemberManager memberManager = MemberManager.getInstance();
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<Message> msgList = new ArrayList<Message>();
 			while (rs.next()) {
-				Member sender = memberManager.findMember(rs.getInt("sender"));
-				Member receiver = memberManager.findMember(rs.getInt("receiver"));
+				Member sender = new Member();
+				sender.setMnum(rs.getInt("sender"));
+				Member receiver = new Member();
+				receiver.setMnum(rs.getInt("receiver"));
+				boolean checked;
+				if (rs.getString("checked").equals("F")) {
+					checked = false;
+				}
+				else {
+					checked = true;
+				}
 				Message msg = new Message (
 					rs.getInt("msg_id"),
 					receiver,
@@ -180,7 +190,7 @@ public class MessageDAO {
 					rs.getString("title"),
 					rs.getDate("sendDate"),
 					rs.getString("content"),
-					rs.getBoolean("checked")				
+					checked				
 					);
 				msgList.add(msg);
 			}

@@ -66,12 +66,28 @@ public class MessageManager {
 //	}
 
 	public Message findMessage(int msgId) throws SQLException, MessageNotFoundException {
-		Message message = messageDAO.findMessage(msgId);
+		Message msg = messageDAO.findMessage(msgId);
 		
-		if (message == null) {
+		if (msg == null) {
 			throw new MessageNotFoundException("메세지가 존재하지 않습니다.");
-		}
-		return message;
+		}			
+
+		Member sender;
+		try {
+			int senderNum = msg.getSender().getMnum();
+			sender = findMember(senderNum);
+			int receiverNum = msg.getReceiver().getMnum();
+			msg.setSender(sender);
+			Member receiver = findMember(receiverNum);
+			msg.setReceiver(receiver);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UserNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return msg;
 	}
 
 	public List<Message> findReceivedMessageList(int receiverNum) throws SQLException, MessageNotFoundException{
