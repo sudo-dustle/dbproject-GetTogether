@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import controller.user.*;
 import controller.comm.*;
 import controller.message.*;
+import controller.teamrecommend.ListTeamRecommendController;
 import controller.member.*;
 import controller.memberrecommend.ListMemberRecommendController;
 
@@ -45,8 +46,10 @@ public class RequestMapping {
         mappings.put("/community/create", new CreateCommunityController());
         mappings.put("/community/update", new UpdateCommunityController());
         
+        //recommend관련 매핑
         mappings.put("/memberrecommend/memberrecommend", new ListMemberRecommendController());
-        mappings.put("/message/create/form", new ForwardController("/message/form.jsp"));
+        mappings.put("/teamRecommend/teamRecommend", new ListTeamRecommendController());
+
 
         mappings.put("/message/list", new ListMessageController());
         mappings.put("/message/detail", new ViewMessageDetailController());
