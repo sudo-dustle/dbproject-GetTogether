@@ -10,6 +10,7 @@ public class MemberRecommend {
 	private List<Project> projectList;
 	
 	
+	public MemberRecommend() {}
 	
 	public MemberRecommend(String mname, String language) {
 		super();

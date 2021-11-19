@@ -65,6 +65,13 @@ public class MemberManager {
 		return member;
 	}
 	
+	public Member findMember(int mNum) throws SQLException, UserNotFoundException {
+		Member member = memberDAO.findMember(mNum);
+		if (member == null) {
+			throw new UserNotFoundException(mNum + "는 존재하지 않는 번호입니다.");
+		}
+		return member;
+	}
 	
 	public boolean login(String mid, String passwd)
 			throws SQLException, UserNotFoundException, PasswordMismatchException {

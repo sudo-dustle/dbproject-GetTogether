@@ -16,7 +16,7 @@ public class Member {
 	private String language;
 	private String experience;
 	
-	public Member() {};
+	public Member() {}
 	
 	//시퀀스(mnum)없는 생성자
 	public Member(String mid, String passwd, String mname, Date date, String phonenum, String email,

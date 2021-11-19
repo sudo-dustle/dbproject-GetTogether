@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -24,12 +25,14 @@ public class MessageDAO {
 		/**
 		 *	msg_id, title, senddate, content, checked ,sender, receiver
 		 */
-		String sql = "INSERT INTO MESSAGE VALUES (SEQ_MSGID.NEXTVAL, ?, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {message.getTitle(), message.getSendDate(),
+		String sql = "INSERT INTO MESSAGE VALUES (SEQ_MSGID.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+		long time = message.getSendDate().getTime();
+		java.sql.Date date1 = new java.sql.Date(time);
+		Object[] param = new Object[] {message.getTitle(), date1,
 				message.getContent(), message.isChecked()?'T':'F', message.getSender().getMnum(),
 						message.getReceiver().getMnum()};		
 		logger.info(message.getReceiver().getMnum() +"/" +  
-				message.getSender().getMnum()+"/" + message.getTitle()+ message.getSendDate()+
+				message.getSender().getMnum() + "/" + message.getTitle()+ message.getSendDate()+
 				message.getContent()+ message.isChecked());
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 						
@@ -78,19 +81,21 @@ public class MessageDAO {
 		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER, "
 				+ "RECEIVER FROM MESSAGE WHERE MSG_ID=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {msgId});	
-	
-		try {				
+		
+		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			Message msg;
 			if (rs.next()) {
-				logger.info("good!");
-				Member sender = null; //rs.getInt(receiver)로 찾는다.
-//				Member sender = memberDAO.findMember(mNum);
-				Member receiver = null;
+				Member sender = new Member();
+				sender.setMnum(2);
+				sender.setMname("2번");
+				Member receiver = new Member();
+				receiver.setMnum(3);
+				receiver.setMname("3번");
 				msg = new Message (
 					rs.getInt("msg_id"),
-					sender,
 					receiver,
+					sender,
 					rs.getString("title"),
 					rs.getDate("sendDate"),
 					rs.getString("content"),
@@ -99,41 +104,50 @@ public class MessageDAO {
 				return msg;
 			}
 		} catch (Exception ex) {
-			jdbcUtil.rollback();
 			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.commit();
+		} finally {	
 			jdbcUtil.close();	// resource 반환
 		}		
-		return null;			
+		return null;
 	}
 	
 	/**
 	 * receiver가 현재 User인 메세지들을 반환.
 	 */
 	public List<Message> findReceivedMessageList(int mNum) throws SQLException {
-		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER, "
-				+ "RECEIVER FROM MESSAGE WHERE RECEIVER=?";
+		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER FROM MESSAGE WHERE RECEIVER=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mNum});
-		logger.info("Im");
-		//		MemberDAO memberManager = new MemberDAO();
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<Message> msgList = new ArrayList<Message>();
 			while (rs.next()) {
-				Member sender = null; //rs.getInt(receiver)로 찾는다.
-//				Member sender = memberDAO.findMember(mNum);
-				Member receiver = null;
+				int msgid= rs.getInt("msg_id");
+				logger.info("msgid is "+ Integer.toString(msgid));
+				String title = rs.getString("title");
+				Date sendDate = rs.getDate("sendDate");
+				String content = rs.getString("content");
+				boolean checked;
+				if (rs.getString("checked").equals("F")) {
+					checked = false;
+				}
+				else {
+					checked = true;
+				}
+				Member sender = new Member();
+				int snum = rs.getInt("sender");
+				logger.info("sender Number is "+ Integer.toString(snum));
+				sender.setMnum(snum);
+				logger.info("setted mNum" + Integer.toString(sender.getMnum()));
+				Member receiver = new Member();
 				Message msg = new Message (
-					rs.getInt("msg_id"),
-					sender,
+					msgid,
 					receiver,
-					rs.getString("title"),
-					rs.getDate("sendDate"),
-					rs.getString("content"),
-					rs.getBoolean("checked")				
+					sender,
+					title,
+					sendDate,
+					content,
+					checked
 					);
-				logger.info("added");
 				msgList.add(msg);
 			}
 			return msgList;
@@ -152,19 +166,17 @@ public class MessageDAO {
 		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER, "
 				+ "RECEIVER FROM MESSAGE WHERE SENDER=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mNum});
-
-		//		MemberDAO memberManager = new MemberDAO();
 		try {
+			MemberManager memberManager = MemberManager.getInstance();
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<Message> msgList = new ArrayList<Message>();
 			while (rs.next()) {
-				Member sender = null; //rs.getInt(receiver)로 찾는다.
-//				Member sender = memberDAO.findMember(mNum);
-				Member receiver = null;
+				Member sender = memberManager.findMember(rs.getInt("sender"));
+				Member receiver = memberManager.findMember(rs.getInt("receiver"));
 				Message msg = new Message (
 					rs.getInt("msg_id"),
-					sender,
 					receiver,
+					sender,
 					rs.getString("title"),
 					rs.getDate("sendDate"),
 					rs.getString("content"),

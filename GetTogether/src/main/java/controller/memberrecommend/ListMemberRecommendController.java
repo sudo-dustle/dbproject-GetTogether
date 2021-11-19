@@ -1,6 +1,8 @@
 package controller.memberrecommend;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +17,15 @@ public class ListMemberRecommendController implements Controller{
 	 public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			
 	    	MemberRecommendManager manager = MemberRecommendManager.getInstance();
+//	    	MemberRecommend member = new MemberRecommend("김지수", "C, Java");
 			List<MemberRecommend> memberRecommendList = manager.findRecommendMemberList();
+//	    	List<MemberRecommend> memberRecommendList = new ArrayList<MemberRecommend>();
+//	    	java.util.logging.Logger logger = Logger.getLogger(this.getClass().getName());
+//	    	logger.info(member.getMname());
+//	    	memberRecommendList.add(member);
 			
-			// commList 객체를 request에 저장하여 커뮤니티 리스트 화면으로 이동(forwarding)
 			request.setAttribute("memberRecommendList", memberRecommendList);				
-			return "/memberrecommend/memberreocmmend.jsp";        
+			return "/memberrecommend/memberrecommend.jsp";        
 	    }
 	
 }
