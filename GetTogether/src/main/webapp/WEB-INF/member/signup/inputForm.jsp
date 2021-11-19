@@ -60,7 +60,7 @@ td.contents {
 	font-family: 'Jua', sans-serif;
 }
 </style>
-<script language="JavaScript">
+<script>
 	function checkemailaddy() {
 		if (form.email_select.value == '1') {
 			form.email2.readOnly = false;

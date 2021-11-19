@@ -19,9 +19,8 @@
 	            <% int i = 1; %>
 	            	<c:forEach var="recommendTeam" items="${teamRecommendList}">
 					<% out.print("<div id='box" + i++ + "'>");%>
-	            	<h2>${recommendTeam.title}</h2> </br><h3>${recommendTeam.subtitle}</h3>${recommendTeam.lookupcnt}</br></div>
+	            	<h2>${recommendTeam.title}</h2> <br><h3>${recommendTeam.subtitle}</h3>${recommendTeam.lookupcnt}<br>
 	                
-
 	                </c:forEach>	
 	            </div>
             <div class="arrow-right"></div>
