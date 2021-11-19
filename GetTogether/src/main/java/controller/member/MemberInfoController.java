@@ -1,6 +1,6 @@
 package controller.member;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,16 +24,13 @@ public class MemberInfoController implements Controller {
 		String school = request.getParameter("school");
 		String major = request.getParameter("major");
 		String field = null;
-		String language = request.getParameter("lan");
+		String language = null;
 		String experience = request.getParameter("experience");
 		
-		//Date타입으로 변환
 		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = (Date) fm.parse(dateString);
 		
 		String[] word1 = request.getParameterValues("project");
-		
-		//하나의 스트링으로 합치기?
 		for(int i = 0; i < word1.length; i++) {
 			if (field == null) {
 				field = word1[i];
@@ -48,20 +45,23 @@ public class MemberInfoController implements Controller {
 			language = language + word2[i];
 		}
 		
+		System.out.println("mid= " + mid + ", passwd=" + passwd + ", mname=" + mname + ", phonenum=" + phonenum
+				+ ", email=" + email + "school=" + school + ", major="+ major + ", field="+ field + ", language="+ language + ", experience="+ experience);
 		
-		Member member = new Member(0, mid, passwd, mname, date, phonenum, email, school, major, field, language, experience);
+		Member member = new Member(mid, passwd, mname, date, phonenum, email, school, major, field, language, experience);
 		
 		try {
+			System.out.println("try1");
 			MemberManager manager = MemberManager.getInstance();
 			manager.create(member);
-			
-			//성공 시 메인화면
+			System.out.println("try2");
 			return "redirect:/main.jsp";
 		}
 		catch (Exception e) {
+			System.out.println("catch");
 			request.setAttribute("inputFailed", true);
 			request.setAttribute("exception", e);
-			return "/member/inputForm.jsp";
+			return "/member/signup/inputForm.jsp";
 		}
 		
 	}

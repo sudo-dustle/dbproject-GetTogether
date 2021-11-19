@@ -1,32 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../../../../WEB-INF/components/nav.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>È¸¿ø°¡ÀÔ</title>
+<title>íšŒì›ê°€ì…</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 body {
 	font-weight: bold;
 	font-size: 12pt;
 	color: #2F2F2F;
 	background-color: #F6F8ED;
-}
-
-div.main {
-	text-align: center;
-	padding-top: 15px;
-}
-
-div.banner {
-	background-color: #9DB589;
-	text-align: center;
-	padding: 20px;
-	font-size: 18pt;
-	color: #2F2F2F;
-}
-
-div.log {
-	text-align: right;
 }
 
 .button {
@@ -86,63 +72,49 @@ td.contents {
 		}
 	}
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
+
 </head>
 
 <body>
-	<h1>
-		<div class="main">¸ğ¿©ºÁ¿ä</div>
-	</h1>
-	<P></P>
-	<div class="log">·Î±×ÀÎ | È¸¿ø°¡ÀÔ</div>
-	</P>
-	<div class="banner">ÇÁ·ÎÁ§Æ® ¸ñ·Ï &nbsp;&nbsp;&nbsp;&nbsp; |
-		&nbsp;&nbsp;&nbsp;&nbsp; ÇÁ·ÎÁ§Æ® °ü¸® &nbsp;&nbsp;&nbsp;&nbsp; |
-		&nbsp;&nbsp;&nbsp;&nbsp; ÆÀ¿ø ÃßÃµ</div>
-	<p></p>
-
-	<div align=center>
-		<form method="post" action="/user/input">
+	<div align=center style="margin-top: 5%;">
+		<form method="post" action="<c:url value='/member/signup' />">
 			<table style="border-collapse: collapse;">
 				<tr>
-					<th colspan="2" class="name">È¸¿ø°¡ÀÔ(* Ç¥½Ã ±âÀÔ ÇÊ¼ö)</th>
+					<th colspan="2" class="name">íšŒì›ê°€ì…(* í‘œì‹œ ê¸°ì… í•„ìˆ˜)</th>
 				</tr>
 				<tr>
-					<th class="name">¾ÆÀÌµğ*</th>
+					<th class="name">ì•„ì´ë””*</th>
 					<td class="contents">
 					<input type="text" name="mid" size="16" minlength="8" maxlength="16" required> 
-					<input type="button" class="button" value="Áßº¹È®ÀÎ">
+					<input type="button" class="button" value="ì¤‘ë³µí™•ì¸">
 					</td>
 				</tr>
 				<tr>
-					<th class="name">ºñ¹Ğ¹øÈ£*</th>
+					<th class="name">ë¹„ë°€ë²ˆí˜¸*</th>
 					<td id="contents">
 					<input type="password" name="passwd" size="16" required>
 					</td>
 				</tr>
 				<tr>
-					<th class="name">ºñ¹Ğ¹øÈ£ È®ÀÎ*</th>
+					<th class="name">ë¹„ë°€ë²ˆí˜¸ í™•ì¸*</th>
 					<td id="contents">
 						<input type="password" size="16" minlength="8" maxlength="20" required>
 					</td>
 				</tr>
 				<tr>
-					<th class="name">ÀÌ¸§*</th>
+					<th class="name">ì´ë¦„*</th>
 					<td class="contents">
 						<input type="text" name="mname" size="16" required>
 					</td>
 				</tr>
 				<tr>
-					<th class="name">»ı³â¿ùÀÏ*</th>
+					<th class="name">ìƒë…„ì›”ì¼*</th>
 					<td id="contents">
 						<input type="date" name="date" size="17">
 					</td>
 				</tr>
 				<tr>
-					<th class="name">ÈŞ´ëÆù*</th>
+					<th class="name">íœ´ëŒ€í°*</th>
 					<td id="contents"><select name="phone">
 							<option value=1 selected>010</option>
 							<option value="2">011</option>
@@ -153,49 +125,48 @@ td.contents {
 						type="text" name="phone2" size="4" maxlength="4"></td>
 				</tr>
 				<tr>
-					<th id class="name">ÀÌ¸ŞÀÏ*</th>
+					<th class="name">ì´ë©”ì¼*</th>
 					<td id="contents">
 					<input name="email1" type="text" class="box" id="email1" size="15" required> @ 
 					<input name="email2" type="text" class="box" id="email2" size="10s">
 					 <select name="email_select" class="box" id="email_select"
 						onChange="checkemailaddy();">
-							<option value="" selected>¼±ÅÃÇÏ¼¼¿ä</option>
+							<option value="" selected>ì„ íƒí•˜ì„¸ìš”</option>
 							<option value="naver.com">naver.com</option>
 							<option value="hotmail.com">hotmail.com</option>
 							<option value="hanmail.com">hanmail.com</option>
 							<option value="yahoo.co.kr">yahoo.co.kr</option>
-							<option value="1">Á÷Á¢ÀÔ·Â</option>
+							<option value="1">ì§ì ‘ì…ë ¥</option>
 					</select></td>
 				</tr>
 				<tr>
-					<th class="name">ÀçÇĞÁßÀÎ ÇĞ±³</th>
+					<th class="name">ì¬í•™ì¤‘ì¸ í•™êµ</th>
 					<td id="contents">
-						<input type="text" size="20" readonly>
-						<input type="button" class="button" value="´ëÇĞ±³ ¼±ÅÃ">
+						<input type="text" name="school" size="20">
 				</tr>
 				<tr>
-					<th id class="name">ÇĞ°ú</th>
+					<th class="name">í•™ê³¼</th>
 					<td id="contents"><input type="text" name="major" size="30"></td>
 				</tr>
 
 				<tr>
-					<th class="name">°ü½É ÇÁ·ÎÁ§Æ®</th>
+					<th class="name">ê´€ì‹¬ í”„ë¡œì íŠ¸</th>
 					<td id="contents">
-						<input type="checkbox" name="project" value="0" checked>ALL 
-						<input type="checkbox" name="project" value="1">À¥ °³¹ß 
-						<input type="checkbox" name="project" value="2">¸ğ¹ÙÀÏ À¥ °³¹ß
+						<input type="checkbox" name="field" value="0" checked>ALL 
+						<input type="checkbox" name="field" value="1">ì›¹ ê°œë°œ 
+						<input type="checkbox" name="field" value="2">ëª¨ë°”ì¼ ì›¹ ê°œë°œ
 						<p></p> 
-						<input type="checkbox" name="project" value="3">°ÔÀÓ°³¹ß 
-						<input type="checkbox" name="project" value="4">µ¥ÀÌÅÍ»çÀÌ¾ğ½º 
-						<input type="checkbox" name="project" value="5">¼­¹ö °³¹ß
+						<input type="checkbox" name="field" value="3">ê²Œì„ê°œë°œ 
+						<input type="checkbox" name="field" value="4">ë°ì´í„°ì‚¬ì´ì–¸ìŠ¤ 
+						<input type="checkbox" name="field" value="5">ì„œë²„ ê°œë°œ
 						<p></p> 
-						<input type="checkbox" name="project" value="6">ºí·ÏÃ¼ÀÎ °³¹ß 
-						<input type="checkbox" name="project" value="7"> µ¥½ºÅ©Åé ¾Û °³¹ß 
-						<input type="checkbox" name="project" value="8">
-						<input type="text" size="5" value="±âÅ¸"></td>
+						<input type="checkbox" name="field" value="6">ë¸”ë¡ì²´ì¸ ê°œë°œ 
+						<input type="checkbox" name="field" value="7"> ë°ìŠ¤í¬í†± ì•± ê°œë°œ 
+						<input type="checkbox" name="field" value="8">
+						<input type="text" size="5" value="ê¸°íƒ€"></td>
 				</tr>
 				<tr>
-					<th class="name">»ç¿ë°¡´ÉÇÑ ¾ğ¾î</th>
+					<th class="name">ì‚¬ìš©ê°€ëŠ¥í•œ ì–¸ì–´</th>
 					<td id="contents">
 					<input type="checkbox" name="lan" value="0"
 						checked>ALL 
@@ -218,24 +189,22 @@ td.contents {
 						<p></p> 
 						<input type="checkbox" name="lan" value="15">Ruby
 						<input type="checkbox" name="lan" value="15">
-						<input type="text" size="5" value="±âÅ¸">
+						<input type="text" size="5" value="ê¸°íƒ€">
 						</td>
 				</tr>
 				<tr>
-					<th class="name">ÇÁ·ÎÁ§Æ® °æÇè</th>
-					<td id="contents"><textarea rows="5px" name="experience" cols="50px">°£´ÜÇÏ°Ô ÇÁ·ÎÁ§Æ® °æÇè¿¡ ´ëÇØ ¼­¼úÇØÁÖ¼¼¿ä.</textarea>
+					<th class="name">í”„ë¡œì íŠ¸ ê²½í—˜</th>
+					<td id="contents"><textarea rows="5px" name="experience" cols="50px">ê°„ë‹¨í•˜ê²Œ í”„ë¡œì íŠ¸ ê²½í—˜ì— ëŒ€í•´ ì„œìˆ í•´ì£¼ì„¸ìš”.</textarea>
 				</tr>
 				<tr>
 					<th colspan="2" class="title">
-						<input type="submit" class="button" value="°¡ÀÔÇÏ±â"> 
-						<input type="reset" class="button" value="´Ù½ÃÀÛ¼º"></th>
+						<input type="submit" class="button" value="ê°€ì…í•˜ê¸°"> 
+						<input type="reset" class="button" value="ë‹¤ì‹œì‘ì„±"></th>
 				</tr>
-
 
 			</table>
 		</form>
 	</div>
-
 
 </body>
 </html>
