@@ -16,11 +16,11 @@ import controller.member.*;
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
     
-    // �� ��û uri�� ���� controller ��ü�� ������ HashMap ����
+    // 占쏙옙 占쏙옙청 uri占쏙옙 占쏙옙占쏙옙 controller 占쏙옙체占쏙옙 占쏙옙占쏙옙占쏙옙 HashMap 占쏙옙占쏙옙
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// �� uri�� �����Ǵ� controller ��ü�� ���� �� ����
+    	// 占쏙옙 uri占쏙옙 占쏙옙占쏙옙占실댐옙 controller 占쏙옙체占쏙옙 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/member/login/form", new ForwardController("/member/login/loginForm.jsp"));
 //        mappings.put("/user/login", new LoginController());
@@ -36,7 +36,7 @@ public class RequestMapping {
 //      mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
         mappings.put("/user/register", new RegisterUserController());
 
-        // 사용자 정보 수정 폼 요청과 수정 요청 처리 병합
+        // �궗�슜�옄 �젙蹂� �닔�젙 �뤌 �슂泥�怨� �닔�젙 �슂泥� 泥섎━ 蹂묓빀
 
 //      mappings.put("/user/update/form", new UpdateUserFormController());
 //      mappings.put("/user/update", new UpdateUserController());        
@@ -52,9 +52,9 @@ public class RequestMapping {
         mappings.put("/community/update", new UpdateCommunityController());
         
 
-        //recommend관련 매핑
-        mappings.put("/memberrecommend/memberrecommend", new ListMemberRecommendController());
-        mappings.put("/teamRecommend/teamRecommend", new ListTeamRecommendController());
+        //recommend愿��젴 留ㅽ븨
+        mappings.put("/memberRecommend/list", new ListMemberRecommendController());
+        mappings.put("/teamRecommend/list", new ListTeamRecommendController());
 
 
 
