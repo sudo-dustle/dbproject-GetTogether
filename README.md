@@ -3,7 +3,7 @@
 
 ## 간단한 작업 방식
 1. develop 브랜치로 이동(checkout)
-2. git pull 하기
+2. git pull origin develop 하기 (잘 됐는지 확인을 제대로 해주세요. git log로 어느 커밋까지 불러왔는지 확인 가능)
 3. 새 브랜치를 하나 만들어요 (이름 예시: feature/기능명, fix/고친버그명 - feature/login, feature/create-project)
 4. 코드 작성
 5. 만든 branch를 add commit push (git push origin feature/login)
