@@ -53,10 +53,8 @@ public class MemberDAO {
 		String query = "SELECT seq_mnum, mid, passwd, mname, date, phonenum, email, school, major, field, language, experience"
 				+ "FROM Member WHERE mnum=?";
 		
-		jdbcUtil.setSql(query);
-		
 		Object[] param = new Object[] {mid};
-		jdbcUtil.setParameters(param);
+		jdbcUtil.setSqlAndParameters(query, param);
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
@@ -87,12 +85,52 @@ public class MemberDAO {
 			}
 			return member;
 		}catch(Exception ex) {
-			
+			ex.printStackTrace();
 		}
 		finally {
 			jdbcUtil.close();
 		}
+		return null;
+	}
+	
+	
+	public Member findMember(int mNum) throws SQLException {
+		String query = "SELECT mnum, mid, passwd, mname, birth, phonenum, email, school, major, field, language, experience "
+				+ "FROM Member WHERE mnum=?";
+		
+		Object[] param = new Object[] {mNum};
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			Member member = null;
+			
+			if(rs.next()) {
+				member = new Member();
+				
+				member.setMnum(rs.getInt("mnum"));
+				member.setMid(rs.getString("mid"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setMname(rs.getString("mname"));
+				
+				//date타입 처리
+				member.setDate(new java.util.Date(rs.getDate("birth").getTime()));
 
+				member.setPhonenum(rs.getString("phonenum"));
+				member.setEmail(rs.getString("email"));
+				member.setSchool(rs.getString("school"));
+				member.setMajor(rs.getString("major"));
+				member.setField(rs.getString("field"));
+				member.setLanguage(rs.getString("language"));
+				member.setExperience(rs.getString("experience"));
+			}
+			return member;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		finally {
+			jdbcUtil.close();
+		}
 		return null;
 	}
 	
