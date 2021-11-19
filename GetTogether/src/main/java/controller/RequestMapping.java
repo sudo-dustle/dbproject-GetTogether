@@ -47,9 +47,11 @@ public class RequestMapping {
         mappings.put("/community/create", new CreateCommunityController());
         mappings.put("/community/update", new UpdateCommunityController());
         
+
         //recommend관련 매핑
         mappings.put("/memberrecommend/memberrecommend", new ListMemberRecommendController());
         mappings.put("/teamRecommend/teamRecommend", new ListTeamRecommendController());
+
 
 
         mappings.put("/message/list", new ListMessageController());

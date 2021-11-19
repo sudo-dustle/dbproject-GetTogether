@@ -15,16 +15,18 @@
 		<div class="parent">
             <div class="arrow-left"></div>
 	            <div id = "wrap">
+
+	            <% int i = 1; %>
 	            	<c:forEach var="recommendTeam" items="${teamRecommendList}">
-	                <div id="box1"><h2>${recommendTeam.title}</h2> </br><h3>${recommendTeam.subtitle}</h3>${recommendTeam.lookupcnt}</br></div>
-	                <div id="box2"><h2>프로젝트3</h2> </br><h3>사용기술 : a,b,c</h3>작성자2 </br></div>
-	                <div id="box3"><h2>프로젝트2</h2> </br><h3>사용기술 : a,b,c</h3>작성자3 </br></div>
-	                <div id="box4"><h2>프로젝트6</h2> </br><h3>사용기술 : a,b,c</h3>작성자4 </br></div>
-	                <div id="box5"><h2>프로젝트4</h2> </br><h3>사용기술 : a,b,c</h3>작성자5 </br></div>
-	                <div id="box6"><h2>프로젝트5</h2> </br><h3>사용기술 : a,b,c</h3>작성자6</br></div>
+					<% out.print("<div id='box" + i++ + "'>");%>
+	            	<h2>${recommendTeam.title}</h2> </br><h3>${recommendTeam.subtitle}</h3>${recommendTeam.lookupcnt}</br></div>
+	                
+
 	                </c:forEach>	
 	            </div>
             <div class="arrow-right"></div>
         </div>
 </body>
+
 </html>
+
