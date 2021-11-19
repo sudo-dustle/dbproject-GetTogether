@@ -16,7 +16,7 @@ public class Member {
 	private String language;
 	private String experience;
 	
-	public Member() {};
+	public Member() {}
 	
 	public Member(int mnum, String mid, String passwd, String mname, Date date, String phonenum, String email,
 			String school, String major, String field, String language, String experience)

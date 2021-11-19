@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -31,7 +32,7 @@ public class MessageDAO {
 				message.getContent(), message.isChecked()?'T':'F', message.getSender().getMnum(),
 						message.getReceiver().getMnum()};		
 		logger.info(message.getReceiver().getMnum() +"/" +  
-				message.getSender().getMnum()+"/" + message.getTitle()+ message.getSendDate()+
+				message.getSender().getMnum() + "/" + message.getTitle()+ message.getSendDate()+
 				message.getContent()+ message.isChecked());
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 						
@@ -93,8 +94,8 @@ public class MessageDAO {
 				receiver.setMname("3번");
 				msg = new Message (
 					rs.getInt("msg_id"),
-					sender,
 					receiver,
+					sender,
 					rs.getString("title"),
 					rs.getDate("sendDate"),
 					rs.getString("content"),
@@ -103,13 +104,11 @@ public class MessageDAO {
 				return msg;
 			}
 		} catch (Exception ex) {
-			jdbcUtil.rollback();
 			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.commit();
+		} finally {	
 			jdbcUtil.close();	// resource 반환
 		}		
-		return null;			
+		return null;
 	}
 	
 	/**
@@ -119,28 +118,36 @@ public class MessageDAO {
 		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER FROM MESSAGE WHERE RECEIVER=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mNum});
 		try {
-//			MemberManager memberManager = MemberManager.getInstance();
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<Message> msgList = new ArrayList<Message>();
 			while (rs.next()) {
-//				Member sender = memberManager.findMember(rs.getInt("sender"));
+				int msgid= rs.getInt("msg_id");
+				logger.info("msgid is "+ Integer.toString(msgid));
+				String title = rs.getString("title");
+				Date sendDate = rs.getDate("sendDate");
+				String content = rs.getString("content");
+				boolean checked;
+				if (rs.getString("checked").equals("F")) {
+					checked = false;
+				}
+				else {
+					checked = true;
+				}
 				Member sender = new Member();
-				sender.setMnum(2);
-				sender.setMname("2번");
+				int snum = rs.getInt("sender");
+				logger.info("sender Number is "+ Integer.toString(snum));
+				sender.setMnum(snum);
+				logger.info("setted mNum" + Integer.toString(sender.getMnum()));
 				Member receiver = new Member();
-				receiver.setMnum(3);
-				receiver.setMname("3번");
-//				Member receiver = memberManager.findMember(mNum);
 				Message msg = new Message (
-					rs.getInt("msg_id"),
-					sender,
+					msgid,
 					receiver,
-					rs.getString("title"),
-					rs.getDate("sendDate"),
-					rs.getString("content"),
-					rs.getBoolean("checked")				
+					sender,
+					title,
+					sendDate,
+					content,
+					checked
 					);
-				logger.info("added");
 				msgList.add(msg);
 			}
 			return msgList;
@@ -159,8 +166,6 @@ public class MessageDAO {
 		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER, "
 				+ "RECEIVER FROM MESSAGE WHERE SENDER=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mNum});
-
-		//		MemberDAO memberManager = new MemberDAO();
 		try {
 			MemberManager memberManager = MemberManager.getInstance();
 			ResultSet rs = jdbcUtil.executeQuery();
@@ -170,8 +175,8 @@ public class MessageDAO {
 				Member receiver = memberManager.findMember(rs.getInt("receiver"));
 				Message msg = new Message (
 					rs.getInt("msg_id"),
-					sender,
 					receiver,
+					sender,
 					rs.getString("title"),
 					rs.getDate("sendDate"),
 					rs.getString("content"),
