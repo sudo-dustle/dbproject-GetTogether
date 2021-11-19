@@ -16,8 +16,9 @@ public class ListMemberRecommendController implements Controller{
 	
 	 public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			
+
 	    	MemberRecommendManager manager = MemberRecommendManager.getInstance();
-//	    	MemberRecommend member = new MemberRecommend("±èÁö¼ö", "C, Java");
+//	    	MemberRecommend member = new MemberRecommend("Â±Ã¨ÃÃ¶Â¼Ã¶", "C, Java");
 			List<MemberRecommend> memberRecommendList = manager.findRecommendMemberList();
 //	    	List<MemberRecommend> memberRecommendList = new ArrayList<MemberRecommend>();
 //	    	java.util.logging.Logger logger = Logger.getLogger(this.getClass().getName());
@@ -25,7 +26,8 @@ public class ListMemberRecommendController implements Controller{
 //	    	memberRecommendList.add(member);
 			
 			request.setAttribute("memberRecommendList", memberRecommendList);				
+
 			return "/memberrecommend/memberrecommend.jsp";        
 	    }
 	
-}
+}*/

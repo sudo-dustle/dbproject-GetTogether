@@ -1,4 +1,4 @@
-package model.dao;
+package model.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,14 +8,14 @@ import java.util.List;
 import model.Member;
 import model.Project;
 import model.TeamMember;
-import model.Member;
+import model.dao.JDBCUtil;
 
 
 public class TeamMemberDAO {
 	private JDBCUtil jdbcUtil = null;
 	
 	public TeamMemberDAO() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
+		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체생성
 	}
 	public int create(Project project, Member member) throws SQLException{
 		String sql = "INSERT INTO USERINFO VALUES (?, ?, false)";
@@ -23,7 +23,7 @@ public class TeamMemberDAO {
 		jdbcUtil.setSqlAndParameters(sql, param);
 		
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
+			int result = jdbcUtil.executeUpdate();	// insert 문생성
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -37,15 +37,15 @@ public class TeamMemberDAO {
 	
 
 	public List<TeamMember> findMembersInProject(int pid) throws SQLException {
-        String sql = "SELECT Mnum FROM TeamMember "
-     				+ "WHERE pid = ? and approve = true";                         
+        String sql = "SELECT mnum FROM TeamMember "
+     				+ "WHERE pid=? and approve = 1";                         
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtil에 query문과 매개 변수 설정
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			List<TeamMember> memList = new ArrayList<TeamMember>();	// member들의 리스트 생성
 			while (rs.next()) {
-				TeamMember member = new TeamMember(			// 객체를 생성하여 현재 행의 정보를 저장
+				TeamMember member = new TeamMember(			// 객체를 생성하여 현재 행 정보 저장
 					pid,
 					rs.getInt("mnum"),
 					rs.getBoolean("approve"));
@@ -63,7 +63,7 @@ public class TeamMemberDAO {
 	
 	public int getNumberOfUsersInProject(int pid) {
 		String sql = "SELECT COUNT(mnum) FROM TeamMember "
-     				+ "WHERE pid = ? and approve = true";              
+     				+ "WHERE pid=? and approve = 1";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtil에 query문과 매개 변수 설정
 		
 		try {

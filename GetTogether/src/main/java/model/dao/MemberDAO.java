@@ -59,6 +59,7 @@ public class MemberDAO {
 		String query = "SELECT mnum, mid, passwd, mname, birth, phonenum, email, school, major, field, language, experience "
 				+ "FROM Member WHERE mnum=?";
 		
+
 		Object[] param = new Object[] {mnum};
 		jdbcUtil.setSqlAndParameters(query, param);
 		

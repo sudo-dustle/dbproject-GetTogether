@@ -2,8 +2,6 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.Project;
 
@@ -17,8 +15,19 @@ public class ProjectDAO {
 	 */
 	public Project create(Project project) throws  SQLException{
 		/*pid 시퀀스 생성*/
-		String sql = "INSERT INTO Project VALUES (pjId_seq.nextval, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?, 0, 0)";
-		Object[] param = new Object[] {project.getTitle(),project.getField(),project.getLanguage(),project.getSubtitle(),project.getExecutionStart(),project.getExecutionEnd(),project.getApplicationStart(),project.getApplicationEnd(),project.getGoal(),project.getApplicationNum(),project.getDescription(),project.getMnum()};
+		String sql = "INSERT INTO Project VALUES (seq_pid.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, 0, 0)";
+		long time = project.getExecutionStart().getTime();
+		java.sql.Date ExecutionStart = new java.sql.Date(time);
+		time = project.getExecutionEnd().getTime();
+		java.sql.Date ExecutionEnd = new java.sql.Date(time);
+		time = project.getApplicationStart().getTime();
+		java.sql.Date ApplicationStart = new java.sql.Date(time);
+		time = project.getApplicationEnd().getTime();
+		java.sql.Date ApplicationEnd = new java.sql.Date(time);
+		Object[] param = new Object[] {project.getTitle(),project.getField(),project.getLanguage(),project.getSubtitle()
+				,ExecutionStart,ExecutionEnd,ApplicationStart
+				,ApplicationEnd,project.getGoal(),project.getApplicationNum(),project.getDescription()
+				,project.getMnum()};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		String key[] = {"pid"};
 		try {
@@ -43,7 +52,7 @@ public class ProjectDAO {
 	 */
 	public int update (Project project) throws SQLException{
 		String sql = "UPDATE Project "
-				+ "SET title=?, field=?, language=?, subtitle=?, executionStart=?, executionEnd=?,applicationStart=?,applicationEnd=?,goal=?,applicationNum=?,description=?,approve=?,recommendCnt+=1, lookupCnt+=1,"
+				+ "SET title=?, field=?, language=?, subtitle=?, executionStart=?, executionEnd=?,applicationStart=?,applicationEnd=?,goal=?,applicationNum=?,description=?"
 				+ "WHERE pid=?";
 		Object[] param = new Object[] {project.getTitle(),project.getField(),project.getLanguage(),project.getSubtitle(),project.getExecutionStart(),project.getExecutionEnd(),project.getApplicationStart(),project.getApplicationEnd(),project.getGoal(),project.getApplicationNum(),project.getDescription(),project.getPid()};
 		jdbcUtil.setSqlAndParameters(sql, param);
@@ -63,8 +72,8 @@ public class ProjectDAO {
 	/**
 	 * 주어진 pid에 해당하는 프로젝트 정보를 삭제.
 	 */
-	public int remove(String pid) throws SQLException {
-		String sql = "DELETE FROM Community WHERE pid=?";		
+	public int remove(int pid) throws SQLException {
+		String sql = "DELETE FROM Project WHERE pid=?";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtil에 delete문과 매개 변수 설정
 
 		try {				
@@ -81,11 +90,10 @@ public class ProjectDAO {
 		return 0;
 	}
 
-	/* sql문 수정 아직 안했습니다 할예정임..ㅠ*/
 	  	public Project findProject(int pid) throws SQLException {
-        String sql = "SELECT ... "
-        			+ "FROM ... "
-        			+ "WHERE pid=? ";              
+        String sql = "SELECT title, field, language, subtitle, executionStart, executionEnd, applicationStart, applicationEnd, goal, applicationNum, description, approve, mnum, recommendCnt, lookupCnt "
+        			+ "FROM Project "
+        			+ "WHERE pid=?";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtil에 query문과 매개 변수 설정
 		Project project = null;
 		try {
