@@ -1,9 +1,12 @@
 package controller.project;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.Project;
 
 public class ProjectSearchController implements Controller {
 

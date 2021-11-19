@@ -1,0 +1,19 @@
+package controller.member;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import controller.Controller;
+
+public class MemberLogoutController implements Controller {
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		session.removeAttribute(MemberSessionUtils.MEMBER_SESSION_KEY);
+		session.invalidate();		
+		
+		return "/member/login/loginForm.jsp";
+	}
+}
