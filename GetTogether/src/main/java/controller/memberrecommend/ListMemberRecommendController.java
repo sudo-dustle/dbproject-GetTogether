@@ -17,9 +17,8 @@ public class ListMemberRecommendController implements Controller{
 	    	MemberRecommendManager manager = MemberRecommendManager.getInstance();
 			List<MemberRecommend> memberRecommendList = manager.findRecommendMemberList();
 			
-			// commList 객체를 request에 저장하여 커뮤니티 리스트 화면으로 이동(forwarding)
 			request.setAttribute("memberRecommendList", memberRecommendList);				
-			return "/memberrecommend/memberreocmmend.jsp";        
+			return "/memberrecommend/memberrecommend.jsp";        
 	    }
 	
 }
