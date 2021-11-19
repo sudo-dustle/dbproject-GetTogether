@@ -6,9 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import controller.user.UserSessionUtils;
 import model.Message;
-import model.User;
 import model.dao.MessageDAO;
 
 public class ViewMessageDetailController implements Controller{
@@ -31,5 +29,4 @@ public class ViewMessageDetailController implements Controller{
 		
 		return "/message/messageDetail.jsp";
 	}
-
 }

@@ -24,8 +24,10 @@ public class MessageDAO {
 		/**
 		 *	msg_id, title, senddate, content, checked ,sender, receiver
 		 */
-		String sql = "INSERT INTO MESSAGE VALUES (SEQ_MSGID.NEXTVAL, ?, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {message.getTitle(), message.getSendDate(),
+		String sql = "INSERT INTO MESSAGE VALUES (SEQ_MSGID.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+		long time = message.getSendDate().getTime();
+		java.sql.Date date1 = new java.sql.Date(time);
+		Object[] param = new Object[] {message.getTitle(), date1,
 				message.getContent(), message.isChecked()?'T':'F', message.getSender().getMnum(),
 						message.getReceiver().getMnum()};		
 		logger.info(message.getReceiver().getMnum() +"/" +  
@@ -78,15 +80,17 @@ public class MessageDAO {
 		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER, "
 				+ "RECEIVER FROM MESSAGE WHERE MSG_ID=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {msgId});	
-	
-		try {				
+		
+		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			Message msg;
 			if (rs.next()) {
-				logger.info("good!");
-				Member sender = null; //rs.getInt(receiver)로 찾는다.
-//				Member sender = memberDAO.findMember(mNum);
-				Member receiver = null;
+				Member sender = new Member();
+				sender.setMnum(2);
+				sender.setMname("2번");
+				Member receiver = new Member();
+				receiver.setMnum(3);
+				receiver.setMname("3번");
 				msg = new Message (
 					rs.getInt("msg_id"),
 					sender,
@@ -112,18 +116,21 @@ public class MessageDAO {
 	 * receiver가 현재 User인 메세지들을 반환.
 	 */
 	public List<Message> findReceivedMessageList(int mNum) throws SQLException {
-		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER, "
-				+ "RECEIVER FROM MESSAGE WHERE RECEIVER=?";
+		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER FROM MESSAGE WHERE RECEIVER=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mNum});
-		logger.info("Im");
-		//		MemberDAO memberManager = new MemberDAO();
 		try {
+//			MemberManager memberManager = MemberManager.getInstance();
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<Message> msgList = new ArrayList<Message>();
 			while (rs.next()) {
-				Member sender = null; //rs.getInt(receiver)로 찾는다.
-//				Member sender = memberDAO.findMember(mNum);
-				Member receiver = null;
+//				Member sender = memberManager.findMember(rs.getInt("sender"));
+				Member sender = new Member();
+				sender.setMnum(2);
+				sender.setMname("2번");
+				Member receiver = new Member();
+				receiver.setMnum(3);
+				receiver.setMname("3번");
+//				Member receiver = memberManager.findMember(mNum);
 				Message msg = new Message (
 					rs.getInt("msg_id"),
 					sender,
@@ -155,12 +162,12 @@ public class MessageDAO {
 
 		//		MemberDAO memberManager = new MemberDAO();
 		try {
+			MemberManager memberManager = MemberManager.getInstance();
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<Message> msgList = new ArrayList<Message>();
 			while (rs.next()) {
-				Member sender = null; //rs.getInt(receiver)로 찾는다.
-//				Member sender = memberDAO.findMember(mNum);
-				Member receiver = null;
+				Member sender = memberManager.findMember(rs.getInt("sender"));
+				Member receiver = memberManager.findMember(rs.getInt("receiver"));
 				Message msg = new Message (
 					rs.getInt("msg_id"),
 					sender,

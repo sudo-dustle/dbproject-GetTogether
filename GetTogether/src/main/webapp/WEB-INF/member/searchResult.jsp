@@ -36,7 +36,7 @@
 						</ul>
 					</div>
 				</c:forEach>
-				<$ } %>
+				<% } %>
 			</div>
 	</div>
 </body>
