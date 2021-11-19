@@ -30,4 +30,4 @@ public class ListMemberRecommendController implements Controller{
 			return "/memberrecommend/memberrecommend.jsp";        
 	    }
 	
-}*/
+}
