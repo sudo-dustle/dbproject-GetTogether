@@ -31,7 +31,7 @@ public class MemberManager {
 	public int create(Member member) throws SQLException, ExistingUserException {
 		System.out.println("create in");
 		if (memberDAO.existingMember(member.getMid())) {
-			throw new ExistingUserException(member.getMid()+"ëŠ” ì¡´ì¬í•˜ëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.");
+			throw new ExistingUserException(member.getMid()+"´Â ÀÌ¹Ì Á¸ÀçÇÏ´Â È¸¿øÀÔ´Ï´Ù.");
 		}
 		
 		return memberDAO.create(member);
@@ -45,21 +45,23 @@ public class MemberManager {
 		return memberDAO.remove(mid);
 	}
 	
+	//mnumÀ¸·Î È¸¿ø Ã£±â
 	public Member findMemberByMnum(int mnum) throws SQLException, UserNotFoundException {
 		Member member = memberDAO.findMemberByMnum(mnum);
 		
 		if(mnum < 0) {
-			throw new UserNotFoundException(mnum + "ì€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ìœ ì € ë²ˆí˜¸ì…ë‹ˆë‹¤.");
+			throw new UserNotFoundException(mnum + "´Â Á¸ÀçÇÏÁö ¾Ê´Â È¸¿ø¹øÈ£ÀÔ´Ï´Ù.");
 		}
 		
 		return member;
 	}
 	
+	//mid·Î È¸¿ø Ã£±â
 	public Member findMemberByMid(String mid) throws SQLException, UserNotFoundException {
 		Member member = memberDAO.findMemberByMid(mid);
 		
 		if (member == null) {
-			throw new UserNotFoundException(mid + "ëŠ” ì¡´ì¬í•˜ëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.");
+			throw new UserNotFoundException(mid + "´Â Á¸ÀçÇÏÁö ¾Ê´Â È¸¿ø ¾ÆÀÌµğÀÔ´Ï´Ù.");
 		}
 		
 		return member;
@@ -68,7 +70,7 @@ public class MemberManager {
 	public Member findMember(int mNum) throws SQLException, UserNotFoundException {
 		Member member = memberDAO.findMember(mNum);
 		if (member == null) {
-			throw new UserNotFoundException(mNum + "´Â Á¸ÀçÇÏÁö ¾Ê´Â ¹øÈ£ÀÔ´Ï´Ù.");
+			throw new UserNotFoundException(mNum + "Àº Á¸ÀçÇÏÁö ¾Ê´Â È¸¿ø¹øÈ£ÀÔ´Ï´Ù.");
 		}
 		return member;
 	}
@@ -77,11 +79,11 @@ public class MemberManager {
 			throws SQLException, UserNotFoundException, PasswordMismatchException {
 		Member member = findMemberByMid(mid);
 		
-		System.out.println("mid=" + mid);
-		System.out.println("password=" + passwd);
-		
+		//ºñ¹Ğ¹øÈ£ Ã¼Å©
 		if (member.checkPassword(passwd) == false) {
-			throw new PasswordMismatchException("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+			System.out.println("in checkPassword");
+			System.out.println(member.checkPassword(passwd));
+			throw new PasswordMismatchException("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
 		}
 
 		return true;

@@ -21,7 +21,6 @@ public class Project {
 	private int mnum;
 	private int recommendCnt;
 	private int lookupCnt;
-	 //skill 삭제했습니다.
 	private List<TeamMember> memberList;
 	private int numOfMembers;
 	

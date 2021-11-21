@@ -59,7 +59,10 @@ table {
 	background-color: #9DB589;
 	width: 350px;
 	height: 250px;
-	padding-left: -50px;
+	text-align: left;
+	vertical-align: top;
+	padding-left: 10px;
+	padding-top: 20px;
 }
 </style>
 </head>
@@ -76,12 +79,12 @@ table {
 
 	
 	<%	
-		Project project1 = new Project(1, "project 1", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
-		Project project2 = new Project(2, "project 2", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
-		Project project3 = new Project(3, "project 3", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
-		Project project4 = new Project(4, "project 4", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
-		Project project5 = new Project(5, "project 5", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
-		Project project6 = new Project(6, "project 6", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
+		Project project1 = new Project(1, "覗稽詮闘1", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
+		Project project2 = new Project(2, "覗稽詮闘2", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
+		Project project3 = new Project(3, "覗稽詮闘3", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
+		Project project4 = new Project(4, "覗稽詮闘4", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
+		Project project5 = new Project(5, "覗稽詮闘5", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
+		Project project6 = new Project(6, "覗稽詮闘6", "しし", "しし", "しし", "goal", 1, "description", true, 1, 1, 1);
 	%>
 
 	<div class="search">
@@ -100,34 +103,28 @@ table {
 			<td class="project_context">
 				<%=project1.getTitle() %>
 				<br>
-				<%=project1.getGoal() %>
 			</td>
 			<td class="project_context">
 				<%=project2.getTitle() %>
 				<br>
-				<%=project2.getGoal() %>
 			</td>
 			<td class="project_context">
 				<%=project3.getTitle() %>
 				<br>
-				<%=project3.getGoal() %>
 			</td>
 		</tr>
 		<tr>
 			<td class="project_context">
 				<%=project4.getTitle() %>
 				<br>
-				<%=project4.getGoal() %>
 			</td>
 			<td class="project_context">
 				<%=project5.getTitle() %>
 				<br>
-				<%=project5.getGoal() %>
 			</td>
 			<td class="project_context">
 				<%=project6.getTitle() %>
 				<br>
-				<%=project6.getGoal() %>
 			</td>
 		</tr>
 	</table>
