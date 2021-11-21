@@ -11,6 +11,7 @@ import controller.message.*;
 import controller.teamrecommend.ListTeamRecommendController;
 import controller.memberrecommend.ListMemberRecommendController;
 import controller.member.*;
+import controller.project.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -19,6 +20,7 @@ public class RequestMapping {
 
     public void initMapping() {
         mappings.put("/", new ForwardController("index.jsp"));
+
         mappings.put("/member/login/form", new ForwardController("/member/login/loginForm.jsp"));
 //        mappings.put("/user/login", new LoginController());
 //        mappings.put("/user/logout", new LogoutController());
@@ -27,6 +29,7 @@ public class RequestMapping {
         mappings.put("/member/logout", new MemberLogoutController());
         mappings.put("/member/signup/input", new ForwardController("/member/signup/inputForm.jsp"));
         mappings.put("/member/signup", new MemberInfoController());
+
         mappings.put("/user/list", new ListUserController());
         mappings.put("/user/view", new ViewUserController());
 
@@ -55,10 +58,16 @@ public class RequestMapping {
         mappings.put("/message/list", new ListMessageController());
         mappings.put("/message/detail", new ViewMessageDetailController());
         mappings.put("/message/create/form", new ForwardController("/message/form.jsp"));
-        mappings.put("/message/create", new CreateMessageController());
+      //  mappings.put("/message/create", new CreateMessageController());
         
         mappings.put("/member/search", new SearchMemberController());
         
+        mappings.put("/project/new/form", new ForwardController("/project/form.jsp"));
+        mappings.put("/project/new", new CreateProjectController());
+        mappings.put("/project/update/form", new UpdateProjectController());
+        mappings.put("/project/update", new UpdateProjectController());
+        //mappings.put("/project/list", new DeleteProjectController());
+        mappings.put("/project/detail",new ViewProjectDetailController());
         logger.info("Initialized Request Mapping!");
     }
 

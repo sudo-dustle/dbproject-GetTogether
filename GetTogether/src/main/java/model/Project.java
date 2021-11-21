@@ -21,7 +21,6 @@ public class Project {
 	private int mnum;
 	private int recommendCnt;
 	private int lookupCnt;
-	 //skill 삭제했습니다.
 	private List<TeamMember> memberList;
 	private int numOfMembers;
 	
@@ -40,6 +39,27 @@ public class Project {
 		this.executionEnd = executionEnd;
 		this.applicationStart = applicationStart;
 		this.applicationEnd = applicationEnd;
+		this.goal = goal;
+		this.applicationNum = applicationNum;
+		this.description = description;
+		this.approve = approve;
+		this.mnum = mnum;
+		this.recommendCnt = recommendCnt;
+		this.lookupCnt = lookupCnt;
+	}
+
+	public Project( String title, String field, String language, String subtitle, Date executionStart,
+			Date executionEnd, Date applicationStart, Date applicationEnd, String goal, int applicationNum,
+			String description, boolean approve, int mnum, int recommendCnt, int lookupCnt) {
+		super();
+		this.title = title;
+		this.field = field;
+		this.language = language;
+		this.subtitle = subtitle;
+		this.executionStart = executionStart;
+		this.executionEnd = executionEnd;
+		this.applicationStart = applicationStart;
+		this.applicationEnd = applicationEnd;
 		this.applicationNum = applicationNum;
 		this.goal = goal;
 		this.description = description;
@@ -50,10 +70,9 @@ public class Project {
 	}
 
 	
-	public Project(int pid, String title, String field, String language, String subtitle, String goal,
+	public Project(String title, String field, String language, String subtitle, String goal,
 			int applicationNum, String description, boolean approve, int mnum, int recommendCnt, int lookupCnt) {
 		super();
-		this.pid = pid;
 		this.title = title;
 		this.field = field;
 		this.language = language;

@@ -40,7 +40,7 @@ public class MemberDAO {
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { mid }); // JDBCUtil占쏙옙 query占쏙옙占쏙옙 占신곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query 占쏙옙占쏙옙
+			ResultSet rs = jdbcUtil.executeQuery();
 			if (rs.next()) {
 				int count = rs.getInt(1);
 				return (count == 1 ? true : false);
@@ -50,7 +50,7 @@ public class MemberDAO {
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 占쏙옙환
+			jdbcUtil.close();
 		}
 		return false;
 	}
@@ -58,8 +58,8 @@ public class MemberDAO {
 	public Member findMemberByMnum(int mnum) throws SQLException {
 		String query = "SELECT mnum, mid, passwd, mname, birth, phonenum, email, school, major, field, language, experience "
 				+ "FROM Member WHERE mnum=?";
-
 		Object[] param = new Object[] { mnum };
+
 		jdbcUtil.setSqlAndParameters(query, param);
 
 		try {

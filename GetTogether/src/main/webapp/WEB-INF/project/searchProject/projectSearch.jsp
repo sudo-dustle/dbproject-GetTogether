@@ -67,7 +67,7 @@ table {
 </style>
 </head>
 <body>
-	<div class="main">
+<%-- 	<div class="main">
 		<h1>¸ð¿©ºÁ¿ä</h1>
 	</div>
 	<P></P>
@@ -128,6 +128,6 @@ table {
 			</td>
 		</tr>
 	</table>
-	</div>
+	</div> --%>
 </body>
 </html>
