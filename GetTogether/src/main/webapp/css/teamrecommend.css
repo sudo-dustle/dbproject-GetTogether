@@ -1,105 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
-body{ font-weight: bold; font-size: 12pt; background-color:  #F6F8ED; color: #2F2F2F;}
-            div.main{font-size: 40pt; text-align: center; color: #2F2F2F;}
-            div.banner{background-color: #9DB589; text-align: center; padding: 20px; font-size: 18pt; color : #2F2F2F;}
-            div.log{text-align: right;}
-            .parent{
-                width: 90%;
-                margin: 40px;
-            }
-            #wrap{
-                width: 1000px;
-                height: 500px;
-                padding: 10px;
-                margin: 10px auto;
-                position: relative;
-               float: left;
-               margin-left: 350px;
-            
-            }
-            #wrap>div{
-                background-color: #9DB589; 
-                margin: 5%; 
-                padding : 10px; 
-                margin :10px;
-                width: 300px; 
-                height: 200px;
-                position: absolute;
-            }
-            #box1{
-                top:20px;
-                left:10px;
-            }
-            #box2{
-                top:20px;
-                right:10px;
-            }
-            #box3{
-                top:20px;
-                left:340px;
-            }
-            #box4{
-                top:300px;
-                right:10px;
-            }
-            #box5{
-                top:300px;
-               left:10px;
-            }
-            #box6{
-                top:300px;
-                right:340px;
-            }
+@import url("common.css");
+body{ 
+	font-size: 12pt; 
+}
 
-            .arrow-left{
-                width: 0%;
-                height: 0%;
-                border-top: 50px solid transparent;
-                border-bottom: 50px solid transparent;
-                border-right: 50px solid #9DB589;
-                float: left;
-                margin-top: 250px;
-                
+.parent{
+    width: 100%;
+    margin: 40px 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.container {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+}
+.team-box{
+     background-color: var(--banner); 
+     padding : 10px;
+     margin :10px;
+     width: 250px; 
+     height: 170px;
+ }
 
-            }
-            .arrow-right{
-	            width: 0%;
-	            height: 0%;
-	            border-top: 50px solid transparent;
-	            border-bottom: 50px solid transparent;
-	            border-left: 50px solid #9DB589;
-                float: left;
-                margin-top: 250px;
-                margin-left: 225px;
-                }
+.left-arrow {
+	border: none;
+	background: url("../images/left_arrow.png") no-repeat;
+	width: 50px;
+	height: 100px;
+}
+
+.right-arrow {
+	border: none;
+	background: url("../images/right_arrow.png") no-repeat;
+	width: 50px;
+	height: 100px;
+}
+
+ .search-block{
+     font-size: 20px;
+         padding: 10px;
+         border:  solid 1px #9DB589;
+         width: 500px;
+         margin-bottom: 10px;
        
-       
-        .search-block{
-            font-size: 20px;
-                padding: 10px;
-                border:  solid 1px #9DB589;
-                width: 500px;
-                margin-bottom: 10px;
-              
-        }
-        .search-btn{
-            font-size: 20px;
-            padding: 10px;
-            border:  solid 1px #9DB589;
-            width: 100px;
-            margin-bottom: 10px;
-        }
-        .select-btn{
-            font-size: 20px;
-            padding: 10px;
-            border:  solid 1px #9DB589;
-            width: 100px;
-            margin-bottom: 10px;
-        }
-        #search{
-            margin: 10px;
-            display: inline-block;
-            float: right;
-        }
-        *{font-family: 'Jua', sans-serif;}
+ }
+ .search-btn{
+     font-size: 20px;
+     padding: 10px;
+     border:  solid 1px #9DB589;
+     width: 100px;
+     margin-bottom: 10px;
+ }
+ .select-btn{
+     font-size: 20px;
+     padding: 10px;
+     border:  solid 1px #9DB589;
+     width: 100px;
+     margin-bottom: 10px;
+ }
+ #search{
+     margin: 10px;
+     display: inline-block;
+ }
