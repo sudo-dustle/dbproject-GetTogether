@@ -128,14 +128,11 @@ public class Member {
 	}
 	
 	public boolean checkPassword(String passwd) {
-		if(passwd == null)
-			return false;
-		else if(passwd != this.passwd) {
-			return false;
-		}
-		else {
+		
+		if (passwd.equals(this.passwd))
 			return true;
-		}
+		else
+			return false;
 	}
 
 }

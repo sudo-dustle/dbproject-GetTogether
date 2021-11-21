@@ -30,7 +30,7 @@ public class MemberInfoController implements Controller {
 		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = (Date) fm.parse(dateString);
 		
-		String[] word1 = request.getParameterValues("project");
+		String[] word1 = request.getParameterValues("field");
 		for(int i = 0; i < word1.length; i++) {
 			if (field == null) {
 				field = word1[i];

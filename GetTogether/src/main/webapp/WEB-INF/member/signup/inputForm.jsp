@@ -152,44 +152,42 @@ td.contents {
 				<tr>
 					<th class="name">관심 프로젝트</th>
 					<td id="contents">
-						<input type="checkbox" name="field" value="0" checked>ALL 
-						<input type="checkbox" name="field" value="1">웹 개발 
-						<input type="checkbox" name="field" value="2">모바일 웹 개발
+						<input type="checkbox" name="field" value="ALL" checked>ALL 
+						<input type="checkbox" name="field" value="웹 개발">웹 개발 
+						<input type="checkbox" name="field" value="모바일 웹 개발">모바일 웹 개발
 						<p></p> 
-						<input type="checkbox" name="field" value="3">게임개발 
-						<input type="checkbox" name="field" value="4">데이터사이언스 
-						<input type="checkbox" name="field" value="5">서버 개발
+						<input type="checkbox" name="field" value="게임개발">게임개발 
+						<input type="checkbox" name="field" value="데이터사이언스">데이터사이언스 
+						<input type="checkbox" name="field" value="서버 개발">서버 개발
 						<p></p> 
-						<input type="checkbox" name="field" value="6">블록체인 개발 
-						<input type="checkbox" name="field" value="7"> 데스크톱 앱 개발 
-						<input type="checkbox" name="field" value="8">
-						<input type="text" size="5" value="기타"></td>
+						<input type="checkbox" name="field" value="블록체인 개발">블록체인 개발 
+						<input type="checkbox" name="field" value="데스크톱 앱 개발"> 데스크톱 앱 개발 
+						<input type="checkbox" name="field" value="기타">기타
 				</tr>
 				<tr>
 					<th class="name">사용가능한 언어</th>
 					<td id="contents">
 					<input type="checkbox" name="lan" value="0"
 						checked>ALL 
-						<input type="checkbox" name="lan" value="1">C
-						<input type="checkbox" name="lan" value="2">Python 
-						<input type="checkbox" name="lan" value="3">Java 
-						<input type="checkbox" name="lan" value="4">C++
+						<input type="checkbox" name="lan" value="C">C
+						<input type="checkbox" name="lan" value="Python">Python 
+						<input type="checkbox" name="lan" value="Java">Java 
+						<input type="checkbox" name="lan" value="C++">C++
 						<p></p> 
-						<input type="checkbox" name="lan" value="5">C# 
-						<input type="checkbox" name="lan" value="6">Visual Basic 
-						<input type="checkbox" name="lan" value="7">JavaScript 
-						<input type="checkbox" name="lan" value="8">PHP 
-						<input type="checkbox" name="lan" value="9">R
+						<input type="checkbox" name="lan" value="C#">C# 
+						<input type="checkbox" name="lan" value="Visual Basic">Visual Basic 
+						<input type="checkbox" name="lan" value="JavaScript">JavaScript 
+						<input type="checkbox" name="lan" value="PHP">PHP 
+						<input type="checkbox" name="lan" value="R">R
 						<p></p> 
-						<input type="checkbox" name="lan" value="10">SQL 
-						<input type="checkbox" name="lan" value="11">Groovy 
-						<input type="checkbox" name="lan" value="12">Perl 
-						<input type="checkbox" name="lan" value="13">Go 
-						<input type="checkbox" name="lan" value="14">Swift
+						<input type="checkbox" name="lan" value="SQL">SQL 
+						<input type="checkbox" name="lan" value="Groovy">Groovy 
+						<input type="checkbox" name="lan" value="Perl">Perl 
+						<input type="checkbox" name="lan" value="Go">Go 
+						<input type="checkbox" name="lan" value="Swift">Swift
 						<p></p> 
-						<input type="checkbox" name="lan" value="15">Ruby
-						<input type="checkbox" name="lan" value="15">
-						<input type="text" size="5" value="기타">
+						<input type="checkbox" name="lan" value="Ruby">Ruby
+						<input type="checkbox" name="lan" value="기타">기타
 						</td>
 				</tr>
 				<tr>

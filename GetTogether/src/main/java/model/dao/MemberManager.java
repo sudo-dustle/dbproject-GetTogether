@@ -55,11 +55,12 @@ public class MemberManager {
 		return member;
 	}
 	
+	//입력한 아이디를 이용해서 db에 존재하는지 확인
 	public Member findMemberByMid(String mid) throws SQLException, UserNotFoundException {
 		Member member = memberDAO.findMemberByMid(mid);
 		
 		if (member == null) {
-			throw new UserNotFoundException(mid + "는 존재하는 아이디입니다.");
+			throw new UserNotFoundException(mid + "는 존재하지 않는 아이디입니다.");
 		}
 		
 		return member;
@@ -68,7 +69,7 @@ public class MemberManager {
 	public Member findMember(int mNum) throws SQLException, UserNotFoundException {
 		Member member = memberDAO.findMember(mNum);
 		if (member == null) {
-			throw new UserNotFoundException(mNum + "�� �������� �ʴ� ��ȣ�Դϴ�.");
+			throw new UserNotFoundException(mNum + "�� �������� �ʴ� ��ȣ�Դϴ�.");
 		}
 		return member;
 	}
@@ -77,10 +78,10 @@ public class MemberManager {
 			throws SQLException, UserNotFoundException, PasswordMismatchException {
 		Member member = findMemberByMid(mid);
 		
-		System.out.println("mid=" + mid);
-		System.out.println("password=" + passwd);
-		
+		//비밀번호 확인
 		if (member.checkPassword(passwd) == false) {
+			System.out.println("in checkPassword");
+			System.out.println(member.checkPassword(passwd));
 			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
 		}
 

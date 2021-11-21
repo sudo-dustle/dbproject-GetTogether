@@ -30,6 +30,7 @@ public class RequestMapping {
         mappings.put("/user/list", new ListUserController());
         mappings.put("/user/view", new ViewUserController());
 
+        mappings.put("/project/searchProject", new ForwardController("/project/searchProject/projectSearch.jsp"));
 //      mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
         mappings.put("/user/register", new RegisterUserController());
 
