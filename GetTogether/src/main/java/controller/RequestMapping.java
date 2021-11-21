@@ -58,7 +58,7 @@ public class RequestMapping {
         mappings.put("/message/list", new ListMessageController());
         mappings.put("/message/detail", new ViewMessageDetailController());
         mappings.put("/message/create/form", new ForwardController("/message/form.jsp"));
-      //  mappings.put("/message/create", new CreateMessageController());
+        mappings.put("/message/create", new CreateMessageController());
         
         mappings.put("/member/search", new SearchMemberController());
         

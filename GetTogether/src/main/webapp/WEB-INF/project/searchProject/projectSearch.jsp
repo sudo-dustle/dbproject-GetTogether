@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
     <%@page import="java.util.*, model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- <%
@@ -8,8 +8,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>га╥на╖ф╝ ╟к╩Ж ╟А╟З</title>
+<meta charset="UTF-8">
+<title>М■└К║°Л═²М┼╦ Й╡─Л┐┴ Й╡╟ЙЁ╪</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 *{
@@ -68,36 +68,36 @@ table {
 </head>
 <body>
 <%-- 	<div class="main">
-		<h1>╦П©╘╨а©Д</h1>
+		<h1>К╙╗Л≈╛К╢░Л ■</h1>
 	</div>
 	<P></P>
-	<div class="log">╥н╠вюн | х╦©Ь╟║ют</div>
+	<div class="log">К║°Й╥╦Л²╦ | М ▄Л⌡░Й╟─Л·┘</div>
 
-	<div class="banner">га╥на╖ф╝ ╦Я╥о &nbsp;&nbsp;&nbsp;&nbsp; |
-		&nbsp;&nbsp;&nbsp;&nbsp; га╥на╖ф╝ ╟Э╦╝ &nbsp;&nbsp;&nbsp;&nbsp; |
-		&nbsp;&nbsp;&nbsp;&nbsp; фю©Ь цъц╣</div>
+	<div class="banner">М■└К║°Л═²М┼╦ К╙╘К║² &nbsp;&nbsp;&nbsp;&nbsp; |
+		&nbsp;&nbsp;&nbsp;&nbsp; М■└К║°Л═²М┼╦ Й╢─К╕╛ &nbsp;&nbsp;&nbsp;&nbsp; |
+		&nbsp;&nbsp;&nbsp;&nbsp; М▄─Л⌡░ Л╤■Л╡°</div>
 
 	
 	<%	
-		Project project1 = new Project(1, "га╥на╖ф╝1", "╓╥╓╥", "╓╥╓╥", "╓╥╓╥", "goal", 1, "description", true, 1, 1, 1);
-		Project project2 = new Project(2, "га╥на╖ф╝2", "╓╥╓╥", "╓╥╓╥", "╓╥╓╥", "goal", 1, "description", true, 1, 1, 1);
-		Project project3 = new Project(3, "га╥на╖ф╝3", "╓╥╓╥", "╓╥╓╥", "╓╥╓╥", "goal", 1, "description", true, 1, 1, 1);
-		Project project4 = new Project(4, "га╥на╖ф╝4", "╓╥╓╥", "╓╥╓╥", "╓╥╓╥", "goal", 1, "description", true, 1, 1, 1);
-		Project project5 = new Project(5, "га╥на╖ф╝5", "╓╥╓╥", "╓╥╓╥", "╓╥╓╥", "goal", 1, "description", true, 1, 1, 1);
-		Project project6 = new Project(6, "га╥на╖ф╝6", "╓╥╓╥", "╓╥╓╥", "╓╥╓╥", "goal", 1, "description", true, 1, 1, 1);
+		Project project1 = new Project(1, "М■└К║°Л═²М┼╦1", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "goal", 1, "description", true, 1, 1, 1);
+		Project project2 = new Project(2, "М■└К║°Л═²М┼╦2", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "goal", 1, "description", true, 1, 1, 1);
+		Project project3 = new Project(3, "М■└К║°Л═²М┼╦3", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "goal", 1, "description", true, 1, 1, 1);
+		Project project4 = new Project(4, "М■└К║°Л═²М┼╦4", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "goal", 1, "description", true, 1, 1, 1);
+		Project project5 = new Project(5, "М■└К║°Л═²М┼╦5", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "goal", 1, "description", true, 1, 1, 1);
+		Project project6 = new Project(6, "М■└К║°Л═²М┼╦6", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "Ц┘┤Ц┘┤", "goal", 1, "description", true, 1, 1, 1);
 	%>
 
 	<div class="search">
 		<select style="height: 30px;">
-			<option value="1">а╕╦Я</option>
-			<option value="2">юш╪╨юз</option>
+			<option value="1">Л═°К╙╘</option>
+			<option value="2">Л·▒Л└╠Л·░</option>
 		</select> 
 		<input type="text" style="height: 30px; width: 400px;">
 	</div>
 	<div class="context">
 	<table>
 			<tr>
-				<td>"project"юг ╟к╩Ж╟А╟З ют╢о╢ы.</td>
+				<td>"project"Л²≤ Й╡─Л┐┴Й╡╟ЙЁ╪ Л·┘К▀┬К▀╓.</td>
 			</tr>
 			<tr>
 			<td class="project_context">

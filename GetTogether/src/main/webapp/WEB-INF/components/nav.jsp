@@ -26,7 +26,7 @@
 		</li>
 		<li>|</li>
 		<li class="nav-item">
-			<a href="<c:url value='/teamRecommend/list'/>">팀원 추천</a>
+			<a href="<c:url value='/memberRecommend/list'/>">팀원 추천</a>
 		</li>
 	</ul>
 </nav>

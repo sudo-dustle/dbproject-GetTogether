@@ -15,20 +15,17 @@ public class MemberLoginController implements Controller {
 		String passwd = request.getParameter("passwd");
 		
 		try {
-			//로그인
 			MemberManager.getInstance().login(memberId, passwd);
 			HttpSession session = request.getSession();
 			session.setAttribute("memberId", memberId);
 			
-			//로그인 성공 시 메인 화면으로 이동
-			return "/index.jsp";
+			return "redirect:/";
 		}
 		catch(Exception e){
 			request.setAttribute("loginFailed", true);
 			request.setAttribute("exception", e);
 			e.printStackTrace();
 			
-			//로그인 실패 시 다시 로그인 화면으로 돌아온다.
 			return "/member/login/loginForm.jsp";
 		}
 	}
