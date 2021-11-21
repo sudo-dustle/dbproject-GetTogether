@@ -117,7 +117,8 @@ public class MessageDAO {
 	 * receiver가 현재 User인 메세지들을 반환.
 	 */
 	public List<Message> findReceivedMessageList(int mNum) throws SQLException {
-		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER FROM MESSAGE WHERE RECEIVER=?";
+		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER FROM MESSAGE WHERE RECEIVER=? "
+				+ "ORDER BY SENDDATE DESC";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mNum});
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
