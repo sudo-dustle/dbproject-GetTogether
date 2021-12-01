@@ -1,0 +1,90 @@
+@charset "UTF-8";
+@import url("common.css");
+
+th {
+	background-color:var(--banner);
+	color: var(--fontcolor);
+	font-weight: initial;
+}
+
+tr ,td, th{
+	border: 0.3px solid var(--fontcolor);
+	height: 25px;
+}
+
+table {
+	text-align: center;
+	width: 80%;
+	border-spacing: 0;
+	border: 1px solid;
+	margin: auto;
+}
+
+table, tr, td, th{
+	border-collapse: collapse;
+}
+
+.message-table-box {
+	margin: 30px 20px auto 20px;
+	text-align: center;
+}
+
+.message-type {
+	margin: 10px auto 10px auto;
+}
+
+.message-title:hover {
+	color: skyblue;
+}
+
+.message-detail {
+	margin: 20px;
+}
+
+.message-content textarea {
+	width:100%;
+	min-height: 300px;
+	resize: vertical;
+}
+
+.message-detail-box th{
+	width: 105px;
+}
+
+.checkbox{
+	width: 30px
+}
+
+.message-table {
+	margin: 20px;	
+}
+
+.message-table td{
+	margin: 20px 0;
+	background-color: white;
+	text-align: left;
+	padding: 3px 10px;;
+}
+
+.message-table input {
+	width: 100%;
+	height: 80%;
+}
+
+button {
+	color: var(--fontcolor);
+	padding: 5px;
+	border: 1px solid var(--banner);
+	background-color: var(--banner);
+	border-radius: 5px;
+}
+
+button:hover {
+	color: white;
+}
+
+h2 {
+	margin: auto auto 0px auto;
+	font-weight: initial;
+	color: var(--fontcolor);
+}

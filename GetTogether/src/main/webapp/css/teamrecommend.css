@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+@import url("common.css");
+body{ 
+	font-size: 12pt; 
+}
+
+.parent{
+    width: 100%;
+    margin: 40px 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.container {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+}
+.team-box{
+     background-color: var(--banner); 
+     padding : 10px;
+     margin :10px;
+     width: 250px; 
+     height: 170px;
+ }
+
+.left-arrow {
+	border: none;
+	background: url("../images/left_arrow.png") no-repeat;
+	width: 50px;
+	height: 100px;
+}
+
+.right-arrow {
+	border: none;
+	background: url("../images/right_arrow.png") no-repeat;
+	width: 50px;
+	height: 100px;
+}
+
+ .search-block{
+     font-size: 20px;
+         padding: 10px;
+         border:  solid 1px #9DB589;
+         width: 500px;
+         margin-bottom: 10px;
+       
+ }
+ .search-btn{
+     font-size: 20px;
+     padding: 10px;
+     border:  solid 1px #9DB589;
+     width: 100px;
+     margin-bottom: 10px;
+ }
+ .select-btn{
+     font-size: 20px;
+     padding: 10px;
+     border:  solid 1px #9DB589;
+     width: 100px;
+     margin-bottom: 10px;
+ }
+ #search{
+     margin: 10px;
+     display: inline-block;
+ }

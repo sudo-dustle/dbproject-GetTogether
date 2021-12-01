@@ -1,0 +1,71 @@
+@charset "UTF-8";
+@import url("common.css");
+div.main {
+	text-align: center;
+}
+
+div.log {
+	text-align: right;
+	font-family: 'Jua', sans-serif;
+}
+
+div.banner {
+	background-color: #9DB589;
+	text-align: center;
+	padding: 20px;
+	font-size: 18pt;
+	color: #2F2F2F;
+	font-family: 'Jua', sans-serif;
+}
+
+body, th {
+	background-color: #F6F8ED;
+}
+
+th {
+	border-collapse: separate;
+}
+
+tr {
+	height: 50px;
+	border-collapse: collapse;
+}
+
+td {
+	border: 1px solid #2F2F2F;
+	border-collapse: separate;
+	width: 300px;
+}
+
+table {
+	background-color: white;
+	border-collapse: collapse;
+	margin: 0 auto;
+	width: 700px;
+}
+
+#element {
+	background-color: #9DB589;
+	color: #2F2F2F;
+	width: 100px;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+#btn {
+	width: 100px;
+	text-align: center;
+	border: 0;
+}
+
+#content {
+	padding-left: 5px; 
+	border-collapse: collapse;
+}
+input.submit, input.reset {
+	color: #2F2F2F;
+	height: 30px;
+	width: 70px;
+	border: 1px solid #9DB589;
+	border-radius: 5px;
+}

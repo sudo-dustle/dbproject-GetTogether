@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+:root {
+	--background: #F6F8ED;
+	--banner: #9DB589;
+	--fontcolor: #2F2F2F;
+}
+
+* {
+	font-family: 'Jua',sans-serif;
+	margin: 0 0;
+	padding: 0 0;
+	color: var(--fontcolor);
+}
+
+body {
+	background-color: var(--background);
+}
+
+a {
+	text-decoration: none;
+	color: var(--fontcolor);
+}
+
+ul{
+	list-style: none;
+}
+
+/*header and navbar*/
+
+header {
+	margin: 25px 0 0 0;
+	text-align: center;
+	color: var(--fontcolor);
+	font-size: 20px;
+}
+
+.nav-container {
+	display: inline-block;
+	width: 100%;
+	background-color:var(--banner);
+	list-style-type: none;
+	text-align: center;
+	vertical-align: center;
+	margin: 0;
+	padding: 0;
+}
+nav li {
+	padding: 13px 8px;
+	display: inline-block;
+}
+
+.nav-item {
+	font-size: 20px;
+	vertical-align: center;
+	text-align: center;
+}
+
+.header-item {
+	color: var(--fontcolor);
+	float: right;
+	vertical-align: center;
+	text-align: center;
+	padding: 0 5px 5px 5px;
+}
+
+.nav-item a:hover{
+	color: white;
+}
+
+/*project and member box*/
+
+.option-button {
+	color: var(--fontcolor);
+	padding: 5px;
+	border: 1px solid  var(--banner);
+	border-radius: 5px;
+}
+
+.page-layout {
+	margin: 10px 30px;
+}
+
+.member-box {
+	border: solid 2px #DCDCDC;
+	flex-basis: 300px;
+	padding: 15px 10px;
+	margin: 10px;
+}
+
+.project-box {
+	padding: 15px;
+}
+
+.member-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.subtitle{
+	padding: 10px 0 0 10px;
+}
