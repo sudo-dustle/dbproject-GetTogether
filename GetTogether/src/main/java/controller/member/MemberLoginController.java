@@ -17,7 +17,7 @@ public class MemberLoginController implements Controller {
 		try {
 			MemberManager.getInstance().login(memberId, passwd);
 			HttpSession session = request.getSession();
-			session.setAttribute("memberId", memberId);
+			session.setAttribute("mId", memberId);
 			
 			return "redirect:/";
 		}

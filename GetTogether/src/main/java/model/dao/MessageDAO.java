@@ -125,7 +125,6 @@ public class MessageDAO {
 			List<Message> msgList = new ArrayList<Message>();
 			while (rs.next()) {
 				int msgid= rs.getInt("msg_id");
-				logger.info("msgid is "+ Integer.toString(msgid));
 				String title = rs.getString("title");
 				Date sendDate = rs.getDate("sendDate");
 				String content = rs.getString("content");
@@ -138,9 +137,7 @@ public class MessageDAO {
 				}
 				Member sender = new Member();
 				int snum = rs.getInt("sender");
-				logger.info("sender Number is "+ Integer.toString(snum));
 				sender.setMnum(snum);
-				logger.info("setted mNum" + Integer.toString(sender.getMnum()));
 				Member receiver = new Member();
 				Message msg = new Message (
 					msgid,
