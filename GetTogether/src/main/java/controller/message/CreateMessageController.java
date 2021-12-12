@@ -4,10 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import controller.member.MemberSessionUtils;
 import model.Member;
 import model.Message;
-import model.dao.MemberManager;
 import model.service.MessageManager;
 
 public class CreateMessageController implements Controller{
@@ -17,16 +15,20 @@ public class CreateMessageController implements Controller{
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("msgcontent");
-		String receiverId = request.getParameter("receiver");
-		int senderNum = MemberSessionUtils.getLoginMemberNum(request.getSession());
+//		int receiverNum = Integer.parseInt(request.getParameter("receiver"));
+		//아직 위 코드가 이전 jsp에서 미구현 되었음.
+		int receiverNum = 3;
+//		int senderNum = MemberSessionUtils.getLoginMemberNum(request.getSession());
+		//얘도 미구현....
+		int senderNum = 2;
 		
-		MemberManager memberManager = MemberManager.getInstance();
-		Member sender = memberManager.findMember(senderNum);
-		Member receiver =  memberManager.findMemberByMid(receiverId);
-		
+		Member sender = new Member();
+		sender.setMnum(senderNum);
+		Member receiver = new Member();
+		receiver.setMnum(receiverNum);
 		MessageManager msgManager = MessageManager.getInstance();
 		Message message = new Message(receiver, sender, title, content);
 		msgManager.create(message);
-		return "redirect:/message/list";
+		return "redirect:/message/list/received";
 	}
 }

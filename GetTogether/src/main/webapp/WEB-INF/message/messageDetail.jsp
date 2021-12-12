@@ -13,7 +13,7 @@
 </head>
 <script>
 const goMessageList = () => {
-	location.href="/GetTogether/message/list";
+	location.href="/GetTogether/message/list/received";
 }
 
 const deleteMessage = () => {

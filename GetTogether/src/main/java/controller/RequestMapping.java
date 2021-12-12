@@ -55,10 +55,12 @@ public class RequestMapping {
         mappings.put("/memberRecommend/list", new ListMemberRecommendController());
         mappings.put("/teamRecommend/list", new ListTeamRecommendController());
 
-        mappings.put("/message/list", new ListMessageController());
+        mappings.put("/message/list/received", new ReceivedListMessageController());
+        mappings.put("/message/list/sent", new SentListMessageController());
         mappings.put("/message/detail", new ViewMessageDetailController());
         mappings.put("/message/create/form", new ForwardController("/message/form.jsp"));
         mappings.put("/message/create", new CreateMessageController());
+        mappings.put("/message/delete", new DeleteMessageController());
         
         mappings.put("/member/search", new SearchMemberController());
         

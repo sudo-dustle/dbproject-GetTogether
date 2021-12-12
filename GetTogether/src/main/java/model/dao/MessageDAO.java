@@ -162,7 +162,7 @@ public class MessageDAO {
 	/**
 	 * sender가 현재 User인 메세지들을 반환.
 	 */
-	public List<Message> findSendedMessageList(int mNum) throws SQLException {
+	public List<Message> findSentMessageList(int mNum) throws SQLException {
 		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER, "
 				+ "RECEIVER FROM MESSAGE WHERE SENDER=?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mNum});

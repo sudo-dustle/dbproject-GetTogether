@@ -96,9 +96,7 @@ public class MessageManager {
 				throw new MessageNotFoundException("메세지가 존재하지 않습니다.");
 			}
 			for (Message msg : msgList) {
-				logger.info(msg.getTitle());
 				int senderNum = msg.getSender().getMnum();
-				logger.info("senderNum is "  + Integer.toString(senderNum));
 				Member sender;
 				try {
 					sender = findMember(senderNum);
@@ -115,6 +113,29 @@ public class MessageManager {
 				}
 			return msgList;
 	}
+	
+	public List<Message> findSentMessageList(int senderNum) throws SQLException, MessageNotFoundException{
+		List<Message> msgList = messageDAO.findSentMessageList(senderNum);
+		if(msgList == null) {
+			throw new MessageNotFoundException("메세지가 존재하지 않습니다.");
+		}
+		for (Message msg : msgList) {
+			int receiverNum = msg.getReceiver().getMnum();
+			try {
+				Member sender = findMember(senderNum);
+				msg.setSender(sender);
+				Member receiver = findMember(receiverNum);
+				msg.setReceiver(receiver);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		return msgList;
+}
 	
 	public Member findMember(int mnum) throws SQLException, UserNotFoundException {
 		Member member = memberDAO.findMember(mnum);

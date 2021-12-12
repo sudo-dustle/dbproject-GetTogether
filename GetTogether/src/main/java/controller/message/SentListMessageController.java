@@ -1,5 +1,7 @@
 package controller.message;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,9 +14,7 @@ import controller.member.MemberSessionUtils;
 import model.Message;
 import model.service.MessageManager;
 
-import java.util.List;
-
-public class ListMessageController implements Controller{
+public class SentListMessageController implements Controller{
 
 	private static final Logger log = LoggerFactory.getLogger(CreateCommunityController.class);
 
@@ -30,7 +30,7 @@ public class ListMessageController implements Controller{
     	log.debug(mId);
     	
     	MessageManager msgManager = MessageManager.getInstance();
-    	List<Message> messageList = msgManager.findReceivedMessageList(2);
+    	List<Message> messageList = msgManager.findSentMessageList(2);
     	request.setAttribute("messageList", messageList);
 		return "/message/messageList.jsp";
 	}
