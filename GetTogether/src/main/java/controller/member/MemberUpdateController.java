@@ -1,7 +1,6 @@
 package controller.member;
 
 import java.util.Date;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,11 +9,10 @@ import controller.Controller;
 import model.Member;
 import model.service.MemberManager;
 
-public class MemberInfoController implements Controller {
+public class MemberUpdateController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		String mid = request.getParameter("mid");
 		String passwd = request.getParameter("passwd");
 		String mname = request.getParameter("mname");
@@ -27,7 +25,6 @@ public class MemberInfoController implements Controller {
 		String language = null;
 		String experience = request.getParameter("experience");
 		
-		
 		String[] word1 = request.getParameterValues("field");
 		
 		for(int i = 0; i < word1.length; i++) {
@@ -37,6 +34,7 @@ public class MemberInfoController implements Controller {
 			else
 				field = field + "," + word1[i];
 		}
+		
 		String[] word2 = request.getParameterValues("lan");
 		for(int i = 0; i < word2.length; i++) {
 			if (language == null) {
@@ -50,18 +48,16 @@ public class MemberInfoController implements Controller {
 		
 		try {
 			MemberManager manager = MemberManager.getInstance();
-			manager.create(member);
+			manager.update(member);
 			
-			return "redirect:/";
+			return "redirect:/member/detail";
 		}
-		catch (Exception e) {
+		catch(Exception e) {
 			request.setAttribute("inputFailed", true);
 			request.setAttribute("exception", e);
-			System.out.println(e);
 			
-			return "/member/signup/inputForm.jsp";
+			return "/member/update";
 		}
-		
 	}
 
 }
