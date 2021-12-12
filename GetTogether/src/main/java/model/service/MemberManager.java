@@ -1,12 +1,13 @@
-package model.dao;
+package model.service;
 
 import java.sql.SQLException;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
+//import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import model.Member;
-import model.service.ExistingUserException;
-import model.service.PasswordMismatchException;
-import model.service.UserNotFoundException;
+import model.dao.MemberDAO;
+//import model.service.ExistingUserException;
+//import model.service.PasswordMismatchException;
+//import model.service.UserNotFoundException;
 
 public class MemberManager {
 	private static MemberManager memMan = new MemberManager();

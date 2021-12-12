@@ -5,15 +5,24 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.service.MemberManager;
 
-public class MemberLogoutController implements Controller {
+public class MemberDeleteController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		session.removeAttribute(MemberSessionUtils.MEMBER_SESSION_KEY);
-		session.invalidate();		
+		String mid = (String) session.getAttribute("memberId");
 		
-		return "/member/login/form";
+		try {
+			MemberManager manager = MemberManager.getInstance();
+			manager.remove(mid);
+			
+			return "redirect:/";
+		}
+		catch (Exception e) {
+			return "/member/mypage";
+		}
 	}
+
 }
