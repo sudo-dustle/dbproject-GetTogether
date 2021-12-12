@@ -5,7 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
-import model.dao.MemberManager;
+import model.Member;
+import model.service.MemberManager;
 
 public class MemberLoginController implements Controller {
 	@Override
@@ -16,8 +17,14 @@ public class MemberLoginController implements Controller {
 		
 		try {
 			MemberManager.getInstance().login(memberId, passwd);
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("mId", memberId);
+			
+			MemberManager manager = MemberManager.getInstance();
+			Member member = manager.findMemberByMid(memberId);
+			
+			session.setAttribute("mnum", member.getMnum());
 			
 			return "redirect:/";
 		}
@@ -26,7 +33,7 @@ public class MemberLoginController implements Controller {
 			request.setAttribute("exception", e);
 			e.printStackTrace();
 			
-			return "/member/login/loginForm.jsp";
+			return "redirect:/member/login/form";
 		}
 	}
 }
