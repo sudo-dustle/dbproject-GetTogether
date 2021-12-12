@@ -53,17 +53,14 @@ public class MessageManager {
 //		}
 //		return userDAO.update(user);
 //	}	
+	
+	public int deleteMessage(int msgId) throws SQLException, UserNotFoundException {
+		return messageDAO.deleteMessage(msgId);
+	}
 
-//	public int remove(String userId) throws SQLException, UserNotFoundException {
-//		int commId = findUser(userId).getCommId();
-//		Community comm = commDAO.findCommunity(commId);  // 소속 커뮤니티
-//		if (comm != null && userId.equals(comm.getChairId())) {
-//			// 사용자가 소속 커뮤니티의 회장인 경우 -> 그 커뮤니티의 회장을 null로 변경 및 저장
-//			comm.setChairId(null);
-//			commDAO.updateChair(comm);
-//		}
-//		return userDAO.remove(userId);
-//	}
+	public int deleteMessageList(int[] msgIdList) throws SQLException, UserNotFoundException {
+		return messageDAO.deleteMessageList(msgIdList);
+	}
 
 	public Message findMessage(int msgId) throws SQLException, MessageNotFoundException {
 		Message msg = messageDAO.findMessage(msgId);

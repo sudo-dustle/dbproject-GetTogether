@@ -47,11 +47,34 @@ public class MessageDAO {
 	}
 
 	/**
+	 * 메세지삭제(하나)
+	*/
+	
+	public int deleteMessage(int msgId) throws SQLException {
+		String sql = "DELETE FROM MESSAGE WHERE MSG_ID=?";
+
+		try {	
+			int result = 0;
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {msgId});
+			result += jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}		
+		return 0;
+	}
+	
+	/**
 	 * 메세지삭제(여러개)
 	*/
 	
-	public int removeMessageList(int[] msgId) throws SQLException {
-		String sql = "DELETE FROM MESSAGE WHERE msgid=?";
+	public int deleteMessageList(int[] msgId) throws SQLException {
+		String sql = "DELETE FROM MESSAGE WHERE MSG_ID=?";
 
 		try {	
 			int result = 0;

@@ -18,9 +18,7 @@ const goMessageList = () => {
 
 const deleteMessage = () => {
 	 if (confirm("정말 삭제하시겠습니까?") == true){
-		 //delete logic
-		 //정상적으로 삭제된다면
-		 alert("삭제되었습니다.");
+		 location.href="/GetTogether/message/delete?id=${message.id}";
 	 }
 }
 </script>
