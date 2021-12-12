@@ -53,17 +53,14 @@ public class MessageManager {
 //		}
 //		return userDAO.update(user);
 //	}	
+	
+	public int deleteMessage(int msgId) throws SQLException, UserNotFoundException {
+		return messageDAO.deleteMessage(msgId);
+	}
 
-//	public int remove(String userId) throws SQLException, UserNotFoundException {
-//		int commId = findUser(userId).getCommId();
-//		Community comm = commDAO.findCommunity(commId);  // 소속 커뮤니티
-//		if (comm != null && userId.equals(comm.getChairId())) {
-//			// 사용자가 소속 커뮤니티의 회장인 경우 -> 그 커뮤니티의 회장을 null로 변경 및 저장
-//			comm.setChairId(null);
-//			commDAO.updateChair(comm);
-//		}
-//		return userDAO.remove(userId);
-//	}
+	public int deleteMessageList(int[] msgIdList) throws SQLException, UserNotFoundException {
+		return messageDAO.deleteMessageList(msgIdList);
+	}
 
 	public Message findMessage(int msgId) throws SQLException, MessageNotFoundException {
 		Message msg = messageDAO.findMessage(msgId);
@@ -96,9 +93,7 @@ public class MessageManager {
 				throw new MessageNotFoundException("메세지가 존재하지 않습니다.");
 			}
 			for (Message msg : msgList) {
-				logger.info(msg.getTitle());
 				int senderNum = msg.getSender().getMnum();
-				logger.info("senderNum is "  + Integer.toString(senderNum));
 				Member sender;
 				try {
 					sender = findMember(senderNum);
@@ -115,6 +110,29 @@ public class MessageManager {
 				}
 			return msgList;
 	}
+	
+	public List<Message> findSentMessageList(int senderNum) throws SQLException, MessageNotFoundException{
+		List<Message> msgList = messageDAO.findSentMessageList(senderNum);
+		if(msgList == null) {
+			throw new MessageNotFoundException("메세지가 존재하지 않습니다.");
+		}
+		for (Message msg : msgList) {
+			int receiverNum = msg.getReceiver().getMnum();
+			try {
+				Member sender = findMember(senderNum);
+				msg.setSender(sender);
+				Member receiver = findMember(receiverNum);
+				msg.setReceiver(receiver);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UserNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		return msgList;
+}
 	
 	public Member findMember(int mnum) throws SQLException, UserNotFoundException {
 		Member member = memberDAO.findMember(mnum);
