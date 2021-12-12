@@ -17,6 +17,7 @@ div {
 }
 </style>
 <body>
+<form method="GET" action="<c:url value='/project/update/form?pid=${project.pid}' /> "> 
 	<div>
 		<table style="margin-top: 2%;">
 			<tr>
@@ -61,7 +62,13 @@ div {
 				<td id="element" style="height: 70px;">필요 기술</td>
 				<td id="content">${project.language}</td>
 			</tr>
+			<td  id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
+					<input class="submit" type="submit" name="update" value="수정"> 
+					<input class="submit" type="submit" name="delete" value="삭제">
+					</td>
+					
 		</table>
+		</form> 
 		<%-- 
 		<hr style="width: 60%; margin-top: 2%;">
 		<table>

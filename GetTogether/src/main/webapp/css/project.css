@@ -62,6 +62,7 @@ table {
 	padding-left: 5px; 
 	border-collapse: collapse;
 }
+
 input.submit, input.reset {
 	color: #2F2F2F;
 	height: 30px;
