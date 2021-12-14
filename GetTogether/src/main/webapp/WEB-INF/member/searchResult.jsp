@@ -16,18 +16,21 @@
 		</div>
 			<div class="member-container">
 			<%
-				if(request.getAttribute("memberList") == null) {
+				if(request.getAttribute("userList") == null) {
 					out.println("검색결과가 없습니다.");
 				}
 				else {
 			%>
-				<c:forEach var="member" items="${memberList}">
+				<c:forEach var="member" items="${userList}">
 					<div class="member-box">
 						<ul>
-							<li>${member.mname}</li>
+							<li>${member.name}</li>
 							<li>
 							<div class="member-option-list">
-								<button class="option-button">${member.language}</button>
+							<!-- foreach로 대체!!!! -->
+								<button class="option-button">웹개발</button>
+								<button class="option-button">Java</button>
+								<button class="option-button">Javascript</button>
 							</div>
 							</li>
 						</ul>

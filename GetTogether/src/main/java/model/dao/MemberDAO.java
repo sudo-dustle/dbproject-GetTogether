@@ -4,9 +4,7 @@ package model.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import model.Member;
 
@@ -217,45 +215,6 @@ public class MemberDAO {
 			jdbcUtil.close(); 
 		}
 		return 0;
-	}
-	
-	public List<Member> searchMember(String query) throws SQLException {
-		String sql = "SELECT * FROM MEMBER WHERE MNAME LIKE ? OR EXPERIENCE LIKE ?";
-		Object[] param = new Object[] { query , "%"+query+"%" };
-
-		jdbcUtil.setSqlAndParameters(sql, param);
-
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();
-			List<Member> memberList = new ArrayList<Member>();
-
-			while (rs.next()) {
-				Member member = new Member();
-
-				member.setMnum(rs.getInt("mnum"));
-				member.setMid(rs.getString("mid"));
-				member.setPasswd(rs.getString("passwd"));
-				member.setMname(rs.getString("mname"));
-				member.setDate(rs.getDate("birth"));
-				member.setPhonenum(rs.getString("phonenum"));
-				member.setEmail(rs.getString("email"));
-				member.setSchool(rs.getString("school"));
-				member.setMajor(rs.getString("major"));
-				member.setField(rs.getString("field"));
-				member.setLanguage(rs.getString("language"));
-				member.setExperience(rs.getString("experience"));
-
-				memberList.add(member);
-			}
-			return memberList;
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.commit();
-			jdbcUtil.close();
-		}
-		return null;		
 	}
 
 }
