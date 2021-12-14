@@ -2,6 +2,7 @@ package model;
 import java.util.Date;
 import java.util.List;
 public class TeamRecommend {
+	private int pid;
 	private String title;
 	private String subtitle;
 	private int lookupcnt;
@@ -10,8 +11,9 @@ public class TeamRecommend {
 
 	public TeamRecommend() {}
 	
-	public TeamRecommend(String title, String subtitle, int lookupcnt) {
+	public TeamRecommend(int pid, String title, String subtitle, int lookupcnt) {
 		super();
+		this.pid = pid;
 		this.title = title;
 		this.subtitle = subtitle;
 		this.lookupcnt = lookupcnt;
@@ -40,7 +42,15 @@ public class TeamRecommend {
 		this.projectList = projectList;
 	}
 
+	
 
+	public int getPid() {
+		return pid;
+	}
+
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
 
 	public String getTitle() {
 		return title;
