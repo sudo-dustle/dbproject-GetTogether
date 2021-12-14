@@ -22,7 +22,7 @@
 			</div>
 			<div class="member-container">
 				<c:forEach var="recommendMember" items="${memberRecommendList}">
-					<div class="member-box">
+					<div class="member-box" style = "cursor:pointer;" onClick= "location.href = '<c:url value= '/member/detail?mnum=${recommendMember.mnum}'/>';">
 						<ul>
 							<li>${recommendMember.mname}</li>
 							<div class="member-option-list">
