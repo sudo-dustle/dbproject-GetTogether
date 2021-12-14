@@ -63,6 +63,13 @@ table {
 	border-collapse: collapse;
 }
 
+buttom.submit{
+	color: #2F2F2F;
+	height: 30px;
+	width: 70px;
+	border: 1px solid #9DB589;
+	border-radius: 5px;
+}
 input.submit, input.reset {
 	color: #2F2F2F;
 	height: 30px;

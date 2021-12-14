@@ -64,9 +64,9 @@ public class RequestMapping {
         
         mappings.put("/project/new/form", new ForwardController("/project/form.jsp"));
         mappings.put("/project/new", new CreateProjectController());
-        mappings.put("/project/update/form", new UpdateProjectController());
+       // mappings.put("/project/update/form", new UpdateProjectController());
         mappings.put("/project/update", new UpdateProjectController());
-        //mappings.put("/project/list", new DeleteProjectController());
+        mappings.put("/project/delete", new DeleteProjectController());
         mappings.put("/project/detail",new ViewProjectDetailController());
         logger.info("Initialized Request Mapping!");
     }

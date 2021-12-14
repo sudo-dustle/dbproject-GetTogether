@@ -24,6 +24,9 @@ public class ProjectManager {
 		return projectMan;
 	}
 
+	public int removeProject(int pid) throws SQLException {
+		return projectDAO.remove(pid);
+	}
 	public Project createProject(Project project) throws SQLException{
 		return projectDAO.create(project);
 	}
@@ -35,11 +38,11 @@ public class ProjectManager {
 	 public Project findProject(int pid) throws SQLException {
 		Project project = projectDAO.findProject(pid); 
 
-		List<TeamMember> memberList = teamMemberDAO.findMembersInProject(pid);
-		project.setMemberList(memberList);
+//		List<TeamMember> memberList = teamMemberDAO.findMembersInProject(pid);
+//		project.setMemberList(memberList);
 
-		int numOfMembers = teamMemberDAO.getNumberOfUsersInProject(pid);
-		project.setNumOfMembers(numOfMembers);
+//		int numOfMembers = teamMemberDAO.getNumberOfUsersInProject(pid);
+//		project.setNumOfMembers(numOfMembers);
 		return project;
 	}
 }
