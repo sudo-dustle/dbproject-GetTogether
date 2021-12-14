@@ -1,6 +1,5 @@
 package controller.member;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +14,9 @@ public class SearchMemberController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		//로그인 체크하는 로직....
-		//검색어로 user정보 찾기
-		//찾은정보 리스트를 request에 담는다		
+    	if (!MemberSessionUtils.hasLogined(request.getSession())) {
+            return "redirect:/user/login/form";
+        }
 
     	if (request.getMethod().equals("GET")) {	
     		// GET request: 검색어로 검색하는 경우
