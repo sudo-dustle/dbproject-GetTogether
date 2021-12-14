@@ -16,14 +16,14 @@ public class ListTeamRecommendController implements Controller {
 		
     	TeamRecommendManager manager = TeamRecommendManager.getInstance();
     	
-//    	TeamRecommend team = new TeamRecommend("¸ð¿©ºÁ¿ä", "¸ô¶ó", 4);
+//    	TeamRecommend team = new TeamRecommend(1,"¸ð¿©ºÁ¿ä", "¸ô¶ó", 4);
     	
 		List<TeamRecommend> teamRecommendList = manager.findRecommendTeamList();
 		
 //		List<TeamRecommend> teamRecommendList = new ArrayList<TeamRecommend>();
-//    	java.util.logging.Logger logger = Logger.getLogger(this.getClass().getName());
-//    	logger.info(team.getTitle());
-//    	teamRecommendList.add(team);
+ //   	java.util.logging.Logger logger = Logger.getLogger(this.getClass().getName());
+ //   	logger.info(team.getTitle());
+ //   	teamRecommendList.add(team);
 		
 		request.setAttribute("teamRecommendList", teamRecommendList);				
 		return "/teamRecommend/teamRecommend.jsp";        

@@ -15,15 +15,15 @@
 	<div class="parent">
 	<button type="button" class="left-arrow" id="left-arrow">
 	</button>
-		<div class="container">
+		<div class="container" >
 		   <c:forEach var="recommendTeam" items="${teamRecommendList}" >
-			<div class="team-box" onClick= "location.href = '<c:url value= '/member/detail?mnum=${recommendMember.mnum}'/>';">
-				<h2>${recommendTeam.title}</h2>
-				<br>
-				<h3>${recommendTeam.subtitle}</h3>
-				${recommendTeam.lookupcnt}<br>
-			</div>
-		</c:forEach>
+					<div class="team-box" style = "cursor:pointer;" onClick= "location.href = '<c:url value= '/project/detail?pid=${recommendTeam.pid}'/>';">
+						<h2>${recommendTeam.title}</h2>
+						<br>
+						<h3>${recommendTeam.subtitle}</h3>
+						${recommendTeam.lookupcnt}<br>
+					</div>
+			</c:forEach>
 		</div>
 		<button type="button" class="right-arrow" id="right-arrow">
 		</button>
