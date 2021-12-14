@@ -1,6 +1,7 @@
 package model.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 //import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import model.Member;
@@ -72,6 +73,12 @@ public class MemberManager {
 			throw new UserNotFoundException(mNum + "�� �������� �ʴ� ȸ����ȣ�Դϴ�.");
 		}
 		return member;
+	}
+	
+	public List<Member> searchMember(String query) throws SQLException, UserNotFoundException {
+		List<Member> memberList = memberDAO.searchMember(query);
+
+		return memberList;
 	}
 	
 	public boolean login(String mid, String passwd)
