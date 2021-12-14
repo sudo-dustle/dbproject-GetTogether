@@ -6,7 +6,7 @@
 	<div>
 	<%-- 로그인 안되어 있을경우 따로 처리가 필요합니다. --%>
 	<ul>
-	<% if (session.getAttribute("mId") == null) { %>
+	<% if (session.getAttribute("memberId") == null) { %>
 	
 		<li class="header-item">
 			<a href="<c:url value='/member/login/form'/>">로그인</a>

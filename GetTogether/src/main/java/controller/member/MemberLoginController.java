@@ -19,7 +19,7 @@ public class MemberLoginController implements Controller {
 			MemberManager.getInstance().login(memberId, passwd);
 			
 			HttpSession session = request.getSession();
-			session.setAttribute("mId", memberId);
+			session.setAttribute("memberId", memberId);
 			
 			MemberManager manager = MemberManager.getInstance();
 			Member member = manager.findMemberByMid(memberId);
