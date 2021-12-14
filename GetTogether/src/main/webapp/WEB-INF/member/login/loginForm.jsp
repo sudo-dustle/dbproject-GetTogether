@@ -11,7 +11,7 @@
 <script>
 function loginCheck(){
 	<%
-		if(request.getAttribute("loginFailed") != ""){
+		if(request.getAttribute("loginFailed") == ""){
 	%>
 			alert("아이디와 비밀번호를 입려하세요.");
 	<%

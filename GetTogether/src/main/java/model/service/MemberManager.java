@@ -32,7 +32,7 @@ public class MemberManager {
 	public int create(Member member) throws SQLException, ExistingUserException {
 		System.out.println("create in");
 		if (memberDAO.existingMember(member.getMid())) {
-			throw new ExistingUserException(member.getMid()+"ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ È¸ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
+			throw new ExistingUserException(member.getMid()+"´Â Á¸ÀçÇÏ´Â ¾ÆÀÌµðÀÔ´Ï´Ù.");
 		}
 		
 		return memberDAO.create(member);
@@ -50,7 +50,7 @@ public class MemberManager {
 		Member member = memberDAO.findMemberByMnum(mnum);
 		
 		if(mnum < 0) {
-			throw new UserNotFoundException(mnum + "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ È¸ï¿½ï¿½ï¿½ï¿½È£ï¿½Ô´Ï´ï¿½.");
+			throw new UserNotFoundException(mnum + "´Â Á¸ÀçÇÏÁö ¾Ê´Â È¸¿ø ¹øÈ£ÀÔ´Ï´Ù.");
 		}
 		
 		return member;
@@ -60,7 +60,7 @@ public class MemberManager {
 		Member member = memberDAO.findMemberByMid(mid);
 		
 		if (member == null) {
-			throw new UserNotFoundException(mid + "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½Ô´Ï´ï¿½.");
+			throw new UserNotFoundException(mid + "´Â Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµðÀÔ´Ï´Ù.");
 		}
 		
 		return member;
@@ -69,7 +69,7 @@ public class MemberManager {
 	public Member findMember(int mNum) throws SQLException, UserNotFoundException {
 		Member member = memberDAO.findMember(mNum);
 		if (member == null) {
-			throw new UserNotFoundException(mNum + "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ È¸ï¿½ï¿½ï¿½ï¿½È£ï¿½Ô´Ï´ï¿½.");
+			throw new UserNotFoundException(mNum + "´Â Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµðÀÔ´Ï´Ù.");
 		}
 		return member;
 	}
@@ -81,7 +81,7 @@ public class MemberManager {
 		if (member.checkPassword(passwd) == false) {
 			System.out.println("in checkPassword");
 			System.out.println(member.checkPassword(passwd));
-			throw new PasswordMismatchException("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
+			throw new PasswordMismatchException("ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ×½À´Ï´Ù.");
 		}
 
 		return true;

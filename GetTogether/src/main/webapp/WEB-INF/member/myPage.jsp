@@ -33,16 +33,6 @@ function deleteMember(targetUri) {
 					</td>
 				</tr>
 				<tr>
-					<th class="name">비밀번호</th>
-					<td class="contents">
-					</td>
-				</tr>
-				<tr>
-					<th class="name">비밀번호 확인</th>
-					<td class="contents">
-					</td>
-				</tr>
-				<tr>
 					<th class="name">이름</th>
 					<td class="contents">
 					${memberInfo.mname}
@@ -98,7 +88,7 @@ function deleteMember(targetUri) {
 				</tr>
 				<tr>
 					<th colspan="2" class="title">
-						<input type="submit" class="button" value="수정하기" onClick="javascript: form.action='/GetTogether/member/info';"> 
+						<input type="submit" class="button" value="수정하기" onClick="javascript: form.action='/GetTogether/member/detail/update';"> 
 					</th>
 				</tr>
 

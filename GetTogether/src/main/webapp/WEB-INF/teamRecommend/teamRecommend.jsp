@@ -17,7 +17,7 @@
 	</button>
 		<div class="container">
 		   <c:forEach var="recommendTeam" items="${teamRecommendList}" >
-			<div class="team-box">
+			<div class="team-box" onClick= "location.href = '<c:url value= '/member/detail?mnum=${recommendMember.mnum}'/>';">
 				<h2>${recommendTeam.title}</h2>
 				<br>
 				<h3>${recommendTeam.subtitle}</h3>
