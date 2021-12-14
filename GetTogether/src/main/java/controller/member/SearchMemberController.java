@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.User;
-import model.service.UserManager;
+import model.Member;
+import model.service.MemberManager;
 
 public class SearchMemberController implements Controller{
 
@@ -23,26 +23,10 @@ public class SearchMemberController implements Controller{
     		// GET request: 검색어로 검색하는 경우
     		String query = request.getParameter("query");
     		
-//    		UserManager manager = UserManager.getInstance(); 아직 미작성된 찾는 클래스..
-			List<User> userList = new ArrayList<User>();
-    		//= manager.findUserList();
-			User user = new User();
-			user.setName("김테스트");
-			userList.add(user);
-			User user2 = new User();
-			user2.setName("이테스트");
-			userList.add(user2);
-			User user3 = new User();
-			user3.setName("박테스트");
-			userList.add(user3);
-			User user4 = new User();
-			user4.setName("최테스트");
-			userList.add(user4);
-			User user5 = new User();
-			user5.setName("독고테스트");
-			userList.add(user5);
-//			userList = manager.findUserList(query);//이름 or 소개내용으로 검색
-			request.setAttribute("userList", userList);
+    		
+    		MemberManager memberManager = MemberManager.getInstance();
+			List<Member> searchedMemberList = memberManager.searchMember(query);
+			request.setAttribute("memberList", searchedMemberList);
     	}
     	else {
     		//POST -> language나 관심 분야로 search 할 경우
