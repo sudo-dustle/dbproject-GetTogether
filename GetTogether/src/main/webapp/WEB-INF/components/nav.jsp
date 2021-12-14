@@ -24,7 +24,7 @@
 			</li>
 			<li class="header-item">|</li>
 			<li class="header-item">
-				<a href="<c:url value=''/>">마이페이지</a>
+				<a href="<c:url value='/member/detail'/>">마이페이지</a>
 			</li>
 			<li class="header-item">|</li>
 			<li class="header-item">

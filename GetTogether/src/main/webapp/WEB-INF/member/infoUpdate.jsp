@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, model.Member.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="../../../../WEB-INF/components/nav.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -25,13 +26,13 @@ function deleteMember() {
 				<tr>
 					<th class="name">아이디</th>
 					<td class="contents">
-					<input type="text" name="mid" size="16" minlength="8" maxlength="16" required>
+					<input type="text" name="mid" size="16" minlength="8" maxlength="16" value="${memberInfo.mid}" required>
 					</td>
 				</tr>
 				<tr>
 					<th class="name">비밀번호</th>
 					<td id="contents">
-					<input type="password" name="passwd" size="16" required>
+					<input type="password" name="passwd" size="16" value="${memberInfo.passwd}" required>
 					</td>
 				</tr>
 				<tr>
@@ -43,13 +44,13 @@ function deleteMember() {
 				<tr>
 					<th class="name">이름</th>
 					<td class="contents">
-						<input type="text" name="mname" size="16" required>
+						<input type="text" name="mname" size="16" value="${memberInfo.mname}" required>
 					</td>
 				</tr>
 				<tr>
 					<th class="name">생년월일</th>
 					<td id="contents">
-						<input type="date" name="date" size="17">
+						<input type="date" name="date" size="17" value="${memberInfo.date}" required>
 					</td>
 				</tr>
 				<tr>
@@ -60,14 +61,14 @@ function deleteMember() {
 							<option value="3">017</option>
 							<option value="4">070</option>
 							<option value="5">080</option>
-					</select> - <input type="text" name="phone1" size="4" maxlength="4"> - <input
-						type="text" name="phone2" size="4" maxlength="4"></td>
+					</select> - <input type="text" name="phone1" size="4" maxlength="4" value="${fn:split(memberInfo.phonenum, '-')[1]}"> - <input
+						type="text" name="phone2" size="4" maxlength="4" value="${fn:split(memberInfo.phonenum, '-')[2]}"></td>
 				</tr>
 				<tr>
 					<th class="name">이메일</th>
 					<td id="contents">
-					<input name="email1" type="text" class="box" id="email1" size="15" required> @ 
-					<input name="email2" type="text" class="box" id="email2" size="10s">
+					<input name="email1" type="text" class="box" id="email1" size="15" value="${fn:split(memberInfo.email, '@')[0]}" required> @ 
+					<input name="email2" type="text" class="box" id="email2" size="10s" value="${fn:split(memberInfo.email, '@')[1]}">
 					 <select name="email_select" class="box" id="email_select"
 						onChange="checkemailaddy();">
 							<option value="" selected>선택하세요</option>
@@ -81,11 +82,11 @@ function deleteMember() {
 				<tr>
 					<th class="name">재학중인 학교</th>
 					<td id="contents">
-						<input type="text" name="school" size="20">
+						<input type="text" name="school" size="20" value="${memberInfo.school}">
 				</tr>
 				<tr>
 					<th class="name">학과</th>
-					<td id="contents"><input type="text" name="major" size="30"></td>
+					<td id="contents"><input type="text" name="major" size="30" value="${memberInfo.major}"></td>
 				</tr>
 
 				<tr>
@@ -131,7 +132,7 @@ function deleteMember() {
 				</tr>
 				<tr>
 					<th class="name">프로젝트 경험</th>
-					<td id="contents"><textarea rows="5px" name="experience" cols="50px">간단하게 프로젝트 경험에 대해 서술해주세요.</textarea>
+					<td id="contents"><textarea rows="5px" name="experience" cols="50px">${memberInfo.experience }</textarea>
 				</tr>
 				<tr>
 					<th colspan="2" class="title">
