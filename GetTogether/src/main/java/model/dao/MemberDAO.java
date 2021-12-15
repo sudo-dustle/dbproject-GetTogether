@@ -3,6 +3,10 @@ package model.dao;
 //import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import model.Member;
 
@@ -11,14 +15,13 @@ public class MemberDAO {
 
 	public int create(Member member) throws SQLException {
 		String query = "INSERT INTO Member VALUES (seq_mnum.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		Object[] param = new Object[] { member.getMid(), member.getPasswd(), member.getMname(), member.getDate(),
+		
+		long time = member.getDate().getTime();
+		java.sql.Date date = new java.sql.Date(time); 
+		
+		Object[] param = new Object[] { member.getMid(), member.getPasswd(), member.getMname(), date,
 				member.getPhonenum(), member.getEmail(), member.getSchool(), member.getMajor(), member.getField(),
 				member.getLanguage(), member.getExperience() };
-
-		System.out.println("mid=" + member.getMid());
-		System.out.println("passwd=" + member.getPasswd());
-		System.out.println("Mname=" + member.getMname());
-		System.out.println("date=" + member.getDate());
 
 		jdbcUtil.setSqlAndParameters(query, param);
 
@@ -37,7 +40,7 @@ public class MemberDAO {
 
 	public boolean existingMember(String mid) throws SQLException {
 		String sql = "SELECT count(*) FROM MEMBER WHERE mid=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { mid }); // JDBCUtil占쏙옙 query占쏙옙占쏙옙 占신곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { mid });
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
@@ -99,7 +102,6 @@ public class MemberDAO {
 
 	}
 
-	// 입력된 아이디를 이용해 db에서 회원정보를 select
 	public Member findMemberByMid(String mid) throws SQLException {
 		String query = "SELECT mnum, mid, passwd, mname, birth, phonenum, email, school, major, field, language, experience "
 				+ "FROM Member WHERE mid=?";
@@ -175,41 +177,85 @@ public class MemberDAO {
 
 	public int update(Member member) throws SQLException {
 		String sql = "UPDATE MEMBER "
-				+ "SET mid=?, passwd=?, mname=?, date=?, phonenum=?, email=?, school=?, major=?, field=?, "
-				+ "language=?, experience=?" + "WHERE mnum=?";
-		Object[] param = new Object[] { member.getMid(), member.getPasswd(), member.getMname(), member.getDate(),
+				+ "SET passwd=?, mname=?, birth=?, phonenum=?, email=?, school=?, major=?, field=?, "
+				+ "language=?, experience=? WHERE mid=?";
+		
+		long time = member.getDate().getTime();
+		java.sql.Date date = new java.sql.Date(time); 
+		
+		Object[] param = new Object[] { member.getPasswd(), member.getMname(), date,
 				member.getPhonenum(), member.getEmail(), member.getSchool(), member.getMajor(), member.getField(),
-				member.getEmail(), member.getMnum() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil占쏙옙 update占쏙옙占쏙옙 占신곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙
-
+				member.getLanguage(), member.getExperience(), member.getMid() };
+		
+		jdbcUtil.setSqlAndParameters(sql, param);
+		
 		try {
-			int result = jdbcUtil.executeUpdate(); // update 占쏙옙 占쏙옙占쏙옙
+			int result = jdbcUtil.executeUpdate();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 占쏙옙환
+			jdbcUtil.close();
 		}
 		return 0;
 	}
 
 	public int remove(String mid) throws SQLException {
 		String sql = "DELETE FROM MEMBER WHERE mid=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { mid }); // JDBCUtil占쏙옙 delete占쏙옙占쏙옙 占신곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙
-
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { mid }); 
+		
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete 占쏙옙 占쏙옙占쏙옙
+			int result = jdbcUtil.executeUpdate(); 
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 占쏙옙환
+			jdbcUtil.close(); 
 		}
 		return 0;
+	}
+	
+	public List<Member> searchMember(String query) throws SQLException {
+		String sql = "SELECT * FROM MEMBER WHERE MNAME LIKE ? OR EXPERIENCE LIKE ?";
+		Object[] param = new Object[] { query , "%"+query+"%" };
+
+		jdbcUtil.setSqlAndParameters(sql, param);
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<Member> memberList = new ArrayList<Member>();
+
+			while (rs.next()) {
+				Member member = new Member();
+
+				member.setMnum(rs.getInt("mnum"));
+				member.setMid(rs.getString("mid"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setMname(rs.getString("mname"));
+				member.setDate(rs.getDate("birth"));
+				member.setPhonenum(rs.getString("phonenum"));
+				member.setEmail(rs.getString("email"));
+				member.setSchool(rs.getString("school"));
+				member.setMajor(rs.getString("major"));
+				member.setField(rs.getString("field"));
+				member.setLanguage(rs.getString("language"));
+				member.setExperience(rs.getString("experience"));
+
+				memberList.add(member);
+			}
+			return memberList;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}
+		return null;		
 	}
 
 }

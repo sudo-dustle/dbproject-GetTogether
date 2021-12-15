@@ -30,7 +30,7 @@ const sendMessage = () => {
 }
 
 const goMessageList = () => {
-	location.href="/GetTogether/message/list";
+	location.href="/GetTogether/message/list/received";
 }
 </script>
 

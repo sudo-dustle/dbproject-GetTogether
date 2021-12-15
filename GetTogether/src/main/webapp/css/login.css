@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+*{
+	font-family: 'Jua', sans-serif;
+}
+
+body {
+	font-size: 12pt;
+	color: #2F2F2F;
+	background-color: #F6F8ED;
+}
+
+div.box {
+	margin: 5% auto;
+	width: 700px;
+	height: 350px;
+	background-color: #9DB589;
+	text-align: center;
+}
+
+div.form {
+	margin-top: 45px;
+	display: inline-block;
+	text-align: center;
+}
+
+#inputbox {
+	width: 500px;
+	height: 70px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+}
+
+#loginbutton {
+	width: 506px;
+	height: 70px;
+	background-color: #2F2F2F;
+	color: white;
+}

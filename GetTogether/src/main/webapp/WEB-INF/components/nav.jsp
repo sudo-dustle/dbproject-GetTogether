@@ -6,14 +6,32 @@
 	<div>
 	<%-- 로그인 안되어 있을경우 따로 처리가 필요합니다. --%>
 	<ul>
+	<% if (session.getAttribute("memberId") == null) { %>
+	
 		<li class="header-item">
-			<a href="<c:url value='/member/login'/>">로그인</a>
+			<a href="<c:url value='/member/login/form'/>">로그인</a>
 		</li>
 		<li class="header-item">|</li>
 		<li class="header-item">
-			<a href="<c:url value='/member/signup/input'/>">회원가입</a>
+			<a href="<c:url value='/member/signup/form'/>">회원가입</a>
 		</li>
-		</ul>
+		
+		<%
+		}else
+			{%>
+			<li class="header-item">
+			<a href="<c:url value='/message/list/received'/>">쪽지함</a>
+			</li>
+			<li class="header-item">|</li>
+			<li class="header-item">
+				<a href="<c:url value='/member/detail'/>">마이페이지</a>
+			</li>
+			<li class="header-item">|</li>
+			<li class="header-item">
+				<a href="<c:url value='/member/logout'/>">로그아웃</a>
+			</li>
+	<%}	%>
+	</ul>
 	</div>
 <nav>
 	<ul class="nav-container">

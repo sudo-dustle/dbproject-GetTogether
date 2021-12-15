@@ -4,7 +4,7 @@ import javax.servlet.http.HttpSession;
 
 public class MemberSessionUtils {
 
-	public static final String MEMBER_SESSION_KEY = "mId";
+	public static final String MEMBER_SESSION_KEY = "memberId";
 	public static final String MEMBER_SESSION_NUM = "mnum";
 
 	/* 현재 로그인한 사용자의 ID를 구함 */
@@ -15,7 +15,7 @@ public class MemberSessionUtils {
 
 	/* 현재 로그인한 사용자의 mnum */
 	public static int getLoginMemberNum(HttpSession session) {
-		int mnum = (int) session.getAttribute(MEMBER_SESSION_NUM); 
+		int mnum = (int) session.getAttribute(MEMBER_SESSION_NUM);
 		return mnum;
 	}
 	/* 로그인한 상태인지를 검사 */
