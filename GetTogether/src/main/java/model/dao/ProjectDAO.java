@@ -2,6 +2,7 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
 import model.Project;
 
@@ -54,7 +55,28 @@ public class ProjectDAO {
 		String sql = "UPDATE Project "
 				+ "SET title=?, field=?, language=?, subtitle=?, executionStart=?, executionEnd=?,applicationStart=?,applicationEnd=?,goal=?,applicationNum=?,description=?"
 				+ "WHERE pid=?";
-		Object[] param = new Object[] {project.getTitle(),project.getField(),project.getLanguage(),project.getSubtitle(),project.getExecutionStart(),project.getExecutionEnd(),project.getApplicationStart(),project.getApplicationEnd(),project.getGoal(),project.getApplicationNum(),project.getDescription(),project.getPid()};
+		long time = project.getExecutionStart().getTime();
+		java.sql.Date ExecutionStart = new java.sql.Date(time);
+		time = project.getExecutionEnd().getTime();
+		java.sql.Date ExecutionEnd = new java.sql.Date(time);
+		time = project.getApplicationStart().getTime();
+		java.sql.Date ApplicationStart = new java.sql.Date(time);
+		time = project.getApplicationEnd().getTime();
+		java.sql.Date ApplicationEnd = new java.sql.Date(time);
+		
+		Object[] param = new Object[] {
+				project.getTitle(),
+				project.getField(),
+				project.getLanguage(),
+				project.getSubtitle(),
+				ExecutionStart,
+				ExecutionEnd,
+				ApplicationStart,
+				ApplicationEnd,
+				project.getGoal(),
+				project.getApplicationNum(),
+				project.getDescription(),
+				project.getPid()};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {				
 			int result = jdbcUtil.executeUpdate();	// update ¹® ½ÇÇà

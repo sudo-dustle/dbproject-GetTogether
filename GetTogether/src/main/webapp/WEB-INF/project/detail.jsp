@@ -6,17 +6,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>프로젝트 상세 페이지(팀원)</title>
+<title>프로젝트 상세 페이지(팀장)</title>
 <link rel=stylesheet href="<c:url value='/css/common.css'/>" type="text/css">
 <link rel=stylesheet href="<c:url value='/css/project.css'/>" type="text/css">
 <%@ include file="/WEB-INF/components/nav.jsp" %>
 </head>
+<script type="text/javascript">
+function doUpdate(value){
+	if(value==1)
+	    location.href="/GetTogether/project/update?pid=${project.pid}";
+	else if(value==0)
+		location.href="/GetTogether/project/delete?pid=${project.pid}"
+}
+</script>
 <style>
 div {
 	margin-right: 20px;
 }
 </style>
 <body>
+<form method="GET" > 
 	<div>
 		<table style="margin-top: 2%;">
 			<tr>
@@ -43,7 +52,7 @@ div {
 			</tr>
 			<tr>
 				<td id="element">모집인원</td>
-				<td id="content">${project.numOfMembers}</td>
+				<td id="content">${project.numOfMembers}/${project.applicationNum}</td>
 			</tr>
 			<tr>
 				<td id="element">기술 분야</td>
@@ -61,7 +70,17 @@ div {
 				<td id="element" style="height: 70px;">필요 기술</td>
 				<td id="content">${project.language}</td>
 			</tr>
+			<td  id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
+			<%--	<c:if test="${MemberSessionUtils.getLoginMembreId() != null }">
+					<c:if test="${MemberSessionUtils.getLoginMemberId() == project.mnum}"> --%>
+						<input class="submit" value="수정" name="update" onClick="doUpdate(1);">
+						<input class="submit" name="delete" value="삭제" onClick="doUpdate(0);">
+					<%-- </c:if>
+					</c:if> --%>
+			</td>
+					
 		</table>
+		</form> 
 		<%-- 
 		<hr style="width: 60%; margin-top: 2%;">
 		<table>

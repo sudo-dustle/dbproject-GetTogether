@@ -20,7 +20,7 @@ public class UpdateCommunityController implements Controller {
  
 		int commId = Integer.parseInt(request.getParameter("commId"));
 		
-		if (request.getMethod().equals("GET")) {	
+		if (request.getMethod().equals("POST")) {	
     		// GET request: 커뮤니티 수정 form 요청	
     		UserManager manager = UserManager.getInstance();
 			Community comm = manager.findCommunity(commId);	// 수정하려는 커뮤니티 정보 검색

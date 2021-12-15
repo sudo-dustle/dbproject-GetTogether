@@ -6,24 +6,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>프로젝트 등록</title>
+<title>프로젝트 수정</title>
 <link rel=stylesheet href="<c:url value='/css/common.css'/>" type="text/css">
 <link rel=stylesheet href="<c:url value='/css/project.css'/>" type="text/css">
 <%@ include file="/WEB-INF/components/nav.jsp" %>
 </head>
-<body>
+<body onload='javascript:test();'>
+<script>
+const goProjectDetail = () => {
+    location.href="/GetTogether/project/detail?pid=${project.pid}";
+}
+
+
+</script>
 
 <div>
-<form method="post" action="<c:url value='/project/new' /> ">
+<form method="POST" action="<c:url value='/project/update' /> ">
+	<input type="hidden" name ="pid" value="${project.pid}">
 		<table style="margin-top: 2%;">
-			<tr><th>프로젝트 등록</th><th></th></tr>
+			<tr><th>프로젝트 수정</th><th></th></tr>
 			<tr>
 				<td id="element">프로젝트 제목</td>
-				<td id="content"><input type="text" name ="title"></td>
+				<td id="content"><input type="text" name ="title" value="${project.title}"></td>
 			</tr>
 			<tr>
 				<td id="element">부제목</td>
-				<td id="content"><input type="text" name = "subtitle"></td>
+				<td id="content"><input type="text" name = "subtitle" value="${project.subtitle}"></td>
 			</tr>
 			<tr>
 				<td id="element">수행기간</td>
@@ -39,7 +47,7 @@
 			</tr>
 			<tr>
 				<td id="element">모집인원</td>
-				<td id="content"><input type="text" style="width: 30px;" name="applicationNum">명
+				<td id="content"><input type="text" style="width: 30px;" name="applicationNum" value="${project.applicationNum}">명
 				</td>
 			</tr>
 			<tr>
@@ -62,16 +70,16 @@
 			</tr>
 			<tr>
 				<td id="element">목표</td>
-				<td id="content"><input type="text" name="goal"></td>
+				<td id="content"><input type="text" name="goal" value="${project.goal}"></td>
 			</tr>
 			<tr>
 				<td id="element" style="height: 100px;">프로젝트 개요</td>
-				<td><textarea rows="10" style="width: 99%;" name="description"></textarea></td>
+				<td><textarea rows="10" style="width: 99%;" name="description" >${project.description}</textarea></td>
 			</tr>
 			<tr>
 				<td id="element" style="height: 70px;">필요 기술</td>
 				<td id="content">
-					<input type="checkbox" name="language" value="C"> C
+					<input type="checkbox" name="language" value="C" > C
 					<input type="checkbox" name="language" value="C++"> C++
 					<input type="checkbox" name="language"value="C#"> C#
 					<input type="checkbox" name="language" value="Java"> Java
@@ -89,8 +97,8 @@
 			<tr>
 				<td id="btn" style="background-color: #F6F8ED;"></td>
 				<td  id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
-					<input class="submit" type="submit" name="create" value="등록">
-					<input class="reset" type="reset" name="delete" value="다시작성"></td>
+					<input class="submit" name="save" value="저장" type="submit">
+					<input class="reset" name="cancel" value="취소" onClick="goProjectDetail();"></td>
 			</tr>
 		</table>
 		</form>
