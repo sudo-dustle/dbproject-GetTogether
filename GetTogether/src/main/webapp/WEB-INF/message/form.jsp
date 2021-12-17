@@ -47,8 +47,9 @@ const goMessageList = () => {
 				<td><input id="title" name="title" maxlength="200"/></td>
 			</tr>
 			<tr>
-				<th>받는 사람(id)</th>
-				<td><input id="receiver" name="receiver" maxlength="20"/></td>
+				<th>받는 사람(id입력)</th>
+				<td><input id="receiver" name="receiver" maxlength="20"/>
+				</td>
 			</tr>		
 			<tr>
 				<th>내용</th>
