@@ -91,6 +91,30 @@ public class ProjectDAO {
 		}		
 		return 0;
 	}
+	
+	public int updateLookupCnt(int pid, int lookupCnt) throws SQLException{
+		String sql = "UPDATE Project "
+				+ "SET lookupcnt=? "
+				+ "WHERE pid=?";
+
+		Object[] param = new Object[] {
+				lookupCnt++,
+				pid};
+		
+		jdbcUtil.setSqlAndParameters(sql, param);
+		try {				
+			int result = jdbcUtil.executeUpdate();	// update 문 실행
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}		
+		return 0;
+	}
 	/**
 	 * 주어진 pid에 해당하는 프로젝트 정보를 삭제.
 	 */

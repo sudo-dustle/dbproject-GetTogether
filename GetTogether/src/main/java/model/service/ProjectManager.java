@@ -45,4 +45,7 @@ public class ProjectManager {
 //		project.setNumOfMembers(numOfMembers);
 		return project;
 	}
+	public int updateLookupCnt(int pid, int lookupCnt) throws SQLException{
+		return projectDAO.updateLookupCnt(pid, lookupCnt);
+	}
 }
