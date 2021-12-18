@@ -24,6 +24,12 @@
 		$(".group" + conGroup).show();
 	});
 	
+	$(".btn-like").on("click", function(e) {
+
+	    var likeCount = button.find(".like-count")
+	    var heartShape = button.find(".heart-shape")
+	});
+	
 	const previous = () => {
 		conGroup--;
 		if (conGroup < 0)
@@ -52,7 +58,8 @@
 						<h2>${recommendTeam.title}</h2>
 						<br>
 						<h3>${recommendTeam.subtitle}</h3>
-						${recommendTeam.lookupcnt}<br>
+						${recommendTeam.lookupcnt}<br><br><br>
+					    <button type="button" class="btn-like" background-color = #DCDCDC>♡${recommendTeam.recommendcnt}</button>
 					</div>
 				<%
 					i++;%>

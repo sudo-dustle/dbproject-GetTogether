@@ -21,7 +21,7 @@ private JDBCUtil jdbcUtil = null;
 	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환
 	 */
 	public List<TeamRecommend> findRecomendTeam() throws SQLException {
-        String sql = "SELECT pid, title, subtitle, lookupcnt " 
+        String sql = "SELECT pid, title, subtitle, lookupcnt, recommendcnt " 
         		   + "FROM project" ;
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
@@ -33,7 +33,8 @@ private JDBCUtil jdbcUtil = null;
 					rs.getInt("pid"),
 					rs.getString("title"),
 					rs.getString("subtitle"),
-					rs.getInt("lookupcnt"));
+					rs.getInt("lookupcnt"),
+					rs.getInt("recommendcnt"));
 				teamRecommendList.add(teamRecommend);			
 			}		
 			return teamRecommendList;					
