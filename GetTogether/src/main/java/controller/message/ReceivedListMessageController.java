@@ -17,7 +17,7 @@ public class ReceivedListMessageController implements Controller{
 		// TODO Auto-generated method stub
 
     	if (!MemberSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/user/login/form";		// login form 요청으로 redirect
+            return "redirect:/member/login/form";		// login form 요청으로 redirect
         }
     	int mnum = MemberSessionUtils.getLoginMemberNum(request.getSession());
     	
