@@ -78,6 +78,7 @@ function doUpdate(value){
 						</c:if> --%>
 				</td>
 			</tr>	
+
 		</table>
 		</form>
 	</div>

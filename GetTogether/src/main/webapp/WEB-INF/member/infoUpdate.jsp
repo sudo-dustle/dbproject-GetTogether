@@ -9,11 +9,45 @@
 <head>
 <meta charset="UTF-8">
 <title>MY PAGE</title>
+
 <link rel = stylesheet href= "<c:url value='/css/signup.css' />" type="text/css">
 <script>
-function deleteMember() {
-	form.action = "/member/delete";
+function selectAll1(selectAll) {
+	const checkboxes = document.getElementsByName('field');
+	
+	checkboxes.forEach((checkbox) => {
+		checkbox.checked = selectAll.checked;
+	})
 }
+
+function selectAll2(selectAll) {
+	const checkboxes = document.getElementsByName('lan');
+	
+	checkboxes.forEach((checkbox) => {
+		checkbox.checked = selectAll.checked;
+	})
+}
+</script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(document).ready(function() {
+    var checkedValues = ${memberInfo.field};
+    
+    console.log("log test");
+    
+    $('input:checkbox[name="checkbox"]').each( function() {
+        if ( checkedValues.indexOf( $(this).attr("value") )  != -1) {
+            $(this).attr("checked", "checked");
+            console.log("test check");
+        }
+    });
+    
+    $("#email_select").change(function(){
+    	console.log("test: "+$(this).val());
+    	$("#email_select").val($(this).val());
+    });
+    
+});
 </script>
 </head>
 <body>
@@ -69,14 +103,12 @@ function deleteMember() {
 					<td id="contents">
 					<input name="email1" type="text" class="box" id="email1" size="15" value="${fn:split(memberInfo.email, '@')[0]}" required> @ 
 					<input name="email2" type="text" class="box" id="email2" size="10s" value="${fn:split(memberInfo.email, '@')[1]}">
-					 <select name="email_select" class="box" id="email_select"
-						onChange="checkemailaddy();">
-							<option value="" selected>선택하세요</option>
+					 <select name="email_select" class="box" id="email_select">
+							<option value="etc" selected>직접 입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="hotmail.com">hotmail.com</option>
 							<option value="hanmail.com">hanmail.com</option>
 							<option value="yahoo.co.kr">yahoo.co.kr</option>
-							<option value="1">직접입력</option>
 					</select></td>
 				</tr>
 				<tr>
@@ -92,11 +124,11 @@ function deleteMember() {
 				<tr>
 					<th class="name">관심 프로젝트</th>
 					<td id="contents">
-						<input type="checkbox" name="field" value="ALL" checked>ALL 
+						<input type="checkbox" name="field" value="ALL" onClick = "selectAll1(this)">ALL 
 						<input type="checkbox" name="field" value="웹 개발">웹 개발 
 						<input type="checkbox" name="field" value="모바일 웹 개발">모바일 웹 개발
 						<p></p> 
-						<input type="checkbox" name="field" value="게임개발">게임개발 
+						<input type="checkbox" name="field" value="게임개발">게임 개발 
 						<input type="checkbox" name="field" value="데이터사이언스">데이터사이언스 
 						<input type="checkbox" name="field" value="서버 개발">서버 개발
 						<p></p> 
@@ -107,8 +139,7 @@ function deleteMember() {
 				<tr>
 					<th class="name">사용가능한 언어</th>
 					<td id="contents">
-					<input type="checkbox" name="lan" value="0"
-						checked>ALL 
+					<input type="checkbox" name="lan" value="0" onClick = "selectAll2(this)">ALL 
 						<input type="checkbox" name="lan" value="C">C
 						<input type="checkbox" name="lan" value="Python">Python 
 						<input type="checkbox" name="lan" value="Java">Java 

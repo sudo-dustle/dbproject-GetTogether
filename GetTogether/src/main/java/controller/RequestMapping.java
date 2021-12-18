@@ -27,18 +27,17 @@ public class RequestMapping {
         mappings.put("/member/logout", new MemberLogoutController());
         mappings.put("/member/signup/form", new ForwardController("/member/signup/inputForm.jsp"));
         mappings.put("/member/signup", new MemberInfoController());
+        mappings.put("/member/duplicate", new MemberDuplicateCheckController());
         mappings.put("/member/detail", new MemberDetailController());
         mappings.put("/member/detail/update", new MemberDetailUpdateController());
         mappings.put("/member/signup", new MemberInfoController());
         mappings.put("/member/mypage", new ForwardController("/member/myPage.jsp"));
         mappings.put("/member/delete", new MemberDeleteController());
-        mappings.put("/project/search", new ForwardController("/member/searchResult.jsp"));
         mappings.put("/member/info", new ForwardController("/member/infoUpdate.jsp"));
         mappings.put("/member/update", new MemberUpdateController());
         mappings.put("/teammember/detail", new TeamMemberDetailController());
         
-
-        mappings.put("/project/searchProject", new ForwardController("/project/searchProject/projectSearch.jsp"));
+        mappings.put("/project/search", new ProjectSearchController());
 //      mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
         mappings.put("/user/register", new RegisterUserController());
 
@@ -77,6 +76,8 @@ public class RequestMapping {
         mappings.put("/project/update", new UpdateProjectController());
         mappings.put("/project/delete", new DeleteProjectController());
         mappings.put("/project/detail",new ViewProjectDetailController());
+        mappings.put("/project/manage", new ListProjectController());
+        
         logger.info("Initialized Request Mapping!");
     }
 

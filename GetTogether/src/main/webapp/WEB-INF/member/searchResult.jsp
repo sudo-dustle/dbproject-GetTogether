@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../../../../WEB-INF/components/nav.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>검색결과</title>
 <link rel=stylesheet href="<c:url value='/css/common.css'/>" type="text/css">
-<%@ include file="../components/nav.jsp" %>
 </head>
 <body>
 	<div class="page-layout">

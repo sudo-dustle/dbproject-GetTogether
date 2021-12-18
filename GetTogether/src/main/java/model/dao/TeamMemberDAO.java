@@ -1,5 +1,6 @@
 package model.dao;
 
+
 import java.sql.SQLException;
 
 import model.TeamMember;
@@ -9,7 +10,7 @@ public class TeamMemberDAO {
 	private JDBCUtil jdbcUtil = null;
 	
 	public TeamMemberDAO() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil °´Ã¼ »ý¼º
+		jdbcUtil = new JDBCUtil();	// JDBCUtil ï¿½ï¿½Ã¼ ï¿½ï¿½
 	}
 
 	//mnum pid approve
@@ -21,16 +22,16 @@ public class TeamMemberDAO {
 			teamMember.getPid(),
 			approve
 		};
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil ¿¡ insert¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil ï¿½ï¿½ insertï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		try {    
-			int result = jdbcUtil.executeUpdate();  // insert ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();  // insert ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		   	return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹ÝÈ¯
+			jdbcUtil.close();	// resource ï¿½ï¿½È¯
 		}		
 		return 0;			
 	}

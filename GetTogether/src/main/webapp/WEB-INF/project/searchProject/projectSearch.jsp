@@ -1,133 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="java.util.*, model.*" %>
+<%@page import="java.util.*, model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%
-	List<Project> projectList = (List<Project>)request.getAttribute("projectList");
-%> --%>
+<%@ include file="../../../../WEB-INF/components/nav.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>프로젝트 검색 결과</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-*{
-	font-family: 'Jua', sans-serif;
-}
-
-body {
-	font-weight: bold;
-	font-size: 12pt;
-	color: #2F2F2F;
-	background-color: #F6F8ED;
-	text-align: center;
-}
-
-div.main {
-	text-align: center;
-	padding-top: 15px;
-	font-size: 25px;
-}
-
-div.banner {
-	background-color: #9DB589;
-	text-align: center;
-	padding: 20px;
-	font-size: 18pt;
-	color: #2F2F2F;
-}
-
-div.log {
-	text-align: right;
-}
-.search{
-	text-align: right;
-	margin-top: 10px;
-}
-p {
-	text-align: left;
-}
-.context {
-	display: inline-block;
-}
-table {
-	border-spacing: 30px;
-	font-size: 25px;
-}
-.project_context {
-	background-color: #9DB589;
-	width: 350px;
-	height: 250px;
-	text-align: left;
-	vertical-align: top;
-	padding-left: 10px;
-	padding-top: 20px;
-}
-</style>
+<link rel = stylesheet href= "<c:url value='/css/projectResult.css' />" type="text/css">
 </head>
 <body>
-<%-- 	<div class="main">
-		<h1>모여봐요</h1>
-	</div>
-	<P></P>
-	<div class="log">로그인 | 회원가입</div>
-
-	<div class="banner">프로젝트 목록 &nbsp;&nbsp;&nbsp;&nbsp; |
-		&nbsp;&nbsp;&nbsp;&nbsp; 프로젝트 관리 &nbsp;&nbsp;&nbsp;&nbsp; |
-		&nbsp;&nbsp;&nbsp;&nbsp; 팀원 추천</div>
-
-	
-	<%	
-		Project project1 = new Project(1, "프로젝트1", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-		Project project2 = new Project(2, "프로젝트2", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-		Project project3 = new Project(3, "프로젝트3", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-		Project project4 = new Project(4, "프로젝트4", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-		Project project5 = new Project(5, "프로젝트5", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-		Project project6 = new Project(6, "프로젝트6", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-	%>
-
-	<div class="search">
-		<select style="height: 30px;">
-			<option value="1">제목</option>
-			<option value="2">작성자</option>
-		</select> 
-		<input type="text" style="height: 30px; width: 400px;">
+	<div class="searchForm">
+		<form method="GET" action="<c:url value='/project/search'/>" >
+			<select class="select" name="projectSearch">
+					<option value="pjName">제목</option>
+					<option value="writer">작성자</option>
+			</select>
+			<input type="text" class="srhInput" name="srhTxt">
+			<input type="submit" class="srhButton" value="검색">
+		</form>
 	</div>
 	<div class="context">
-	<table>
-			<tr>
-				<td>"project"의 검색결과 입니다.</td>
-			</tr>
-			<tr>
-			<td class="project_context">
-				<%=project1.getTitle() %>
-				<br>
-			</td>
-			<td class="project_context">
-				<%=project2.getTitle() %>
-				<br>
-			</td>
-			<td class="project_context">
-				<%=project3.getTitle() %>
-				<br>
-			</td>
-		</tr>
-		<tr>
-			<td class="project_context">
-				<%=project4.getTitle() %>
-				<br>
-			</td>
-			<td class="project_context">
-				<%=project5.getTitle() %>
-				<br>
-			</td>
-			<td class="project_context">
-				<%=project6.getTitle() %>
-				<br>
-			</td>
-		</tr>
-	</table>
-	</div> --%>
+		<%
+		if (request.getAttribute("projectList") == null) {
+			out.println("검색결과가 없습니다.");
+		} else {
+		%>
+		<p>"<%= request.getParameter("srhTxt") %>"의 검색결과
+		<c:forEach var="project" items="${projectList}">
+			<div class="team-box" style = "cursor:pointer;" onClick= "location.href = '<c:url value= '/project/detail?pid=${project.pid}'/>';">
+						<h2>${project.title}</h2>
+						<br>
+						<h3>${project.subtitle}</h3>
+					</div>
+		</c:forEach>
+		<%} %>
+	</div>
 </body>
 </html>
