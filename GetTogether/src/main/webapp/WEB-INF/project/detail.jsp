@@ -73,7 +73,7 @@ div {
 			<td  id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
 			<%--	<c:if test="${MemberSessionUtils.getLoginMembreId() != null }">
 					<c:if test="${MemberSessionUtils.getLoginMemberId() == project.mnum}"> --%>
-						<input class="submit" value="수정" name="update" onClick="doUpdate(1);">
+						<input class="submit" type="" value="수정" name="update" onClick="doUpdate(1);">
 						<input class="submit" name="delete" value="삭제" onClick="doUpdate(0);">
 					<%-- </c:if>
 					</c:if> --%>

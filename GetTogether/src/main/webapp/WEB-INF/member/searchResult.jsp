@@ -22,7 +22,7 @@
 				else {
 			%>
 				<c:forEach var="member" items="${memberList}">
-					<div class="member-box">
+					<div class="member-box" style = "cursor:pointer;" onClick= "location.href = '<c:url value= '/teammember/detail?mnum=${member.mnum}'/>';">
 						<ul>
 							<li>${member.mname}</li>
 							<li>

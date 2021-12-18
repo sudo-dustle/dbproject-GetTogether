@@ -3,13 +3,18 @@ package model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Member;
 import model.Project;
 import model.TeamMember;
 import model.dao.ProjectDAO;
+import model.dao.TeamMemberDAO;
+import model.dao.MemberDAO;
+
 public class ProjectManager {
 
 	private static ProjectManager projectMan = new ProjectManager();
 
+	private MemberDAO memberDAO;
 	private ProjectDAO projectDAO;
 	private TeamMemberDAO teamMemberDAO;
 	private ProjectManager() {
@@ -35,6 +40,17 @@ public class ProjectManager {
 		return projectDAO.update(project);
 	}
 
+	public List<Project> findProjectList(int mnum) throws SQLException{
+		List<Project> pjList = projectDAO.findProjectList(mnum);
+		return pjList;
+	}
+	public Member findMember(int mnum) throws SQLException, UserNotFoundException {
+		Member member = memberDAO.findMember(mnum);
+		if (member == null) {
+			throw new UserNotFoundException(mnum + "는 존재하지 않는 아이디입니다.");
+		}
+		return member;
+	}
 	 public Project findProject(int pid) throws SQLException {
 		Project project = projectDAO.findProject(pid); 
 
@@ -45,10 +61,14 @@ public class ProjectManager {
 //		project.setNumOfMembers(numOfMembers);
 		return project;
 	}
-	 
+
 	 public List<Project> searchProject(String query) throws SQLException {
 		 List<Project> projectList = projectDAO.searchProject(query);
 		 
 		 return projectList;
 	 }
+
+	public int updateLookupCnt(int pid, int lookupCnt) throws SQLException{
+		return projectDAO.updateLookupCnt(pid, lookupCnt);
+	}
 }
