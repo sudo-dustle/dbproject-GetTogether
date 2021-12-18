@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 import controller.Controller;
+import controller.member.MemberSessionUtils;
 import model.Project;
 import model.service.ProjectManager;
 
@@ -13,9 +14,11 @@ public class CreateProjectController implements Controller{
 	@Override
 	// request를 처리한 후 이동할 URL을 반환
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		/*if(!UserSessionUtils.hasLogined(request.getSession())) {
-			return "redirect:/member/login/form";
-		}*/
+		if (!MemberSessionUtils.hasLogined(request.getSession())) {
+            return "redirect:/member/login/form";		// login form 요청으로 redirect
+        }
+    	int mnum = MemberSessionUtils.getLoginMemberNum(request.getSession());
+    	
 		  Date executionStart = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("executionStart"));
 		  Date executionEnd = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("executionEnd"));
 		  Date applicationStart = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("applicationStart"));
@@ -27,7 +30,7 @@ public class CreateProjectController implements Controller{
 			  language += ','+lan[i]; 
 		  }
 		Project project = new Project(request.getParameter("title"),request.getParameter("field"),language,request.getParameter("subtitle"), executionStart,executionEnd,applicationStart,applicationEnd,
-				request.getParameter("goal"), Integer.parseInt(request.getParameter("applicationNum")), request.getParameter("description"), true, 2, 0,0);
+				request.getParameter("goal"), Integer.parseInt(request.getParameter("applicationNum")), request.getParameter("description"), true, mnum, 0,0);
 
 		ProjectManager projectMan = ProjectManager.getInstance();
 		project = projectMan.createProject(project);

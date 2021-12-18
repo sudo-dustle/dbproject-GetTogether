@@ -9,9 +9,14 @@
 <title>프로젝트 상세 페이지(팀장)</title>
 <link rel=stylesheet href="<c:url value='/css/common.css'/>" type="text/css">
 <link rel=stylesheet href="<c:url value='/css/project.css'/>" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <%@ include file="/WEB-INF/components/nav.jsp" %>
 </head>
 <script type="text/javascript">
+const goProjectList = () => {
+    location.href="/GetTogether/";
+}
 function doUpdate(value){
 	if(value==1)
 	    location.href="/GetTogether/project/update?pid=${project.pid}";
@@ -21,6 +26,22 @@ function doUpdate(value){
 			location.href="/GetTogether/project/delete?pid=${project.pid}"
 	}
 }
+
+function checkMnum(){
+	if(<%=session.getAttribute("mnum") %> == "${project.mnum}"){
+		return (1);
+	}
+	return 0;
+}
+
+$(document).ready(() => {
+	if(!checkMnum())
+	{
+		$(".submit").hide();
+	}
+});
+
+
 </script>
 <body>
 <form method="GET" > 
@@ -68,66 +89,16 @@ function doUpdate(value){
 				<td id="element" style="height: 70px;">필요 기술</td>
 				<td id="content">${project.language}</td>
 			</tr>
-			<tr>
-				<td id="content" style="text-align: right; border: 0; background-color: #F6F8ED;" colspan="2">
-				<%--	<c:if test="${MemberSessionUtils.getLoginMembreId() != null }">
-						<c:if test="${MemberSessionUtils.getLoginMemberId() == project.mnum}"> --%>
-							<input class="submit" style = "cursor:pointer" type="button" value="수정" name="update" onClick="doUpdate(1);">
-							<input class="submit" style = "cursor:pointer" type="button" value="삭제" onClick="doUpdate(0);">
-						<%-- </c:if>
-						</c:if> --%>
-				</td>
-			</tr>	
 
+			<tr>
+				<td id="btn" style="background-color: #F6F8ED;"></td>
+				<td  id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
+					<input class="submit" value="수정" name="update" onClick="doUpdate(1);">
+					<input class="submit" name="delete" value="삭제" onClick="doUpdate(0);">
+					<input class="reset" name="cancel" value="목록으로" onClick="goProjectList();">
+					</tr>
 		</table>
-		</form>
-	</div>
-		<table>
-			<tr>
-				<th>프로젝트 신청 현황</th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-			<tr>
-				<td class="application" width="130px">신청자명</td>
-				<td class="application">내용</td>
-				<td class="application" width="150px">신청일</td>
-				<td class="application" width="50px">상태</td>
-			</tr>
-			<tr>
-			<%
-				if (request.getAttribute("commentList") == null){
-			%>
-				<td colspan="4"><p style="text-align: center;border: 0;color:#adadad;">지금은 비어있습니다.</p></td>
-			<%
-				} else {
-			%>
-				<c:forEach var="comment" items="${commentList}"></c:forEach>
-					<td>${comment.applicant.mname}</td>
-			<%
-				}
-			%>
-			</tr>
-		</table>
-		<br>
-	<form method="POST" action="<c:url value='/applicationComment/create' />">
-		<table>
-			<tr>
-				<th text-align="left" padding-left="20px">프로젝트 신청 댓글 작성 </th>
-				<th></th>
-			</tr>
-			<tr>
-				<td id="element">내용</td>
-				<td><textarea name="content" rows="4" style="width: 99%;" maxlength="200"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2" id="btn" style="text-align: right; border: 0; background-color: #F6F8ED;">
-					<input class="submit" type="submit" style = "cursor:pointer" type="button" value="신청" name="update">
-				</td>
-			</tr>
-		</table>
-					<input type="hidden" name="pid" value="${project.pid}" />
+
 		</form>
 	</div>
 	
