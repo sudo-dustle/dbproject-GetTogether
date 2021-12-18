@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--  <%@ include file="../../../../WEB-INF/components/nav.jsp" %>--%>
+<%@ include file="../../../../WEB-INF/components/nav.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,28 +18,32 @@
 			form.email2.value = form.email_select.value;
 		}
 	}
-	function inputCheck(){
-		<%
-			if(request.getAttribute("inputFailed") != ""){
-		%>
-				alert("회원 정보를 모두 입력해주세요.");
-		<%
-			}
-		%>
-	}
-	<%-- function duplicateCheck() {
-		form.action='/member/duplicate';
+	function duplicateCheck() {
+		alert("onclick check");
+		form.action = '/GetTogether/member/duplicate';
 		
-		<%
-		if(request.getAttribute("duplicate") != ""){
-	%>
+		<%if (request.getAttribute("memberId") != "") {%>
 			alert("이미 존재하는 사용자입니다.");
-	<%
-		}
-		else
-	%>
+		<%} else {%>
 			alert("사용 가능한 아이디입니다.");
-	} --%>
+			<%}%>
+	}
+
+	function selectAll1(selectAll) {
+		const checkboxes = document.getElementsByName('field');
+		
+		checkboxes.forEach((checkbox) => {
+			checkbox.checked = selectAll.checked;
+		})
+	}
+
+	function selectAll2(selectAll) {
+		const checkboxes = document.getElementsByName('lan');
+		
+		checkboxes.forEach((checkbox) => {
+			checkbox.checked = selectAll.checked;
+		})
+	}
 </script>
 
 </head>
@@ -55,7 +59,7 @@
 					<th class="name">아이디*</th>
 					<td class="contents">
 					<input type="text" name="mid" size="16" minlength="8" maxlength="16" required> 
-					<input type="button" class="checkButton" value="중복확인">
+					<input type="submit" class="checkButton" value="중복확인" onClick="duplicateCheck()">
 					</td>
 				</tr>
 				<tr>
@@ -121,7 +125,7 @@
 				<tr>
 					<th class="name">관심 프로젝트</th>
 					<td id="contents">
-						<input type="checkbox" name="field" value="ALL" checked>ALL 
+						<input type="checkbox" name="field" value="ALL" onClick = "selectAll1(this)">ALL 
 						<input type="checkbox" name="field" value="웹 개발">웹 개발 
 						<input type="checkbox" name="field" value="모바일 웹 개발">모바일 웹 개발
 						<p></p> 
@@ -136,8 +140,7 @@
 				<tr>
 					<th class="name">사용가능한 언어</th>
 					<td id="contents">
-					<input type="checkbox" name="lan" value="0"
-						checked>ALL 
+					<input type="checkbox" name="lan" value="ALL" onClick = "selectAll2(this)">ALL 
 						<input type="checkbox" name="lan" value="C">C
 						<input type="checkbox" name="lan" value="Python">Python 
 						<input type="checkbox" name="lan" value="Java">Java 

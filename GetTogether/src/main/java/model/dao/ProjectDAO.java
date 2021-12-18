@@ -17,10 +17,10 @@ public class ProjectDAO {
 	
 	public ProjectDAO() {jdbcUtil = new JDBCUtil(); }
 	/**
-	 * ÇÁÁ§ Å×ÀÌºí¿¡ »õ·Î¿î Çà »ı¼º (PK °ªÀº Sequence¸¦ ÀÌ¿ëÇÏ¿© ÀÚµ¿ »ı¼º)
+	 * í”„ì  í…Œì´ë¸”ì— ìƒˆë¡œìš´ í–‰ ìƒì„± (PK ê°’ì€ Sequenceë¥¼ ì´ìš©í•˜ì—¬ ìë™ ìƒì„±)
 	 */
 	public Project create(Project project) throws  SQLException{
-		/*pid ½ÃÄö½º »ı¼º*/
+		/*pid ì‹œí€€ìŠ¤ ìƒì„±*/
 		String sql = "INSERT INTO Project VALUES (seq_pid.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, 0, 0)";
 		long time = project.getExecutionStart().getTime();
 		java.sql.Date ExecutionStart = new java.sql.Date(time);
@@ -37,11 +37,11 @@ public class ProjectDAO {
 		jdbcUtil.setSqlAndParameters(sql, param);
 		String key[] = {"pid"};
 		try {
-			jdbcUtil.executeUpdate(key);  // insert ¹® ½ÇÇà
+			jdbcUtil.executeUpdate(key);  // insert ë¬¸ ì‹¤í–‰
 		   	ResultSet rs = jdbcUtil.getGeneratedKeys();
 		   	if(rs.next()) {
-		   		int generatedKey = rs.getInt(1);   // »ı¼ºµÈ PK °ª
-		   		project.setPid(generatedKey); 	// idÇÊµå¿¡ ÀúÀå  
+		   		int generatedKey = rs.getInt(1);   // ìƒì„±ëœ PK ê°’
+		   		project.setPid(generatedKey); 	// idí•„ë“œì— ì €ì¥  
 		   	}
 		   	return project;
 		}  	catch (Exception ex) {
@@ -54,7 +54,7 @@ public class ProjectDAO {
 		return null;
 	}
 	/**
-	 * ±âÁ¸ÀÇ ÇÁ·ÎÁ§Æ® Á¤º¸¸¦ ¼öÁ¤
+	 * ê¸°ì¡´ì˜ í”„ë¡œì íŠ¸ ì •ë³´ë¥¼ ìˆ˜ì •
 	 */
 	public int update (Project project) throws SQLException{
 		String sql = "UPDATE Project "
@@ -84,7 +84,7 @@ public class ProjectDAO {
 				project.getPid()};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {				
-			int result = jdbcUtil.executeUpdate();	// update ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();	// update ë¬¸ ì‹¤í–‰
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -92,7 +92,7 @@ public class ProjectDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹İÈ¯
+			jdbcUtil.close();	// resource ë°˜í™˜
 		}		
 		return 0;
 	}
@@ -108,7 +108,7 @@ public class ProjectDAO {
 		
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {				
-			int result = jdbcUtil.executeUpdate();	// update ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();	// update ë¬¸ ì‹¤í–‰
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -116,19 +116,19 @@ public class ProjectDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹İÈ¯
+			jdbcUtil.close();	// resource ë°˜í™˜
 		}		
 		return 0;
 	}
 	/**
-	 * ÁÖ¾îÁø pid¿¡ ÇØ´çÇÏ´Â ÇÁ·ÎÁ§Æ® Á¤º¸¸¦ »èÁ¦.
+	 * ì£¼ì–´ì§„ pidì— í•´ë‹¹í•˜ëŠ” í”„ë¡œì íŠ¸ ì •ë³´ë¥¼ ì‚­ì œ.
 	 */
 	public int remove(int pid) throws SQLException {
 		String sql = "DELETE FROM Project WHERE pid=?";		
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtil¿¡ delete¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtilì— deleteë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 
 		try {				
-			int result = jdbcUtil.executeUpdate();	// delete ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate();	// delete ë¬¸ ì‹¤í–‰
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -136,7 +136,7 @@ public class ProjectDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource ¹İÈ¯
+			jdbcUtil.close();	// resource ë°˜í™˜
 		}		
 		return 0;
 	}
@@ -145,12 +145,12 @@ public class ProjectDAO {
         String sql = "SELECT title, field, language, subtitle, executionStart, executionEnd, applicationStart, applicationEnd, goal, applicationNum, description, approve, mnum, recommendCnt, lookupCnt "
         			+ "FROM Project "
         			+ "WHERE pid=?";              
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	// JDBCUtilì— queryë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 		Project project = null;
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
-			if (rs.next()) {						// ÇĞ»ı Á¤º¸ ¹ß°ß
-				project = new Project(		// project °´Ã¼¸¦ »ı¼ºÇÏ¿© Ä¿¹Â´ÏÆ¼ Á¤º¸¸¦ ÀúÀå
+			ResultSet rs = jdbcUtil.executeQuery();		// query ì‹¤í–‰
+			if (rs.next()) {						// í•™ìƒ ì •ë³´ ë°œê²¬
+				project = new Project(		// project ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ ì»¤ë®¤ë‹ˆí‹° ì •ë³´ë¥¼ ì €ì¥
 					pid,
 					rs.getString("title"),
 					rs.getString("field"),
@@ -172,10 +172,55 @@ public class ProjectDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource ¹İÈ¯
+			jdbcUtil.close();		// resource ë°˜í™˜
 		}
 		return project;
 	}
+
+	  	public List<Project> searchProject(String query) throws SQLException {
+			String sql = "SELECT * FROM PROJECT WHERE TITLE LIKE ? OR SUBTITLE LIKE ?";
+			Object[] param = new Object[] { "%"+query+"%" , "%"+query+"%" };
+
+			jdbcUtil.setSqlAndParameters(sql, param);
+
+			System.out.println("sql: "+sql + param[0] + param[1]);
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();
+				List<Project> projectList = new ArrayList<Project>();
+
+				while (rs.next()) {
+					Project project = new Project();
+
+					project.setPid(rs.getInt("pid"));
+					project.setTitle(rs.getString("title"));
+					project.setField(rs.getString("field"));
+					project.setLanguage(rs.getString("language"));
+					project.setSubtitle(rs.getString("subtitle"));
+					project.setExecutionStart(rs.getDate("executionStart"));
+					project.setExecutionEnd(rs.getDate("executionEnd"));
+					project.setApplicationStart(rs.getDate("applicationStart"));
+					project.setApplicationEnd(rs.getDate("applicationEnd"));
+					project.setApplicationNum(rs.getInt("applicationNum"));
+					project.setGoal(rs.getString("goal"));
+					project.setDescription(rs.getString("description"));
+					project.setApprove(rs.getBoolean("approve"));
+					project.setMnum(rs.getInt("mnum"));
+					project.setRecommendCnt(rs.getInt("recommendCnt"));
+					project.setLookupCnt(rs.getInt("lookupcnt"));
+
+					projectList.add(project);
+				}
+				return projectList;
+			} catch (Exception ex) {
+				jdbcUtil.rollback();
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.commit();
+				jdbcUtil.close();
+			}
+			return null;		
+		}
 
 	  	public List<Project> findProjectList(int mnum) throws SQLException {
 			String sql = "SELECT PID, TITLE, SUBTITLE, applicationNum FROM PROJECT WHERE MNUM=? ";
@@ -201,8 +246,9 @@ public class ProjectDAO {
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			} finally {
-				jdbcUtil.close();		// resource ¹İÈ¯
+				jdbcUtil.close();		// resource ë°˜í™˜
 			}
 			return null;
 		}
+
 }

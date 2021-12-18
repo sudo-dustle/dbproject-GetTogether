@@ -14,6 +14,13 @@ public class TeamMember {
 		this.mnum = mnum;
 		this.approve = approve;
 	}
+	public TeamMember(int pid, int mnum) {
+		super();
+		this.pid = pid;
+		this.mnum = mnum;
+		this.approve = false;
+	}
+	
 	public int getPid() {
 		return pid;
 	}

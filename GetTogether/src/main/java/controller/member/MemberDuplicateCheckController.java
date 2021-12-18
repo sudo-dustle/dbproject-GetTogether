@@ -15,7 +15,7 @@ public class MemberDuplicateCheckController implements Controller {
 			MemberManager manager = MemberManager.getInstance();
 			manager.findMemberByMid(mid);
 			
-			request.setAttribute("memberID",manager.findMemberByMid(mid).getMid());
+			request.setAttribute("memberID", manager.findMemberByMid(mid).getMid());
 			
 			return "redirect:/member/signup/input";
 		}

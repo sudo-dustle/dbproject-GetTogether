@@ -13,14 +13,16 @@ public class MemberDeleteController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		String mid = (String) session.getAttribute("memberId");
-		
+
 		try {
 			MemberManager manager = MemberManager.getInstance();
 			manager.remove(mid);
-			
+
+			session.removeAttribute(MemberSessionUtils.MEMBER_SESSION_KEY);
+			session.invalidate();
+
 			return "redirect:/";
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return "/member/mypage";
 		}
 	}

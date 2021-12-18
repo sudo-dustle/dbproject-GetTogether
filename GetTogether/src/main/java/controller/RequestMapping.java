@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.user.*;
+import controller.applicationComment.CreateApplicationCommentController;
 import controller.comm.*;
 import controller.message.*;
 import controller.teamrecommend.ListTeamRecommendController;
@@ -26,18 +27,17 @@ public class RequestMapping {
         mappings.put("/member/logout", new MemberLogoutController());
         mappings.put("/member/signup/form", new ForwardController("/member/signup/inputForm.jsp"));
         mappings.put("/member/signup", new MemberInfoController());
+        mappings.put("/member/duplicate", new MemberDuplicateCheckController());
         mappings.put("/member/detail", new MemberDetailController());
         mappings.put("/member/detail/update", new MemberDetailUpdateController());
         mappings.put("/member/signup", new MemberInfoController());
         mappings.put("/member/mypage", new ForwardController("/member/myPage.jsp"));
         mappings.put("/member/delete", new MemberDeleteController());
-        mappings.put("/project/search", new ForwardController("/member/searchResult.jsp"));
         mappings.put("/member/info", new ForwardController("/member/infoUpdate.jsp"));
         mappings.put("/member/update", new MemberUpdateController());
         mappings.put("/teammember/detail", new TeamMemberDetailController());
         
-
-        mappings.put("/project/searchProject", new ForwardController("/project/searchProject/projectSearch.jsp"));
+        mappings.put("/project/search", new ProjectSearchController());
 //      mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
         mappings.put("/user/register", new RegisterUserController());
 
@@ -67,6 +67,8 @@ public class RequestMapping {
         mappings.put("/message/delete", new DeleteMessageController());
         
         mappings.put("/member/search", new SearchMemberController());
+        
+        mappings.put("/applicationComment/create", new CreateApplicationCommentController());
         
         mappings.put("/project/new/form", new ForwardController("/project/form.jsp"));
         mappings.put("/project/new", new CreateProjectController());

@@ -21,7 +21,10 @@ function doUpdate(value){
 	if(value==1)
 	    location.href="/GetTogether/project/update?pid=${project.pid}";
 	else if(value==0)
-		location.href="/GetTogether/project/delete?pid=${project.pid}"
+	{
+		if (confirm("정말 삭제하시겠습니까?"))
+			location.href="/GetTogether/project/delete?pid=${project.pid}"
+	}
 }
 
 function checkMnum(){
@@ -40,11 +43,6 @@ $(document).ready(() => {
 
 
 </script>
-<style>
-div {
-	margin-right: 20px;
-}
-</style>
 <body>
 <form method="GET" > 
 	<div>
@@ -91,6 +89,7 @@ div {
 				<td id="element" style="height: 70px;">필요 기술</td>
 				<td id="content">${project.language}</td>
 			</tr>
+
 			<tr>
 				<td id="btn" style="background-color: #F6F8ED;"></td>
 				<td  id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
@@ -99,6 +98,7 @@ div {
 					<input class="reset" name="cancel" value="목록으로" onClick="goProjectList();">
 					</tr>
 		</table>
+
 		</form>
 	</div>
 	

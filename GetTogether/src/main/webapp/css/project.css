@@ -34,7 +34,6 @@ tr {
 td {
 	border: 1px solid #2F2F2F;
 	border-collapse: separate;
-	width: 300px;
 }
 
 table {
@@ -47,7 +46,14 @@ table {
 #element {
 	background-color: #9DB589;
 	color: #2F2F2F;
-	width: 100px;
+	width: 150px;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+.application {
+	background-color: #9DB589;
+	color: #2F2F2F;
 	text-align: center;
 	border-collapse: collapse;
 }

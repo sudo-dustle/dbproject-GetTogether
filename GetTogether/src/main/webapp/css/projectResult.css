@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+*{
+	font-family: 'Jua', sans-serif;
+}
+
+body {
+	font-weight: bold;
+	font-size: 12pt;
+	color: #2F2F2F;
+	background-color: #F6F8ED;
+}
+
+p {
+	text-align: left;
+}
+.context {
+	display: inline-block;
+}
+
+.team-box{
+     background-color: var(--banner); 
+     padding : 10px;
+     margin :10px;
+     width: 250px; 
+     height: 170px;
+ }
