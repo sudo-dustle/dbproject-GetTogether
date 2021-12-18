@@ -16,14 +16,12 @@ function doUpdate(value){
 	if(value==1)
 	    location.href="/GetTogether/project/update?pid=${project.pid}";
 	else if(value==0)
-		location.href="/GetTogether/project/delete?pid=${project.pid}"
+	{
+		if (confirm("정말 삭제하시겠습니까?"))
+			location.href="/GetTogether/project/delete?pid=${project.pid}"
+	}
 }
 </script>
-<style>
-div {
-	margin-right: 20px;
-}
-</style>
 <body>
 <form method="GET" > 
 	<div>
@@ -70,19 +68,20 @@ div {
 				<td id="element" style="height: 70px;">필요 기술</td>
 				<td id="content">${project.language}</td>
 			</tr>
-			<td  id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
-			<%--	<c:if test="${MemberSessionUtils.getLoginMembreId() != null }">
-					<c:if test="${MemberSessionUtils.getLoginMemberId() == project.mnum}"> --%>
-						<input class="submit" type="" value="수정" name="update" onClick="doUpdate(1);">
-						<input class="submit" name="delete" value="삭제" onClick="doUpdate(0);">
-					<%-- </c:if>
-					</c:if> --%>
-			</td>
-					
+			<tr>
+				<td id="content" style="text-align: right; border: 0; background-color: #F6F8ED;" colspan="2">
+				<%--	<c:if test="${MemberSessionUtils.getLoginMembreId() != null }">
+						<c:if test="${MemberSessionUtils.getLoginMemberId() == project.mnum}"> --%>
+							<input class="submit" style = "cursor:pointer" type="button" value="수정" name="update" onClick="doUpdate(1);">
+							<input class="submit" style = "cursor:pointer" type="button" value="삭제" onClick="doUpdate(0);">
+						<%-- </c:if>
+						</c:if> --%>
+				</td>
+			</tr>	
+
 		</table>
-		</form> 
-		<%-- 
-		<hr style="width: 60%; margin-top: 2%;">
+		</form>
+	</div>
 		<table>
 			<tr>
 				<th>프로젝트 신청 현황</th>
@@ -91,56 +90,45 @@ div {
 				<th></th>
 			</tr>
 			<tr>
-				<td id="element">제목</td>
-				<td id="element">신청자명</td>
-				<td id="element">신청일</td>
-				<td id="element">상태</td>
+				<td class="application" width="130px">신청자명</td>
+				<td class="application">내용</td>
+				<td class="application" width="150px">신청일</td>
+				<td class="application" width="50px">상태</td>
 			</tr>
 			<tr>
+			<%
+				if (request.getAttribute("commentList") == null){
+			%>
 				<td colspan="4"><p style="text-align: center;border: 0;color:#adadad;">지금은 비어있습니다.</p></td>
+			<%
+				} else {
+			%>
+				<c:forEach var="comment" items="${commentList}"></c:forEach>
+					<td>${comment.applicant.mname}</td>
+			<%
+				}
+			%>
 			</tr>
 		</table>
-		<hr style="width: 60%; margin-top: 2%;">
+		<br>
+	<form method="POST" action="<c:url value='/applicationComment/create' />">
 		<table>
 			<tr>
-				<th>프로젝트 신청하기</th>
+				<th text-align="left" padding-left="20px">프로젝트 신청 댓글 작성 </th>
 				<th></th>
 			</tr>
 			<tr>
-				<td id="element">제목</td>
-				<td style="padding-left: 15px;"><input type="text"></td>
+				<td id="element">내용</td>
+				<td><textarea name="content" rows="4" style="width: 99%;" maxlength="200"></textarea></td>
 			</tr>
 			<tr>
-				<td id="element">신청자 이름</td>
-				<td style="padding-left: 15px;"><input type="text"></td>
-			</tr>
-			<tr>
-				<td id="element" >개발 역량</td>
-				<td><input type="checkbox" value="css"> C
-					<input type="checkbox" value="css"> C++
-					<input type="checkbox" value="css"> C#
-					<input type="checkbox" value="css"> Java
-					<input type="checkbox" value="css"> JavaScript
-					<input type="checkbox" value="css"> Python
-					<input type="checkbox" value="css"> Visual Basic
-					<input type="checkbox" value="css"> PHP
-					<input type="checkbox" value="css"> SQL
-					<input type="checkbox" value="css"> CSS
-					<input type="checkbox" value="css"> HTML
-					<input type="checkbox" value="css"> R</td>
-			</tr>
-			<tr>
-				<td id="element">자기 소개</td>
-				<td><textarea rows="10" style="width: 99%;"></textarea></td>
-			</tr>
-			<tr>
-				<td id="btn" style="background-color: #F6F8ED;"></td>
-				<td id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
-					<button>신청</button>
+				<td colspan="2" id="btn" style="text-align: right; border: 0; background-color: #F6F8ED;">
+					<input class="submit" type="submit" style = "cursor:pointer" type="button" value="신청" name="update">
 				</td>
 			</tr>
 		</table>
---%>
+					<input type="hidden" name="pid" value="${project.pid}" />
+		</form>
 	</div>
 	
 </body>

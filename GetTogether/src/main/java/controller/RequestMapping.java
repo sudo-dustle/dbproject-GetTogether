@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.user.*;
+import controller.applicationComment.CreateApplicationCommentController;
 import controller.comm.*;
 import controller.message.*;
 import controller.teamrecommend.ListTeamRecommendController;
@@ -66,6 +67,8 @@ public class RequestMapping {
         mappings.put("/message/delete", new DeleteMessageController());
         
         mappings.put("/member/search", new SearchMemberController());
+        
+        mappings.put("/applicationComment/create", new CreateApplicationCommentController());
         
         mappings.put("/project/new/form", new ForwardController("/project/form.jsp"));
         mappings.put("/project/new", new CreateProjectController());
