@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page import="java.util.List" %>
+<%@page import="model.ApplicationComment" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +12,7 @@
 <title>프로젝트 상세 페이지(팀장)</title>
 <link rel=stylesheet href="<c:url value='/css/common.css'/>" type="text/css">
 <link rel=stylesheet href="<c:url value='/css/project.css'/>" type="text/css">
+
 <%@ include file="/WEB-INF/components/nav.jsp" %>
 </head>
 <script type="text/javascript">
@@ -97,14 +101,19 @@ function doUpdate(value){
 			</tr>
 			<tr>
 			<%
-				if (request.getAttribute("commentList") == null){
+				List<ApplicationComment> list = (List<ApplicationComment>)request.getAttribute("commentList") ;
+				if (list.size() == 0) {
 			%>
 				<td colspan="4"><p style="text-align: center;border: 0;color:#adadad;">지금은 비어있습니다.</p></td>
 			<%
 				} else {
 			%>
-				<c:forEach var="comment" items="${commentList}"></c:forEach>
-					<td>${comment.applicant.mname}</td>
+				<c:forEach var="comment" items="${commentList}">
+					<td style="text-align: center;">${comment.applicant.mname}</td>
+					<td style="text-align: center;">${comment.content}</td>
+					<td style="text-align: center;">${comment.date}</td>
+					<td style="text-align: center;"></td>
+				</c:forEach>
 			<%
 				}
 			%>
@@ -127,7 +136,7 @@ function doUpdate(value){
 				</td>
 			</tr>
 		</table>
-					<input type="hidden" name="pid" value="${project.pid}" />
+				<input type="hidden" name="pid" value="${project.pid}" />
 		</form>
 	</div>
 	

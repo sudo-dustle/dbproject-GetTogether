@@ -10,21 +10,21 @@ public class TeamMemberDAO {
 	private JDBCUtil jdbcUtil = null;
 	
 	public TeamMemberDAO() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil ��ü ��
+		jdbcUtil = new JDBCUtil();
 	}
 
 	//mnum pid approve
 	public int create(TeamMember teamMember) throws SQLException {
 		String sql = "INSERT INTO TEAMMEMBER VALUES (?, ?, ?)";		
-		char approve = teamMember.isApprove() ? 'Y' : 'N';
+		char approve = teamMember.isApprove() ? 'T' : 'F';
 		Object[] param = new Object[] {
 			teamMember.getMnum(),
 			teamMember.getPid(),
 			approve
 		};
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil �� insert���� �Ű� ���� ���
+		jdbcUtil.setSqlAndParameters(sql, param);
 		try {    
-			int result = jdbcUtil.executeUpdate();  // insert �� ����
+			int result = jdbcUtil.executeUpdate();
 		   	return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();

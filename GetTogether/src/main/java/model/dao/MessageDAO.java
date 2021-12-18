@@ -187,7 +187,7 @@ public class MessageDAO {
 	 */
 	public List<Message> findSentMessageList(int mNum) throws SQLException {
 		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER, "
-				+ "RECEIVER FROM MESSAGE WHERE SENDER=?";
+				+ "RECEIVER FROM MESSAGE WHERE SENDER=? ORDER BY SENDDATE DESC";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mNum});
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
