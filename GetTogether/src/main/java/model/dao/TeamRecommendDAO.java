@@ -22,7 +22,8 @@ private JDBCUtil jdbcUtil = null;
 	 */
 	public List<TeamRecommend> findRecomendTeam() throws SQLException {
         String sql = "SELECT pid, title, subtitle, lookupcnt, recommendcnt " 
-        		   + "FROM project" ;
+        		   + "FROM project "
+        		   + "ORDER BY lookupcnt DESC";
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
 		try {
