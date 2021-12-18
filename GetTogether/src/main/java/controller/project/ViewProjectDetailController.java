@@ -1,5 +1,7 @@
 package controller.project;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,8 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
-import controller.comm.CreateCommunityController;
+import model.ApplicationComment;
 import model.Project;
+import model.service.ApplicationCommentManager;
 import model.service.ProjectManager;
 
 public class ViewProjectDetailController implements Controller {
@@ -17,6 +20,8 @@ public class ViewProjectDetailController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
 
 		ProjectManager manager = ProjectManager.getInstance();
+		ApplicationCommentManager commentMan = ApplicationCommentManager.getInstance();
+		
 		int pid = Integer.parseInt(request.getParameter("pid"));
 		
 		Project project = manager.findProject(pid);	
@@ -24,8 +29,12 @@ public class ViewProjectDetailController implements Controller {
 		project.setLookupCnt(lookupCnt);
 		manager.updateLookupCnt(pid, lookupCnt);
 		
+		List<ApplicationComment> commentList = commentMan.findListByPid(pid);
+		
+		log.debug("hmm ",commentList);
 		log.debug("Create Community : {}", project);
-		request.setAttribute("project", project);	//  정보 저장				
+		request.setAttribute("project", project);
+		request.setAttribute("commentList", commentList);
 		return "/project/detail.jsp";				// 화면으로 이동
     }
 }
