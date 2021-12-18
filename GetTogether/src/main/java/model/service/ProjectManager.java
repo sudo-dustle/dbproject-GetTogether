@@ -45,4 +45,10 @@ public class ProjectManager {
 //		project.setNumOfMembers(numOfMembers);
 		return project;
 	}
+	 
+	 public List<Project> searchProject(String query) throws SQLException {
+		 List<Project> projectList = projectDAO.searchProject(query);
+		 
+		 return projectList;
+	 }
 }

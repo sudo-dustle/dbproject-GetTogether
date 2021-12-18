@@ -12,6 +12,16 @@
 <link rel=stylesheet href="<c:url value='/css/teamrecommend.css' />" type="text/css">
 </head>
 <body>
+	<div class="searchForm">
+		<form method="GET" action="<c:url value='/project/search'/>">
+			<select class="select" name="projectSearch">
+					<option value="pjName">제목</option>
+					<option value="writer">작성자</option>
+			</select>
+			<input type="text" class="srhInput" name="srhTxt">
+			<input type="submit" class="srhButton" value="검색">
+		</form>
+	</div>
 	<div class="parent">
 	<button type="button" class="left-arrow" id="left-arrow">
 	</button>

@@ -2,8 +2,11 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.PreparedStatement;
 
+import model.Member;
 import model.Project;
 
 public class ProjectDAO {
@@ -147,5 +150,50 @@ public class ProjectDAO {
 		}
 		return project;
 	}
+
+	  	public List<Project> searchProject(String query) throws SQLException {
+			String sql = "SELECT * FROM PROJECT WHERE TITLE LIKE ? OR SUBTITLE LIKE ?";
+			Object[] param = new Object[] { "%"+query+"%" , "%"+query+"%" };
+
+			jdbcUtil.setSqlAndParameters(sql, param);
+
+			System.out.println("sql: "+sql + param[0] + param[1]);
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();
+				List<Project> projectList = new ArrayList<Project>();
+
+				while (rs.next()) {
+					Project project = new Project();
+
+					project.setPid(rs.getInt("pid"));
+					project.setTitle(rs.getString("title"));
+					project.setField(rs.getString("field"));
+					project.setLanguage(rs.getString("language"));
+					project.setSubtitle(rs.getString("subtitle"));
+					project.setExecutionStart(rs.getDate("executionStart"));
+					project.setExecutionEnd(rs.getDate("executionEnd"));
+					project.setApplicationStart(rs.getDate("applicationStart"));
+					project.setApplicationEnd(rs.getDate("applicationEnd"));
+					project.setApplicationNum(rs.getInt("applicationNum"));
+					project.setGoal(rs.getString("goal"));
+					project.setDescription(rs.getString("description"));
+					project.setApprove(rs.getBoolean("approve"));
+					project.setMnum(rs.getInt("mnum"));
+					project.setRecommendCnt(rs.getInt("recommendCnt"));
+					project.setLookupCnt(rs.getInt("lookupcnt"));
+
+					projectList.add(project);
+				}
+				return projectList;
+			} catch (Exception ex) {
+				jdbcUtil.rollback();
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.commit();
+				jdbcUtil.close();
+			}
+			return null;		
+		}
 
 }

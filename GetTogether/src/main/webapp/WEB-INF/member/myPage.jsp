@@ -9,15 +9,6 @@
 <meta charset="UTF-8">
 <title>MY PAGE</title>
 <link rel = stylesheet href= "<c:url value='/css/mypage.css' />" type="text/css">
-<script>
-function updateMember() {
-	form.submit();	
-}
-function deleteMember(targetUri) {
-	form.action = targetUri;
-	form.submit();
-}
-</script>
 </head>
 <body>
 	<div class="main" align=center>
