@@ -1,4 +1,4 @@
-package controller.message;
+package controller.project;
 
 import java.util.List;
 
@@ -7,11 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import controller.member.MemberSessionUtils;
-import model.Message;
-import model.service.MessageManager;
+import model.Project;
+import model.service.ProjectManager;
 
-public class SentListMessageController implements Controller{
-
+public class ListProjectController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
@@ -21,9 +20,9 @@ public class SentListMessageController implements Controller{
         }
     	int mnum = MemberSessionUtils.getLoginMemberNum(request.getSession());
 
-    	MessageManager msgManager = MessageManager.getInstance();
-    	List<Message> messageList = msgManager.findSentMessageList(mnum);
-    	request.setAttribute("messageList", messageList);
-		return "/message/messageList.jsp";
+    	ProjectManager projectMan = ProjectManager.getInstance();
+    	List<Project> pjList = projectMan.findProjectList(mnum);
+    	request.setAttribute("projectList", pjList);
+		return "/project/manager.jsp";
 	}
 }

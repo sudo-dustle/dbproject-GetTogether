@@ -2,8 +2,13 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.sql.PreparedStatement;
 
+import model.Member;
+import model.Message;
 import model.Project;
 
 public class ProjectDAO {
@@ -172,4 +177,32 @@ public class ProjectDAO {
 		return project;
 	}
 
+	  	public List<Project> findProjectList(int mnum) throws SQLException {
+			String sql = "SELECT PID, TITLE, SUBTITLE, applicationNum FROM PROJECT WHERE MNUM=? ";
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {mnum});
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();
+				List<Project> pjList = new ArrayList<Project>();
+				while (rs.next()) {
+					int pid = rs.getInt("pid");
+					String title = rs.getString("title");
+					String subtitle = rs.getString("subtitle");
+					int applicationNum = rs.getInt("applicationNum");
+					
+					Project pj = new Project(
+							pid,
+							title,
+							subtitle,
+							applicationNum
+							);
+					pjList.add(pj);
+				}
+				return pjList;
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();		// resource ¹ÝÈ¯
+			}
+			return null;
+		}
 }

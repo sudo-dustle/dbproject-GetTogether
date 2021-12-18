@@ -74,6 +74,8 @@ public class RequestMapping {
         mappings.put("/project/update", new UpdateProjectController());
         mappings.put("/project/delete", new DeleteProjectController());
         mappings.put("/project/detail",new ViewProjectDetailController());
+        mappings.put("/project/manage", new ListProjectController());
+        
         logger.info("Initialized Request Mapping!");
     }
 
