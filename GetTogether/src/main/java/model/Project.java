@@ -68,6 +68,12 @@ public class Project {
 		this.recommendCnt = recommendCnt;
 		this.lookupCnt = lookupCnt;
 	}
+	
+	public Project(int pid, int lookupCnt) {
+		super();
+		this.pid = pid;
+		this.lookupCnt = lookupCnt;
+	}
 
 	
 	public Project(String title, String field, String language, String subtitle, String goal,

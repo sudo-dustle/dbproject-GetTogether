@@ -66,5 +66,4 @@ public class MemberRecommend {
 		this.projectList = projectList;
 	}
 	
-	
 }
