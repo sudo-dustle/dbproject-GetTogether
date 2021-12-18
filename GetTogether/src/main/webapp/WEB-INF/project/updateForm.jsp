@@ -27,32 +27,32 @@ const goProjectDetail = () => {
 			<tr><th>프로젝트 수정</th><th></th></tr>
 			<tr>
 				<td id="element">프로젝트 제목</td>
-				<td id="content"><input type="text" name ="title" value="${project.title}"></td>
+				<td id="content"><input type="text" name ="title" value="${project.title}" required></td>
 			</tr>
 			<tr>
 				<td id="element">부제목</td>
-				<td id="content"><input type="text" name = "subtitle" value="${project.subtitle}"></td>
+				<td id="content"><input type="text" name = "subtitle" value="${project.subtitle}" required></td>
 			</tr>
 			<tr>
 				<td id="element">수행기간</td>
 				<td id="content">
-				<input type="date" name = "executionStart"> ~ <input type="date" name = "executionEnd">
+				<input type="date" name = "executionStart" size="17" value="${project.executionStart}" required> ~ <input type="date" name = "executionEnd" size="17" value="${project.executionEnd}"required>
 				</td>
 			</tr>
 			<tr>
 				<td id="element">모집기간</td>
 				<td id="content">
-				<input type="date" name = "applicationStart"> ~ <input type="date" name="applicationEnd">
+				<input type="date" name = "applicationStart" size="17" value="${project.applicationStart}"required> ~ <input type="date" name="applicationEnd" size="17" value="${project.applicationEnd}"required>
 				</td>
 			</tr>
 			<tr>
 				<td id="element">모집인원</td>
-				<td id="content"><input type="text" style="width: 30px;" name="applicationNum" value="${project.applicationNum}">명
+				<td id="content"><input type="text" style="width: 30px;" name="applicationNum" value="${project.applicationNum}"required>명
 				</td>
 			</tr>
 			<tr>
 				<td id="element">기술 분야</td>
-				<td id="content"><select name="field">
+				<td id="content"><select name="field"required>
 						<option value="" selected>분야 선택</option>
 						<option value="IoT">IoT</option>
 						<option value="모바일">모바일</option>
@@ -64,21 +64,24 @@ const goProjectDetail = () => {
 						<option value="자동제어기술">자동제어기술</option>
 						<option value="블록체인">블록체인</option>
 						<option value="영상처리">영상처리</option>
+						<option value="웹">웹</option>
+						<option value="기타">기타</option>
 				</select>
 						
 						</td>
 			</tr>
 			<tr>
 				<td id="element">목표</td>
-				<td id="content"><input type="text" name="goal" value="${project.goal}"></td>
+				<td id="content"><input type="text" name="goal" value="${project.goal}"required></td>
 			</tr>
 			<tr>
 				<td id="element" style="height: 100px;">프로젝트 개요</td>
-				<td><textarea rows="10" style="width: 99%;" name="description" >${project.description}</textarea></td>
+				<td><textarea rows="10" style="width: 99%;" name="description" required>${project.description}</textarea></td>
 			</tr>
 			<tr>
 				<td id="element" style="height: 70px;">필요 기술</td>
 				<td id="content">
+				<input type="checkbox" name="language" value="기타" checked > 기타
 					<input type="checkbox" name="language" value="C" > C
 					<input type="checkbox" name="language" value="C++"> C++
 					<input type="checkbox" name="language"value="C#"> C#
@@ -92,6 +95,7 @@ const goProjectDetail = () => {
 					<input type="checkbox" name="language" value="CSS"> CSS
 					<input type="checkbox" name="language" value="HTML"> HTML
 					<input type="checkbox" name="language" value="R"> R
+					
 				</td>
 			</tr>
 			<tr>

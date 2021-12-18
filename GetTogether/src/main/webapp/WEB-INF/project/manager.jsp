@@ -13,7 +13,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<style>
 			.project-add-box {
-			 width: 80%;
+			 width: 100px;
 				border: dashed 2px #DCDCDC;
 				text-align:center;
 				vertical-align: middle;

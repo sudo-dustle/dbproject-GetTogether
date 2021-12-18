@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import controller.comm.CreateCommunityController;
+import controller.member.MemberSessionUtils;
 import model.Project;
 import model.service.ProjectManager;
 
@@ -20,6 +21,11 @@ public class UpdateProjectController implements Controller{
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		
+		if (!MemberSessionUtils.hasLogined(request.getSession())) {
+            return "redirect:/member/login/form";		// login form 요청으로 redirect
+        }
+    	int mnum = MemberSessionUtils.getLoginMemberNum(request.getSession());
+    	
 		int pid = Integer.parseInt(request.getParameter("pid"));
 		if (request.getMethod().equals("GET")) {	
     		// GET request: 프젝 수정 form 요청	
@@ -55,7 +61,7 @@ public class UpdateProjectController implements Controller{
 					request.getParameter("goal"), 
 					Integer.parseInt(request.getParameter("applicationNum")), 
 					request.getParameter("description"), 
-					true, 2, 0,0); //2는 mnum 0은 recommendCNT, 0은 lookupCnt 임 후에 연결하고 구현할 곳
+					true, mnum, 0,0); 
 
 		 	
 			ProjectManager projectMan = ProjectManager.getInstance();
