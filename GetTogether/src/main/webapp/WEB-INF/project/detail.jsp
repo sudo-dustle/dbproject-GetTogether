@@ -96,9 +96,9 @@ $(document).ready(() => {
 			<tr>
         <td id="btn" style="background-color: #F6F8ED;"></td>
 				<td  id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
-					<input class="submit" value="수정" name="update" onClick="doUpdate(1);">
-					<input class="submit" name="delete" value="삭제" onClick="doUpdate(0);">
-					<input class="reset" name="cancel" value="목록으로" onClick="goProjectList();">
+					<input class="submit"  style = "cursor:pointer" type="button" value="수정" name="update" onClick="doUpdate(1);">
+					<input class="submit" style = "cursor:pointer" type="button" name="delete" value="삭제" onClick="doUpdate(0);">
+					<input class="reset" style = "cursor:pointer" type="button" name="cancel" value="목록으로" onClick="goProjectList();">
 					</tr>
 		</table>
 	<table>
