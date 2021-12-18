@@ -12,10 +12,14 @@
 <title>프로젝트 상세 페이지(팀장)</title>
 <link rel=stylesheet href="<c:url value='/css/common.css'/>" type="text/css">
 <link rel=stylesheet href="<c:url value='/css/project.css'/>" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <%@ include file="/WEB-INF/components/nav.jsp" %>
 </head>
 <script type="text/javascript">
+const goProjectList = () => {
+    location.href="/GetTogether/";
+}
 function doUpdate(value){
 	if(value==1)
 	    location.href="/GetTogether/project/update?pid=${project.pid}";
@@ -25,6 +29,22 @@ function doUpdate(value){
 			location.href="/GetTogether/project/delete?pid=${project.pid}"
 	}
 }
+
+function checkMnum(){
+	if(<%=session.getAttribute("mnum") %> == "${project.mnum}"){
+		return (1);
+	}
+	return 0;
+}
+
+$(document).ready(() => {
+	if(!checkMnum())
+	{
+		$(".submit").hide();
+	}
+});
+
+
 </script>
 <body>
 <form method="GET" > 
@@ -72,21 +92,16 @@ function doUpdate(value){
 				<td id="element" style="height: 70px;">필요 기술</td>
 				<td id="content">${project.language}</td>
 			</tr>
-			<tr>
-				<td id="content" style="text-align: right; border: 0; background-color: #F6F8ED;" colspan="2">
-				<%--	<c:if test="${MemberSessionUtils.getLoginMembreId() != null }">
-						<c:if test="${MemberSessionUtils.getLoginMemberId() == project.mnum}"> --%>
-							<input class="submit" style = "cursor:pointer" type="button" value="수정" name="update" onClick="doUpdate(1);">
-							<input class="submit" style = "cursor:pointer" type="button" value="삭제" onClick="doUpdate(0);">
-						<%-- </c:if>
-						</c:if> --%>
-				</td>
-			</tr>	
 
+			<tr>
+        <td id="btn" style="background-color: #F6F8ED;"></td>
+				<td  id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
+					<input class="submit" value="수정" name="update" onClick="doUpdate(1);">
+					<input class="submit" name="delete" value="삭제" onClick="doUpdate(0);">
+					<input class="reset" name="cancel" value="목록으로" onClick="goProjectList();">
+					</tr>
 		</table>
-		</form>
-	</div>
-		<table>
+	<table>
 			<tr>
 				<th>프로젝트 신청 현황</th>
 				<th></th>
