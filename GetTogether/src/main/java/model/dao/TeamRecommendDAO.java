@@ -47,6 +47,34 @@ private JDBCUtil jdbcUtil = null;
 		}
 		return null;
 	}
+	
+	public List<TeamRecommend> findIdentifyRecomendTeam() throws SQLException {
+        String sql = "SELECT pid, title, subtitle, lookupcnt, recommendcnt " 
+        		   + "FROM project "
+        		   + "ORDER BY lookupcnt DESC";
+		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<TeamRecommend> teamRecommendList = new ArrayList<TeamRecommend>();	
+			while (rs.next()) {
+				TeamRecommend teamRecommend = new TeamRecommend(
+					rs.getInt("pid"),
+					rs.getString("title"),
+					rs.getString("subtitle"),
+					rs.getInt("lookupcnt"),
+					rs.getInt("recommendcnt"));
+				teamRecommendList.add(teamRecommend);			
+			}		
+			return teamRecommendList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
 
 	/**
 	 * 주어진 사용자 ID에 해당하는 사용자가 존재하는지 검사 
