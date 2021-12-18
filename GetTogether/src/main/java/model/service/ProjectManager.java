@@ -47,7 +47,7 @@ public class ProjectManager {
 	public Member findMember(int mnum) throws SQLException, UserNotFoundException {
 		Member member = memberDAO.findMember(mnum);
 		if (member == null) {
-			throw new UserNotFoundException(mnum + "´Â Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğÀÔ´Ï´Ù.");
+			throw new UserNotFoundException(mnum + "ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.");
 		}
 		return member;
 	}
@@ -61,6 +61,13 @@ public class ProjectManager {
 //		project.setNumOfMembers(numOfMembers);
 		return project;
 	}
+
+	 public List<Project> searchProject(String query) throws SQLException {
+		 List<Project> projectList = projectDAO.searchProject(query);
+		 
+		 return projectList;
+	 }
+
 	public int updateLookupCnt(int pid, int lookupCnt) throws SQLException{
 		return projectDAO.updateLookupCnt(pid, lookupCnt);
 	}

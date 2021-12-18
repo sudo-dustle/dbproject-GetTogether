@@ -13,6 +13,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+
+	<div class="searchForm">
+		<form method="GET" action="<c:url value='/project/search'/>">
+			<select class="select" name="projectSearch">
+					<option value="pjName">제목</option>
+					<option value="writer">작성자</option>
+			</select>
+			<input type="text" class="srhInput" name="srhTxt">
+			<input type="submit" class="srhButton" value="검색">
+		</form>
+	</div>
+
 <script>
 	var conGroup;
 	var maxGroup = ${teamRecommendList.size()};
@@ -41,6 +53,7 @@
 	
 	}
 </script>
+
 	<div class="parent">
 	<button type="button" class="left-arrow" style = "cursor:pointer" id="left-arrow" onclick="previous();">
 	</button>
