@@ -5,18 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import controller.Controller;
-import controller.comm.CreateCommunityController;
 import controller.member.MemberSessionUtils;
 import model.Message;
 import model.service.MessageManager;
 
 public class SentListMessageController implements Controller{
-
-	private static final Logger log = LoggerFactory.getLogger(CreateCommunityController.class);
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -25,12 +19,10 @@ public class SentListMessageController implements Controller{
     	if (!MemberSessionUtils.hasLogined(request.getSession())) {
             return "redirect:/user/login/form";		// login form 요청으로 redirect
         }
-    	//mnum을 가져오는 함수 - 아직 mNum가져오는 로직이 없어서 mId입니다.
-    	String mId = MemberSessionUtils.getLoginMemberId(request.getSession());
-    	log.debug(mId);
-    	
+    	int mnum = MemberSessionUtils.getLoginMemberNum(request.getSession());
+
     	MessageManager msgManager = MessageManager.getInstance();
-    	List<Message> messageList = msgManager.findSentMessageList(2);
+    	List<Message> messageList = msgManager.findSentMessageList(mnum);
     	request.setAttribute("messageList", messageList);
 		return "/message/messageList.jsp";
 	}

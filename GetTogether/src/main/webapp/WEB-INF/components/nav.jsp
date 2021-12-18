@@ -3,8 +3,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel=stylesheet href="<c:url value='/css/common.css'/>" type="text/css">
 <header><h1> <a href="<c:url value='/'/>">모여봐요</a></h1></header>
+<script>
+	const viewMessage = () => {
+		window.open("<c:url value='/message/list/received'/>", "쪽지함", "width=800px,height=600px");
+	}
+</script>
 	<div>
-	<%-- 로그인 안되어 있을경우 따로 처리가 필요합니다. --%>
 	<ul>
 	<% if (session.getAttribute("memberId") == null) { %>
 	
@@ -20,7 +24,7 @@
 		}else
 			{%>
 			<li class="header-item">
-			<a href="<c:url value='/message/list/received'/>">쪽지함</a>
+			<a href="#" onclick="viewMessage();">쪽지함</a>
 			</li>
 			<li class="header-item">|</li>
 			<li class="header-item">

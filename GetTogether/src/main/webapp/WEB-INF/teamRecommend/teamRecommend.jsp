@@ -10,22 +10,53 @@
 <title>teamRecommend</title>
 <%@ include file="/WEB-INF/components/nav.jsp" %>
 <link rel=stylesheet href="<c:url value='/css/teamrecommend.css' />" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+<script>
+	var conGroup;
+	var maxGroup = ${teamRecommendList.size()};
+	var maxGroupNum = (maxGroup - (maxGroup % 6)) / 6;
+	$(document).ready(() => {
+		conGroup = 0;
+		$(".team-box").hide();
+		$(".group" + conGroup).show();
+	});
+	
+	const previous = () => {
+		conGroup--;
+		if (conGroup < 0)
+			conGroup = maxGroupNum;
+		$(".team-box").hide();
+		$(".group" + conGroup).show();
+	}
+	
+	const next = () => {
+		conGroup++;
+		if (conGroup > maxGroupNum)
+			conGroup = 0;
+		$(".team-box").hide();
+		$(".group" + conGroup).show();
+	}
+</script>
 	<div class="parent">
-	<button type="button" class="left-arrow" id="left-arrow">
+	<button type="button" class="left-arrow" id="left-arrow" onclick="previous();">
 	</button>
 		<div class="container" >
+		<%int i = 0;%>
 		   <c:forEach var="recommendTeam" items="${teamRecommendList}" >
-					<div class="team-box" style = "cursor:pointer;" onClick= "location.href = '<c:url value= '/project/detail?pid=${recommendTeam.pid}'/>';">
+		   <% String className = "group" + (i / 6); %>
+					<div id="id" class="team-box <%=className%>" style = "cursor:pointer;" onClick= "location.href = '<c:url value= '/project/detail?pid=${recommendTeam.pid}'/>';">
 						<h2>${recommendTeam.title}</h2>
 						<br>
 						<h3>${recommendTeam.subtitle}</h3>
 						${recommendTeam.lookupcnt}<br>
 					</div>
+				<%
+					i++;%>
 			</c:forEach>
 		</div>
-		<button type="button" class="right-arrow" id="right-arrow">
+		<button type="button" class="right-arrow" id="right-arrow" onclick="next();">
 		</button>
 	</div>
 </body>
