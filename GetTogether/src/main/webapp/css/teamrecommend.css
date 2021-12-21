@@ -5,6 +5,14 @@ body{
 	font-size: 12pt; 
 }
 
+.input-search {
+	border: none;
+	font-size: 20px;
+	border-radius: 3px;
+	width: 80%;
+	border: solid 1px #DCDCDC;
+}
+
 .parent{
     width: 100%;
     margin: 40px 0 0 0;

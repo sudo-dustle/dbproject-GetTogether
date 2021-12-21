@@ -22,10 +22,25 @@ public class ProjectSearchController implements Controller {
     	if (request.getMethod().equals("GET")) {	
     		// GET request: 검색어로 검색하는 경우
     		String query = request.getParameter("srhTxt");
+    		String val = request.getParameter("selectTxt");
     		
-    		ProjectManager projectManager = ProjectManager.getInstance();
-			List<Project> searchedProjectList = projectManager.searchProject(query);
-			request.setAttribute("projectList", searchedProjectList);
+    		System.out.println("query: "+query);
+    		
+			if (query != "") {
+				if (val.equals("0")) {
+					ProjectManager projectManager = ProjectManager.getInstance();
+					List<Project> searchedProjectList = projectManager.searchProjectByTitle(query);
+					request.setAttribute("projectList", searchedProjectList);
+					request.setAttribute("srhTxt", query);
+				}
+				if (val.equals("1")) {
+					ProjectManager projectManager = ProjectManager.getInstance();
+					List<Project> searchedProjectList = projectManager.searchProjectByWriter(query);
+					request.setAttribute("projectList", searchedProjectList);
+					request.setAttribute("srhTxt", query);
+				}
+			}
+			
     	}
     	else {
     		//POST -> language나 관심 분야로 search 할 경우
