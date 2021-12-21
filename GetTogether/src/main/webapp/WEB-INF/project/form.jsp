@@ -92,8 +92,8 @@
 			<tr>
 				<td id="btn" style="background-color: #F6F8ED;"></td>
 				<td  id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
-					<input class="submit" type="submit" name="create" value="등록">
-					<input class="reset" type="reset" name="delete" value="다시작성"></td>
+					<input class="submit" style = "cursor:pointer" type="submit" name="create" value="등록">
+					<input class="reset"  style = "cursor:pointer" type="reset" name="delete" value="다시작성"></td>
 			</tr>
 		</table>
 		</form>

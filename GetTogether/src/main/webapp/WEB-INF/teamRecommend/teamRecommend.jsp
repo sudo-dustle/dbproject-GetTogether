@@ -9,11 +9,11 @@
 <meta charset="UTF-8">
 <title>teamRecommend</title>
 <%@ include file="/WEB-INF/components/nav.jsp" %>
-<link rel=stylesheet href="<c:url value='/css/teamrecommend.css' />" type="text/css">
+<link rel=stylesheet href="<c:url value='/css/teamrecommend.css?id=32' />" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-	<script>
+<script>
 	var conGroup;
 	var maxGroup = ${teamRecommendList.size()};
 	var maxGroupNum = (maxGroup - (maxGroup % 6)) / 6;
@@ -23,6 +23,7 @@
 		$(".team-box").hide();
 		$(".group" + conGroup).show();
 	});
+	
 	
 	const previous = () => {
 		conGroup--;
@@ -72,11 +73,10 @@
 					<div id="id" class="team-box <%=className%>" style = "cursor:pointer;" onClick= "location.href = '<c:url value= '/project/detail?pid=${recommendTeam.pid}'/>';">
 						<h2>${recommendTeam.title}</h2>
 						<br>
-						<h3>${recommendTeam.subtitle}</h3>
-						${recommendTeam.lookupcnt}<br>
+						<h3>${recommendTeam.subtitle}</h3><br><br>
+						조회수 : ${recommendTeam.lookupcnt}<br><br><br>
 					</div>
-				<%
-					i++;%>
+				<%i++;%>
 			</c:forEach>
 		</div>
 		<button type="button" class="right-arrow" id="right-arrow" style = "cursor:pointer" onclick="next();">

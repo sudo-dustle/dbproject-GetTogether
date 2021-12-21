@@ -13,6 +13,7 @@ import controller.teamrecommend.ListTeamRecommendController;
 import controller.memberrecommend.ListMemberRecommendController;
 import controller.member.*;
 import controller.project.*;
+import controller.teamMember.ApproveTeamMemberController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -63,6 +64,8 @@ public class RequestMapping {
         mappings.put("/member/search", new SearchMemberController());
         
         mappings.put("/applicationComment/create", new CreateApplicationCommentController());
+        mappings.put("/teammember/approve", new ApproveTeamMemberController());
+        
         
         mappings.put("/project/new/form", new ForwardController("/project/form.jsp"));
         mappings.put("/project/new", new CreateProjectController());

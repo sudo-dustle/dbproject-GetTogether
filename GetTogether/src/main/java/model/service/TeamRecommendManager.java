@@ -28,4 +28,8 @@ public class TeamRecommendManager {
 			return teamRecommendDAO.findRecomendTeam();
 	}
 
+	public List<TeamRecommend> findIdentifyRecomendTeam() throws SQLException {
+		return teamRecommendDAO.findIdentifyRecomendTeam();
+	}
+
 }

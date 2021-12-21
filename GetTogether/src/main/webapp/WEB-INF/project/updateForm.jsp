@@ -101,8 +101,8 @@ const goProjectDetail = () => {
 			<tr>
 				<td id="btn" style="background-color: #F6F8ED;"></td>
 				<td  id="content" style="text-align: right; border: 0;background-color: #F6F8ED;">
-					<input class="submit" name="save" value="저장" type="submit">
-					<input class="reset" name="cancel" value="취소" onClick="goProjectDetail();"></td>
+					<input class="submit" style = "cursor:pointer" name="save" value="저장" type="submit">
+					<input class="reset" style = "cursor:pointer" type="button" name="cancel" value="취소" onClick="goProjectDetail();"></td>
 			</tr>
 		</table>
 		</form>

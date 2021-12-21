@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@page import="java.util.List" %>
-<%@page import="model.ApplicationComment" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +9,7 @@
 <meta charset="UTF-8">
 <title>프로젝트 상세 페이지(팀장)</title>
 <link rel=stylesheet href="<c:url value='/css/common.css'/>" type="text/css">
-<link rel=stylesheet href="<c:url value='/css/project.css'/>" type="text/css">
+<link rel=stylesheet href="<c:url value='/css/project.css?id=23'/>" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <%@ include file="/WEB-INF/components/nav.jsp" %>
@@ -42,13 +40,22 @@ $(document).ready(() => {
 	{
 		$(".submit").hide();
 	}
+	
+	if ("${request.commentFailed}" == true)
+		alert("${request.exception}")
 });
 
+const approveTeamMember = (app_id) => {
+	if (confirm("해당 유저를 팀 멤버로 승인하시겠습니까?"))
+		location.href="/GetTogether/teamMember/update?appid=" + app_id;
+}
 
 </script>
+
 <body>
-<form method="GET" > 
+	${commentFailed}
 	<div>
+	<form method="GET" > 
 		<table style="margin-top: 2%;">
 			<tr>
 				<th>프로젝트 상세</th>
@@ -101,7 +108,10 @@ $(document).ready(() => {
 					<input class="reset" style = "cursor:pointer" type="button" name="cancel" value="목록으로" onClick="goProjectList();">
 					</tr>
 		</table>
-	<table>
+		</form>
+		
+		<form method="POST" action="<c:url value='/teammember/approve' />">
+		<table>
 			<tr>
 				<th>프로젝트 신청 현황</th>
 				<th></th>
@@ -114,26 +124,35 @@ $(document).ready(() => {
 				<td class="application" width="150px">신청일</td>
 				<td class="application" width="50px">상태</td>
 			</tr>
+			<c:if test="${empty commentList}">
 			<tr>
-			<%
-				List<ApplicationComment> list = (List<ApplicationComment>)request.getAttribute("commentList") ;
-				if (list.size() == 0) {
-			%>
 				<td colspan="4"><p style="text-align: center;border: 0;color:#adadad;">지금은 비어있습니다.</p></td>
-			<%
-				} else {
-			%>
+			</tr>
+			</c:if>
+			<c:if test="${not empty commentList}">
 				<c:forEach var="comment" items="${commentList}">
+				<tr>
 					<td style="text-align: center;">${comment.applicant.mname}</td>
 					<td style="text-align: center;">${comment.content}</td>
 					<td style="text-align: center;">${comment.date}</td>
-					<td style="text-align: center;"></td>
+					<td style="text-align: center;">
+						<c:if test="${!comment.applicantApproved}">
+							대기중<br>
+							<input class="submit" type="submit" style = "cursor:pointer" value="승인하기" name="approve" onclick="approveTeamMember('${comment.app_id}')">						
+						</c:if>
+						<c:if test="${comment.applicantApproved}">
+							팀원<br>(승인됨)
+						</c:if>
+					
+					<input type="hidden" name="pid" value="${project.pid}" />
+					<input type="hidden" name="mnum" value="${comment.applicant.mnum}" />
+					</td>
+					</tr>
 				</c:forEach>
-			<%
-				}
-			%>
-			</tr>
+			</c:if> 
+			
 		</table>
+		</form>
 		<br>
 	<form method="POST" action="<c:url value='/applicationComment/create' />">
 		<table>
@@ -147,7 +166,7 @@ $(document).ready(() => {
 			</tr>
 			<tr>
 				<td colspan="2" id="btn" style="text-align: right; border: 0; background-color: #F6F8ED;">
-					<input class="submit" type="submit" style = "cursor:pointer" type="button" value="신청" name="update">
+					<input class="not-owner-access" type="submit" style = "cursor:pointer" type="button" value="신청" name="update">
 				</td>
 			</tr>
 		</table>

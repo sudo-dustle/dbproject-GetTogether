@@ -17,7 +17,7 @@
 				<h2>팀원 추천</h2>
 				<div class="search-box">
 				<form method="GET" action="<c:url value='/member/search' />">
-					<input class="input-search" name="query" type="text" placeholder="검색하기">
+					<input class="input-search" name="query" type="text" placeholder="이름이나 프로젝트 경험으로 검색">
 					<button class="option-button" type="submit">search</button>
 					</form>
 				</div>
