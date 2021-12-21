@@ -76,13 +76,13 @@ private JDBCUtil jdbcUtil = null;
 	}
 
 	
-	public List<TeamRecommend> findIdentifyRecommendTeam(String field) throws SQLException {
-        String sql1 = "SELECT pid, title, subtitle, lookupcnt, recommendcnt " 
+	public List<TeamRecommend> findIdentifyRecommendTeam(String[] field, String[] language) throws SQLException {
+        String sql = "SELECT pid, title, subtitle, lookupcnt, recommendcnt " 
         		   + "FROM project "
-        		   + "WHERE field = ?";
+        		   + "WHERE field = ? OR language LIKE ? ";
         
-        jdbcUtil.setSqlAndParameters(sql1, new Object[] {field});
-		//jdbcUtil.setSqlAndParameters(sql2, new Object[] {language});
+        jdbcUtil.setSqlAndParameters(sql, new Object[] {field[(int) Math.random() * (field.length+1)], "%"+language[(int) Math.random() * (language.length+1)]+"%"});
+
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query ½ÇÇà			

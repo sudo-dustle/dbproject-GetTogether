@@ -30,8 +30,8 @@ public class TeamRecommendManager {
 	}
 	
 
-	public List<TeamRecommend> findIdentifyRecomendTeam(String field) throws SQLException {
-		return teamRecommendDAO.findIdentifyRecommendTeam(field);
+	public List<TeamRecommend> findIdentifyRecomendTeam(String[] field, String[] language) throws SQLException {
+		return teamRecommendDAO.findIdentifyRecommendTeam(field, language);
 	}
 
 	public MemberSplit memberSplit(int mnum) throws SQLException {

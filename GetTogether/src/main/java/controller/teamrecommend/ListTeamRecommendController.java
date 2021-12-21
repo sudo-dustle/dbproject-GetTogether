@@ -30,8 +30,8 @@ public class ListTeamRecommendController implements Controller {
 			
 			//final Logger log = (Logger) LoggerFactory.getLogger(ListTeamRecommendController.class);
 			//log.debug("field array : ", membersplit);
-			//String[] language= membersplit.getLanguage().split(",");
-			List<TeamRecommend> teamRecommendList = manager.findIdentifyRecomendTeam(field[0]);
+			String[] language= membersplit.getLanguage().split(",");
+			List<TeamRecommend> teamRecommendList = manager.findIdentifyRecomendTeam(field ,language);
 			
 
 		   	
