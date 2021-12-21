@@ -47,8 +47,8 @@ $(document).ready(() => {
 
 </script>
 <body>
-<form method="GET" > 
 	<div>
+	<form method="GET" > 
 		<table style="margin-top: 2%;">
 			<tr>
 				<th>프로젝트 상세</th>
@@ -101,6 +101,7 @@ $(document).ready(() => {
 					<input class="reset" style = "cursor:pointer" type="button" name="cancel" value="목록으로" onClick="goProjectList();">
 					</tr>
 		</table>
+		</form>
 	<table>
 			<tr>
 				<th>프로젝트 신청 현황</th>
