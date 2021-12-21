@@ -36,6 +36,7 @@
 		$(".group" + conGroup).show();
 	});
 	
+	
 	const previous = () => {
 		conGroup--;
 		if (conGroup < 0)
@@ -64,8 +65,8 @@
 					<div id="id" class="team-box <%=className%>" style = "cursor:pointer;" onClick= "location.href = '<c:url value= '/project/detail?pid=${recommendTeam.pid}'/>';">
 						<h2>${recommendTeam.title}</h2>
 						<br>
-						<h3>${recommendTeam.subtitle}</h3>
-						${recommendTeam.lookupcnt}<br>
+						<h3>${recommendTeam.subtitle}</h3><br><br>
+						조회수 : ${recommendTeam.lookupcnt}<br><br><br>
 					</div>
 				<%
 					i++;%>

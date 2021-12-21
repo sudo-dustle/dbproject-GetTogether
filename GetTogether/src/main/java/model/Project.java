@@ -197,7 +197,7 @@ public class Project {
 	public void setLookupCnt(int lookupCnt) {
 		this.lookupCnt = lookupCnt;
 	}
-
+	
 	
 	public List<TeamMember> getMemberList() {
 		return memberList;

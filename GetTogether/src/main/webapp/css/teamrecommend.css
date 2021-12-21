@@ -4,7 +4,18 @@
 body{ 
 	font-size: 12pt; 
 }
+.btn-like{
+	border-radius: 5px;
+	font-size: 30px;
+    cursor: pointer;
+    text-align: center;
+    color: ##DCDCDC;
 
+}
+.button:hover {
+  color: white;
+  
+}
 .parent{
     width: 100%;
     margin: 40px 0 0 0;
