@@ -13,14 +13,15 @@ import model.service.ProjectManager;
 
 public class ViewProjectDetailController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
-
+    	
 		ProjectManager manager = ProjectManager.getInstance();
 		ApplicationCommentManager commentMan = ApplicationCommentManager.getInstance();
 		
 		int pid = Integer.parseInt(request.getParameter("pid"));
 		
 		Project project = manager.findProject(pid);	
-		int lookupCnt = project.getLookupCnt() + 1;
+		
+		int lookupCnt = project.getLookupCnt()+1;
 		project.setLookupCnt(lookupCnt);
 		manager.updateLookupCnt(pid, lookupCnt);
 		

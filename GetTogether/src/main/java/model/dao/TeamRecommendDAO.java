@@ -7,6 +7,7 @@ import java.util.List;
 
 import model.Member;
 import model.MemberRecommend;
+import model.MemberSplit;
 import model.Project;
 import model.TeamRecommend;
 
@@ -48,11 +49,40 @@ private JDBCUtil jdbcUtil = null;
 		return null;
 	}
 	
-	public List<TeamRecommend> findIdentifyRecomendTeam() throws SQLException {
-        String sql = "SELECT pid, title, subtitle, lookupcnt, recommendcnt " 
+	public MemberSplit memberSplit(int mnum) throws SQLException{
+		String sql = "SELECT mnum, field, language " 
+     		   + "FROM member "
+     		   + "WHERE mnum = ? ";
+
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {mnum});
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			MemberSplit memberSplit = null;	
+			while (rs.next()) {
+				memberSplit = new MemberSplit(
+					mnum,
+					rs.getString("field"),
+					rs.getString("language"));
+			}		
+			return memberSplit;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+
+	
+	public List<TeamRecommend> findIdentifyRecommendTeam(String field) throws SQLException {
+        String sql1 = "SELECT pid, title, subtitle, lookupcnt, recommendcnt " 
         		   + "FROM project "
-        		   + "ORDER BY lookupcnt DESC";
-		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
+        		   + "WHERE field = ?";
+        
+        jdbcUtil.setSqlAndParameters(sql1, new Object[] {field});
+		//jdbcUtil.setSqlAndParameters(sql2, new Object[] {language});
 					
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
