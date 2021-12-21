@@ -124,6 +124,7 @@ $(document).ready(function() {
 				<tr>
 					<th class="name">관심 프로젝트</th>
 					<td id="contents">
+						<p style="color: #9DB589;"> 기존 정보: ${memberInfo.field } </p>
 						<input type="checkbox" name="field" value="ALL" onClick = "selectAll1(this)">ALL 
 						<input type="checkbox" name="field" value="웹 개발">웹 개발 
 						<input type="checkbox" name="field" value="모바일 웹 개발">모바일 웹 개발
@@ -139,6 +140,7 @@ $(document).ready(function() {
 				<tr>
 					<th class="name">사용가능한 언어</th>
 					<td id="contents">
+					<p style="color: #9DB589;"> 기존 정보: ${memberInfo.language } </p>
 					<input type="checkbox" name="lan" value="0" onClick = "selectAll2(this)">ALL 
 						<input type="checkbox" name="lan" value="C">C
 						<input type="checkbox" name="lan" value="Python">Python 

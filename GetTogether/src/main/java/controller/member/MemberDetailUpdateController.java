@@ -25,8 +25,6 @@ public class MemberDetailUpdateController implements Controller {
 		
 		request.setAttribute("memberInfo", member);
 		
-		System.out.println(member.getEmail());
-		
 		return "/member/infoUpdate.jsp";
 	}
 	

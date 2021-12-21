@@ -47,6 +47,12 @@ public class MemberManager {
 		return memberDAO.remove(mid);
 	}
 
+	public Member findIdByMname(String mname, String phonenum) throws SQLException {
+		Member member = memberDAO.findIdByMname(mname, phonenum);
+		
+		return member;
+	}
+	
 	public Member findMemberByMnum(int mnum) throws SQLException, UserNotFoundException {
 		Member member = memberDAO.findMemberByMnum(mnum);
 		

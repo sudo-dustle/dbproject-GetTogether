@@ -35,19 +35,14 @@ public class RequestMapping {
         mappings.put("/member/delete", new MemberDeleteController());
         mappings.put("/member/info", new ForwardController("/member/infoUpdate.jsp"));
         mappings.put("/member/update", new MemberUpdateController());
+        mappings.put("/member/findId", new ForwardController("/member/findIdByName.jsp"));
+        mappings.put("/member/findPw", new ForwardController("/member/findPwById.jsp"));
+        
+        mappings.put("/member/findIdByName", new FindIdController());
+        mappings.put("/member/findPwById", new FindPwController());
+        
         mappings.put("/teammember/detail", new TeamMemberDetailController());
-        
         mappings.put("/project/search", new ProjectSearchController());
-//      mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
-        mappings.put("/user/register", new RegisterUserController());
-
-
-//      mappings.put("/user/update/form", new UpdateUserFormController());
-//      mappings.put("/user/update", new UpdateUserController());        
-        mappings.put("/user/update", new UpdateUserController());
-        
-        mappings.put("/user/delete", new DeleteUserController());
-        
 
         mappings.put("/community/list", new ListCommunityController());
         mappings.put("/community/view", new ViewCommunityController());

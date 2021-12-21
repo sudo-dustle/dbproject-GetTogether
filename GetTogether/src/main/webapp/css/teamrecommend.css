@@ -11,6 +11,14 @@ body{
     text-align: center;
     color: ##DCDCDC;
 
+.input-search {
+	border: none;
+	font-size: 20px;
+	border-radius: 3px;
+	width: 80%;
+	border: solid 1px #DCDCDC;
+}
+
 }
 .button:hover {
   color: white;

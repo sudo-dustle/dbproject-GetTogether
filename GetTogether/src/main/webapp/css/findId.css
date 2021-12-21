@@ -1,0 +1,36 @@
+.box {
+	margin: 50px auto;
+	width: 700px;
+	height: 500px;
+}
+table, tr, th, td {
+	border: 1px solid #2F2F2F;
+	border-collapse: collapse;
+}
+table{
+	margin: 20px auto;
+	width: 700px;
+}
+th{
+	height: 50px;
+	background-color: #9DB589;
+}
+.context1 {
+	height: 200px;
+	background-color: white;
+}
+.context2 {
+	height: 50px;
+	background-color: #9DB589;
+	text-align: right;
+}
+.button {
+	border: solid 1px #9DB589;
+	border-radius: 5px;
+	font-size: 16px;
+	width: 120px;
+	height: 30px;
+	float: right;
+	margin-right: 10px;
+	vertical-align: middle;
+}

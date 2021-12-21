@@ -8,18 +8,6 @@
 <meta charset="EUC-KR">
 <title>회원 로그인</title>
 <link rel = stylesheet href= "<c:url value='/css/login.css' />" type="text/css">
-<script>
-function loginCheck(){
-	<%
-		if(request.getAttribute("loginFailed") == ""){
-	%>
-			alert("아이디와 비밀번호를 입려하세요.");
-	<%
-		}
-	%>
-}
-
-</script>
 </head>
 <body>
 	<div class="box">
@@ -27,8 +15,8 @@ function loginCheck(){
 			<form name="loginForm" method="post" action="<c:url value='/member/login' />">
 				<input type="text" id="inputbox" placeholder="아이디" name="memberId" /><br>
 				<input type="password" id="inputbox" placeholder="비밀번호" name="passwd" /><br> 
-				<input type="submit" id="loginbutton" onClick='loginCheck()' value="로그인" /> <br>
-				<br> <a href="">아이디/비밀번호 찾기</a> | <a href="/member/signup/input">회원가입</a>
+				<input type="submit" id="loginbutton" value="로그인" /> <br>
+				<br> <a href="/GetTogether/member/findId">아이디/비밀번호 찾기</a> | <a href="/GetTogether/member/signup/form">회원가입</a>
 			</form>
 		</div>
 	</div>
