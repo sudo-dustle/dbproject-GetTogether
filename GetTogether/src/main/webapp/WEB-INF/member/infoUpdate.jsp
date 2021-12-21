@@ -126,15 +126,19 @@ $(document).ready(function() {
 					<td id="contents">
 						<p style="color: #9DB589;"> 기존 정보: ${memberInfo.field } </p>
 						<input type="checkbox" name="field" value="ALL" onClick = "selectAll1(this)">ALL 
-						<input type="checkbox" name="field" value="웹 개발">웹 개발 
-						<input type="checkbox" name="field" value="모바일 웹 개발">모바일 웹 개발
+						<input type="checkbox" name="field" value="IoT">IoT 
+						<input type="checkbox" name="field" value="모바일">모바일
+						<input type="checkbox" name="field" value="데스크톱 SW">데스크톱 SW 
 						<p></p> 
-						<input type="checkbox" name="field" value="게임개발">게임 개발 
-						<input type="checkbox" name="field" value="데이터사이언스">데이터사이언스 
-						<input type="checkbox" name="field" value="서버 개발">서버 개발
+						<input type="checkbox" name="field" value="인공지능">인공지능 
+						<input type="checkbox" name="field" value="보안">보안
+						<input type="checkbox" name="field" value="가상현실">가상현실 
+						<input type="checkbox" name="field" value="빅데이터">빅데이터
 						<p></p> 
-						<input type="checkbox" name="field" value="블록체인 개발">블록체인 개발 
-						<input type="checkbox" name="field" value="데스크톱 앱 개발"> 데스크톱 앱 개발 
+						<input type="checkbox" name="field" value="자동제어기술">자동제어기술
+						<input type="checkbox" name="field" value="블록체인">블록체인
+						<input type="checkbox" name="field" value="형상처리">형상처리
+						<input type="checkbox" name="field" value="웹">웹 
 						<input type="checkbox" name="field" value="기타">기타
 				</tr>
 				<tr>
