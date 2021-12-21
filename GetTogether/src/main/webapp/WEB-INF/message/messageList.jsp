@@ -46,8 +46,8 @@
 				<h2>쪽지함</h2>
 			</div>
 			<div class="message-type">
-				<button type="button" onclick="receivedList();">받은 쪽지</button>
-				<button type="button" onclick="sentList();">보낸 쪽지</button>
+				<button type="button" style="cursor:pointer" onclick="receivedList();">받은 쪽지</button>
+				<button type="button" style="cursor:pointer" onclick="sentList();">보낸 쪽지</button>
 			</div>
 			
 			<form name="form" method="POST" action="<c:url value='/message/delete' />">
@@ -86,8 +86,8 @@
 				</tbody>
 				</table>
 					<div id="message-type" class="message-type">
-						<button type="button" onclick="createMessage();">쪽지 쓰기</button>
-						<button type="button" onclick="deleteMessage();">쪽지 삭제</button>
+						<button type="button" style="cursor:pointer"  onclick="createMessage();">쪽지 쓰기</button>
+						<button type="button" style="cursor:pointer" onclick="deleteMessage();">쪽지 삭제</button>
 					</div>
 					</div>
 				</form>
