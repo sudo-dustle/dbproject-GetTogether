@@ -9,9 +9,16 @@ body{
 	font-size: 30px;
     cursor: pointer;
     text-align: center;
-    color: ##DCDCDC;
-
+    color: #DCDCDC;
 }
+.input-search {
+	border: none;
+	font-size: 20px;
+	border-radius: 3px;
+	width: 80%;
+	border: solid 1px #DCDCDC;
+}
+
 .button:hover {
   color: white;
   

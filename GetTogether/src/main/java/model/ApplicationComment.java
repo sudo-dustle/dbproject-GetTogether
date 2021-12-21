@@ -8,7 +8,8 @@ public class ApplicationComment {
 	Member applicant;
 	Date date;
 	Project project;
-	
+	boolean applicantApproved;
+
 	public ApplicationComment(int app_id, String content, Member applicant, Date date, Project project) {
 		super();
 		this.app_id = app_id;
@@ -16,6 +17,7 @@ public class ApplicationComment {
 		this.applicant = applicant;
 		this.date = date;
 		this.project = project;
+		this.applicantApproved = false;
 	}
 
 	public ApplicationComment() {
@@ -51,5 +53,24 @@ public class ApplicationComment {
 	}
 	public void setProject(Project project) {
 		this.project = project;
+	}
+	
+	public boolean isApplicantApproved() {
+		return applicantApproved;
+	}
+
+	public ApplicationComment(int app_id, String content, Member applicant, Date date, Project project,
+			boolean applicantApproved) {
+		super();
+		this.app_id = app_id;
+		this.content = content;
+		this.applicant = applicant;
+		this.date = date;
+		this.project = project;
+		this.applicantApproved = applicantApproved;
+	}
+
+	public void setApplicantApproved(boolean applicantApproved) {
+		this.applicantApproved = applicantApproved;
 	}
 }

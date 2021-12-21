@@ -19,6 +19,7 @@ public class ProjectDAO {
 
 	
 	public Project create(Project project) throws  SQLException{
+		
 
 		String sql = "INSERT INTO Project VALUES (seq_pid.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, 0, 0)";
 		long time = project.getExecutionStart().getTime();
@@ -36,11 +37,13 @@ public class ProjectDAO {
 		jdbcUtil.setSqlAndParameters(sql, param);
 		String key[] = {"pid"};
 		try {
-			jdbcUtil.executeUpdate(key);  // insert 臾� �떎�뻾
+
+			jdbcUtil.executeUpdate(key);  
 		   	ResultSet rs = jdbcUtil.getGeneratedKeys();
 		   	if(rs.next()) {
-		   		int generatedKey = rs.getInt(1);   // �깮�꽦�맂 PK 媛�
-		   		project.setPid(generatedKey); 	// id�븘�뱶�뿉 ���옣  
+		   		int generatedKey = rs.getInt(1);   
+		   		project.setPid(generatedKey); 	  
+
 		   	}
 		   	return project;
 		}  	catch (Exception ex) {
@@ -82,7 +85,9 @@ public class ProjectDAO {
 				project.getPid()};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {				
-			int result = jdbcUtil.executeUpdate();	// update 臾� �떎�뻾
+
+			int result = jdbcUtil.executeUpdate();	
+
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -90,7 +95,9 @@ public class ProjectDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 諛섑솚
+
+			jdbcUtil.close();	
+
 		}		
 		return 0;
 	}
@@ -106,7 +113,9 @@ public class ProjectDAO {
 		
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {				
-			int result = jdbcUtil.executeUpdate();	// update 臾� �떎�뻾
+
+			int result = jdbcUtil.executeUpdate();	
+
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -114,7 +123,8 @@ public class ProjectDAO {
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 諛섑솚
+
+			jdbcUtil.close();	
 		}		
 		return 0;
 	}
@@ -125,7 +135,9 @@ public class ProjectDAO {
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	
 
 		try {				
-			int result = jdbcUtil.executeUpdate();
+
+			int result = jdbcUtil.executeUpdate();	
+
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -174,14 +186,55 @@ public class ProjectDAO {
 		return project;
 	}
 
-	  	public List<Project> searchProject(String query) throws SQLException {
-			String sql = "SELECT * FROM PROJECT WHERE TITLE LIKE ? OR SUBTITLE LIKE ?";
-			Object[] param = new Object[] { "%"+query+"%" , "%"+query+"%" };
+	  	public List<Project> searchProjectByTitle(String query) throws SQLException {
+			String sql = "SELECT * FROM PROJECT WHERE TITLE LIKE ?";
+			Object[] param = new Object[] { "%"+query+"%" };
 
 			jdbcUtil.setSqlAndParameters(sql, param);
 
-			System.out.println("sql: "+sql + param[0] + param[1]);
-			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();
+				List<Project> projectList = new ArrayList<Project>();
+
+				while (rs.next()) {
+					Project project = new Project();
+
+					project.setPid(rs.getInt("pid"));
+					project.setTitle(rs.getString("title"));
+					project.setField(rs.getString("field"));
+					project.setLanguage(rs.getString("language"));
+					project.setSubtitle(rs.getString("subtitle"));
+					project.setExecutionStart(rs.getDate("executionStart"));
+					project.setExecutionEnd(rs.getDate("executionEnd"));
+					project.setApplicationStart(rs.getDate("applicationStart"));
+					project.setApplicationEnd(rs.getDate("applicationEnd"));
+					project.setApplicationNum(rs.getInt("applicationNum"));
+					project.setGoal(rs.getString("goal"));
+					project.setDescription(rs.getString("description"));
+					project.setApprove(rs.getBoolean("approve"));
+					project.setMnum(rs.getInt("mnum"));
+					project.setRecommendCnt(rs.getInt("recommendCnt"));
+					project.setLookupCnt(rs.getInt("lookupcnt"));
+
+					projectList.add(project);
+				}
+				return projectList;
+			} catch (Exception ex) {
+				jdbcUtil.rollback();
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.commit();
+				jdbcUtil.close();
+			}
+			return null;		
+		}
+	  	
+	  	public List<Project> searchProjectByWriter(String query) throws SQLException {
+			String sql = "SELECT * FROM MEMBER M, PROJECT P WHERE M.MNUM = P.MNUM AND M.MNAME LIKE ?";
+			Object[] param = new Object[] { "%"+query+"%" };
+
+			jdbcUtil.setSqlAndParameters(sql, param);
+
 			try {
 				ResultSet rs = jdbcUtil.executeQuery();
 				List<Project> projectList = new ArrayList<Project>();

@@ -58,6 +58,45 @@ public class MemberDAO {
 		return false;
 	}
 
+	public Member findIdByMname(String mname, String phonenum) throws SQLException {
+		String query = "SELECT mnum, mid, passwd, mname, birth, phonenum, email, school, major, field, language, experience "
+	+ "FROM Member WHERE mname=? AND phonenum=?";
+		Object[] param = new Object[] { mname , phonenum };
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			Member member = null;
+
+			if (rs.next()) {
+				member = new Member();
+
+				member.setMnum(rs.getInt("mnum"));
+				member.setMid(rs.getString("mid"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setMname(rs.getString("mname"));
+				member.setDate(rs.getDate("birth"));
+				member.setPhonenum(rs.getString("phonenum"));
+				member.setEmail(rs.getString("email"));
+				member.setSchool(rs.getString("school"));
+				member.setMajor(rs.getString("major"));
+				member.setField(rs.getString("field"));
+				member.setLanguage(rs.getString("language"));
+				member.setExperience(rs.getString("experience"));
+			}
+			return member;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();
+		}
+
+		
+		return null;
+	}
 	public Member findMemberByMnum(int mnum) throws SQLException {
 		String query = "SELECT mnum, mid, passwd, mname, birth, phonenum, email, school, major, field, language, experience "
 				+ "FROM Member WHERE mnum=?";

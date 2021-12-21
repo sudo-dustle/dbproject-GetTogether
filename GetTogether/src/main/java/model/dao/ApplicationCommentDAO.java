@@ -3,16 +3,9 @@ package model.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import controller.comm.UpdateCommunityController;
 import model.ApplicationComment;
 import model.Member;
-import model.Message;
 import model.Project;
 
 public class ApplicationCommentDAO {
@@ -44,7 +37,9 @@ public class ApplicationCommentDAO {
 	}
 	
 	public List<ApplicationComment> findListByPid(int pId) throws SQLException {
-		String sql = "SELECT APP_ID, CONTENT, MNUM, COMMENTDATE, PID FROM APPLICATIONCOMMENT WHERE PID=? "
+		String sql = "SELECT a.APP_ID, a.CONTENT, a.MNUM, a.COMMENTDATE, a.PID , t.approve "
+				+ "FROM APPLICATIONCOMMENT a , TEAMMEMBER t "
+				+ "WHERE a.PID=? and a.pid = t.pid "
 				+ "ORDER BY COMMENTDATE DESC";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {pId});
 		try {
@@ -56,12 +51,15 @@ public class ApplicationCommentDAO {
 				applicant.setMnum(rs.getInt("mnum"));
 				Project project = new Project();
 				project.setPid(rs.getInt("pid"));
+				char c = rs.getString("approve").charAt(0);
+				boolean approved = (c == 'T');
 				ApplicationComment comment = new ApplicationComment(
 					rs.getInt("app_id"),
 					rs.getString("content"),
 					applicant,
 					rs.getDate("commentdate"),
-					project
+					project,
+					approved
 				);
 				commentList.add(comment);
 			}
