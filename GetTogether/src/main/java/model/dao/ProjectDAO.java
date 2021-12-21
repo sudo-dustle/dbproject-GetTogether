@@ -16,9 +16,11 @@ public class ProjectDAO {
 	private JDBCUtil jdbcUtil = null;
 	
 	public ProjectDAO() {jdbcUtil = new JDBCUtil(); }
+
 	
 	public Project create(Project project) throws  SQLException{
 		
+
 		String sql = "INSERT INTO Project VALUES (seq_pid.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, 0, 0)";
 		long time = project.getExecutionStart().getTime();
 		java.sql.Date ExecutionStart = new java.sql.Date(time);
@@ -35,11 +37,13 @@ public class ProjectDAO {
 		jdbcUtil.setSqlAndParameters(sql, param);
 		String key[] = {"pid"};
 		try {
+
 			jdbcUtil.executeUpdate(key);  
 		   	ResultSet rs = jdbcUtil.getGeneratedKeys();
 		   	if(rs.next()) {
 		   		int generatedKey = rs.getInt(1);   
 		   		project.setPid(generatedKey); 	  
+
 		   	}
 		   	return project;
 		}  	catch (Exception ex) {
@@ -51,6 +55,7 @@ public class ProjectDAO {
 		}
 		return null;
 	}
+
 	
 	public int update (Project project) throws SQLException{
 		String sql = "UPDATE Project "
@@ -80,7 +85,9 @@ public class ProjectDAO {
 				project.getPid()};
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {				
+
 			int result = jdbcUtil.executeUpdate();	
+
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -88,7 +95,9 @@ public class ProjectDAO {
 		}
 		finally {
 			jdbcUtil.commit();
+
 			jdbcUtil.close();	
+
 		}		
 		return 0;
 	}
@@ -99,12 +108,14 @@ public class ProjectDAO {
 				+ "WHERE pid=?";
 
 		Object[] param = new Object[] {
-				lookupCnt++,
+				lookupCnt,
 				pid};
 		
 		jdbcUtil.setSqlAndParameters(sql, param);
 		try {				
+
 			int result = jdbcUtil.executeUpdate();	
+
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -112,17 +123,21 @@ public class ProjectDAO {
 		}
 		finally {
 			jdbcUtil.commit();
+
 			jdbcUtil.close();	
 		}		
 		return 0;
 	}
+
 	
 	public int remove(int pid) throws SQLException {
 		String sql = "DELETE FROM Project WHERE pid=?";		
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {pid});	
 
 		try {				
+
 			int result = jdbcUtil.executeUpdate();	
+
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();

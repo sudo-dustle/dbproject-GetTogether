@@ -3,6 +3,7 @@ package model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.MemberSplit;
 import model.TeamRecommend;
 import model.dao.TeamRecommendDAO;
 
@@ -27,9 +28,15 @@ public class TeamRecommendManager {
 	public List<TeamRecommend> findRecommendTeamList() throws SQLException {
 			return teamRecommendDAO.findRecomendTeam();
 	}
+	
 
-	public List<TeamRecommend> findIdentifyRecomendTeam() throws SQLException {
-		return teamRecommendDAO.findIdentifyRecomendTeam();
+	public List<TeamRecommend> findIdentifyRecomendTeam(String[] field, String[] language) throws SQLException {
+		return teamRecommendDAO.findIdentifyRecommendTeam(field, language);
 	}
+
+	public MemberSplit memberSplit(int mnum) throws SQLException {
+		return teamRecommendDAO.memberSplit(mnum);
+	}
+
 
 }
