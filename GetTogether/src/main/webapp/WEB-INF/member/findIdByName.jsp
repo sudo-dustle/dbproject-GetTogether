@@ -28,11 +28,9 @@
 						<option value="011">010</option>
 					</select> - <input type="text" name="phone1"> - <input type="text" name="phone2">
 				</td>
-				<td></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="context2"><input type="submit" class="button" value="아이디 찾기"></td>
-				<td></td>
 			</tr>
 		</table>
 		</form>

@@ -18,14 +18,12 @@
 				<th>비밀번호 찾기</th>
 			</tr>
 			<tr>
-				<td colspan="2" style="height: 70px;">
+				<td colspan="2" style="height: 70px;background-color: white;">
 				&nbsp;&nbsp;&nbsp;아이디: <input type="text" name="memberId">
 				</td>
-				<td></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="context2"><input type="submit" class="button" value="비밀번호 찾기"></td>
-				<td></td>
 			</tr>
 		</table>
 		</form>
