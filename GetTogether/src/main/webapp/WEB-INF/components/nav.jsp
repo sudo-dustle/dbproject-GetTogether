@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel=stylesheet href="<c:url value='/css/common.css'/>" type="text/css">
-<header><h1> <a href="<c:url value='/'/>">모여봐요</a></h1></header>
+<header><a href="<c:url value='/'/>"> <img height = 250px src="<c:url value='/images/banner.png'/>"> </a></header>
 <script>
 	const viewMessage = () => {
 		window.open("<c:url value='/message/list/received'/>", "쪽지함", "width=800px,height=600px");

@@ -22,7 +22,7 @@ public class ListTeamRecommendController implements Controller {
 		
 		if (MemberSessionUtils.hasLogined(request.getSession())) {
 			//List<TeamRecommend> teamRecommendList = manager.findIdentifyRecomendTeam();
-			TeamRecommend team = new TeamRecommend(33,"¸ð¿©ºÁ¿ä", "¸ô¶ó", 4,5);
+			TeamRecommend team = new TeamRecommend(40,"¸ð¿©ºÁ¿ä", "¸ô¶ó", 4,5);
 			List<TeamRecommend> teamRecommendList = new ArrayList<TeamRecommend>();
 			teamRecommendList.add(team);
 			request.setAttribute("teamRecommendList", teamRecommendList);      // login form ¿äÃ»À¸·Î redirect

@@ -24,11 +24,6 @@
 		$(".group" + conGroup).show();
 	});
 	
-	$(".btn-like").on("click", function(e) {
-
-	    var likeCount = button.find(".like-count")
-	    var heartShape = button.find(".heart-shape")
-	});
 	
 	const previous = () => {
 		conGroup--;
@@ -57,9 +52,8 @@
 					<div id="id" class="team-box <%=className%>" style = "cursor:pointer;" onClick= "location.href = '<c:url value= '/project/detail?pid=${recommendTeam.pid}'/>';">
 						<h2>${recommendTeam.title}</h2>
 						<br>
-						<h3>${recommendTeam.subtitle}</h3>
-						${recommendTeam.lookupcnt}<br><br><br>
-					    <button type="button" class="btn-like" background-color = #DCDCDC>♡${recommendTeam.recommendcnt}</button>
+						<h3>${recommendTeam.subtitle}</h3><br><br>
+						조회수 : ${recommendTeam.lookupcnt}<br><br><br>
 					</div>
 				<%
 					i++;%>
