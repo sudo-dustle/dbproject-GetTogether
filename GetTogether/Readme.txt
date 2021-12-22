@@ -1,10 +1,11 @@
-#¸ð¿©ºÁ¿ä
-µ¥º£ÇÁ 02ºÐ¹Ý 03ÆÀ ¿Ö°¡¸®
+#ëª¨ì—¬ë´ìš”
+ë°ë² í”„ 02ë¶„ë°˜ 03íŒ€ ì™œê°€ë¦¬
 
-*Å×½ºÆ®¿ë id/pw : abc/abc123 , ididid/abc123, 123123123/123123123
+*í…ŒìŠ¤íŠ¸ìš© id/pw : abc/abc123 , ididid/abc123, 123123123/123123123
 
-*ÁÖÀÇ »çÇ× : È¸¿ø°¡ÀÔ ½Ã ¸ðµç ³»¿ëÀ» Ã¤¿ö¾ß DB·Î ³Ñ¾î°¨
-		ÂÊÁö ÀÛ¼º ½Ã ¸ðµç ³»¿ëÀ» Ã¤¿ö¾ß DB·Î ³Ñ¾î°¨
-		application comment ÇÑ ¹ø µî·ÏÇÑ Àû ÀÖÀ¸¸é Áßº¹´ñ±Û ¾ÈµÊ
+*ì£¼ì˜ ì‚¬í•­ : íšŒì›ê°€ìž… ì‹œ ëª¨ë“  ë‚´ìš©ì„ ì±„ì›Œì•¼ DBë¡œ ë„˜ì–´ê°
+		ìª½ì§€ ìž‘ì„± ì‹œ ëª¨ë“  ë‚´ìš©ì„ ì±„ì›Œì•¼ DBë¡œ ë„˜ì–´ê°
+		application comment í•œ ë²ˆ ë“±ë¡í•œ ì  ìžˆìœ¼ë©´ ì¤‘ë³µëŒ“ê¸€ ì•ˆë¨
+		ë¡œê·¸ì¸ì´ ì•ˆë˜ì—ˆì„ ì‹œ íŒ€ì› ê²€ìƒ‰ ë¶ˆê°€ëŠ¥
 
-±ê ÁÖ¼Ò : https://github.com/syeonbot/dbproject-GetTogether
+ê¹ƒ ì£¼ì†Œ : https://github.com/syeonbot/dbproject-GetTogether
