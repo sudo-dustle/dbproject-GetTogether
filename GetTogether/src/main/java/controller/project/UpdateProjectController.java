@@ -6,17 +6,12 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import controller.Controller;
-import controller.comm.CreateCommunityController;
 import controller.member.MemberSessionUtils;
 import model.Project;
 import model.service.ProjectManager;
 
 public class UpdateProjectController implements Controller{
-	 private static final Logger Log = LoggerFactory.getLogger(CreateCommunityController.class);
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		
@@ -36,7 +31,6 @@ public class UpdateProjectController implements Controller{
 
 		//try {
     	// POST request (프로젝트 정보가 parameter로 전송됨)
-			Log.debug("controller update project");
 			 Date executionStart = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("executionStart"));
 			  Date executionEnd = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("executionEnd"));
 			  Date applicationStart = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("applicationStart"));

@@ -5,9 +5,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.user.*;
 import controller.applicationComment.CreateApplicationCommentController;
-import controller.comm.*;
 import controller.message.*;
 import controller.teamrecommend.ListTeamRecommendController;
 import controller.memberrecommend.ListMemberRecommendController;
@@ -42,14 +40,7 @@ public class RequestMapping {
         mappings.put("/member/findPwById", new FindPwController());
         
         mappings.put("/teammember/detail", new TeamMemberDetailController());
-        mappings.put("/project/search", new ProjectSearchController());
-
-        mappings.put("/community/list", new ListCommunityController());
-        mappings.put("/community/view", new ViewCommunityController());
-        mappings.put("/community/create/form", new ForwardController("/community/creationForm.jsp"));
-        mappings.put("/community/create", new CreateCommunityController());
-        mappings.put("/community/update", new UpdateCommunityController());
-        
+        mappings.put("/project/search", new ProjectSearchController());        
 
         mappings.put("/memberRecommend/list", new ListMemberRecommendController());
         mappings.put("/teamRecommend/list", new ListTeamRecommendController());

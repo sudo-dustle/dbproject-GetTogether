@@ -15,12 +15,10 @@
 			<h2>검색 결과</h2>
 		</div>
 			<div class="member-container">
-			<%
-				if(request.getAttribute("memberList") == null) {
-					out.println("검색결과가 없습니다.");
-				}
-				else {
-			%>
+			<c:if test="${empty memberList}">	
+					검색결과가 없습니다
+			</c:if>
+			<c:if test="${not empty memberList}">	
 				<c:forEach var="member" items="${memberList}">
 					<div class="member-box" style = "cursor:pointer;" onClick= "location.href = '<c:url value= '/teammember/detail?mnum=${member.mnum}'/>';">
 						<ul>
@@ -33,7 +31,7 @@
 						</ul>
 					</div>
 				</c:forEach>
-				<% } %>
+			</c:if>
 			</div>
 	</div>
 </body>
