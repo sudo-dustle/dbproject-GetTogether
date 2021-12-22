@@ -28,23 +28,17 @@ public class ListTeamRecommendController implements Controller {
 			MemberSplit membersplit = manager.memberSplit((int)session.getAttribute("mnum"));
 			String[] field = membersplit.getField().split(",");
 			
-			//final Logger log = (Logger) LoggerFactory.getLogger(ListTeamRecommendController.class);
-			//log.debug("field array : ", membersplit);
 			String[] language= membersplit.getLanguage().split(",");
 			List<TeamRecommend> teamRecommendList = manager.findIdentifyRecomendTeam(field ,language);
-			
-
-		   	
-			request.setAttribute("teamRecommendList", teamRecommendList);      // login form 요청으로 redirect
+					   	
+			request.setAttribute("teamRecommendList", teamRecommendList);  
         }
 		else {
 			List<TeamRecommend> teamRecommendList = manager.findRecommendTeamList();
 			request.setAttribute("teamRecommendList", teamRecommendList);
 		}
        
-//		List<TeamRecommend> teamRecommendList = new ArrayList<TeamRecommend>();
-   	
-//   	teamRecommendList.add(team);		
+
 		return "/teamRecommend/teamRecommend.jsp";        
     }
 }
