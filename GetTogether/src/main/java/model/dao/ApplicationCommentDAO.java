@@ -39,7 +39,7 @@ public class ApplicationCommentDAO {
 	public List<ApplicationComment> findListByPid(int pId) throws SQLException {
 		String sql = "SELECT a.APP_ID, a.CONTENT, a.MNUM, a.COMMENTDATE, a.PID , t.approve "
 				+ "FROM APPLICATIONCOMMENT a , TEAMMEMBER t "
-				+ "WHERE a.PID=? and a.pid = t.pid "
+				+ "WHERE a.PID=? and a.pid = t.pid and a.mnum=t.mnum "
 				+ "ORDER BY COMMENTDATE DESC";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {pId});
 		try {
