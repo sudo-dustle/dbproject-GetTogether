@@ -40,13 +40,7 @@ $(document).ready(function() {
             $(this).attr("checked", "checked");
             console.log("test check");
         }
-    });
-    
-    $("#email_select").change(function(){
-    	console.log("test: "+$(this).val());
-    	$("#email_select").val($(this).val());
-    });
-    
+    });    
 });
 </script>
 </head>
