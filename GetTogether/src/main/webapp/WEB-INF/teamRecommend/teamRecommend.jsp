@@ -15,7 +15,7 @@
 <body>
 <script>
 	var conGroup;
-	var maxGroup = ${teamRecommendList.size()} / 6;
+	var maxGroup;
 	var maxGroupNum;
 	var lookupcnt = 0
 	
