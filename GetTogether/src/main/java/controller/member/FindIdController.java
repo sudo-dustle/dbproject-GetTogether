@@ -44,7 +44,7 @@ public class FindIdController implements Controller {
 			return "/member/findIdResult.jsp";
 		} catch (Exception e) {
 			request.setAttribute("exception", e);
-			return "/member/findIdResult.jsp";
+			return "/member/findId";
 		}
 
 	}

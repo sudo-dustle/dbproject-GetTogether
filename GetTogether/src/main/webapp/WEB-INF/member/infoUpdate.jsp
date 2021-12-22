@@ -40,7 +40,13 @@ $(document).ready(function() {
             $(this).attr("checked", "checked");
             console.log("test check");
         }
-    });    
+    });
+    
+    $("#email_select").change(function(){
+    	console.log("test: "+$(this).val());
+    	$("#email_select").val($(this).val());
+    });
+    
 });
 </script>
 </head>
@@ -96,7 +102,14 @@ $(document).ready(function() {
 					<th class="name">이메일</th>
 					<td id="contents">
 					<input name="email1" type="text" class="box" id="email1" size="15" value="${fn:split(memberInfo.email, '@')[0]}" required> @ 
-					<input name="email2" type="text" class="box" id="email2" size="10s" value="${fn:split(memberInfo.email, '@')[1]}" required>
+					<input name="email2" type="text" class="box" id="email2" size="10s" value="${fn:split(memberInfo.email, '@')[1]}">
+					 <select name="email_select" class="box" id="email_select">
+							<option value="etc" selected>직접 입력</option>
+							<option value="naver.com">naver.com</option>
+							<option value="hotmail.com">hotmail.com</option>
+							<option value="hanmail.com">hanmail.com</option>
+							<option value="yahoo.co.kr">yahoo.co.kr</option>
+					</select></td>
 				</tr>
 				<tr>
 					<th class="name">재학중인 학교</th>
