@@ -85,16 +85,7 @@
 					<th class="name">이메일*</th>
 					<td id="contents">
 					<input name="email1" type="text" class="box" id="email1" size="15" required> @ 
-					<input name="email2" type="text" class="box" id="email2" size="10s">
-					 <select name="email_select" class="box" id="email_select"
-						onChange="checkemailaddy();">
-							<option value="" selected>선택하세요</option>
-							<option value="naver.com">naver.com</option>
-							<option value="hotmail.com">hotmail.com</option>
-							<option value="hanmail.com">hanmail.com</option>
-							<option value="yahoo.co.kr">yahoo.co.kr</option>
-							<option value="1">직접입력</option>
-					</select></td>
+					<input name="email2" type="text" class="box" id="email2" size="10s" placeholder="이메일 입력" required>
 				</tr>
 				<tr>
 					<th class="name">재학중인 학교</th>
