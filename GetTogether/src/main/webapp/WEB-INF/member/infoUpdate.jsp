@@ -84,11 +84,11 @@ $(document).ready(function() {
 				<tr>
 					<th class="name">휴대폰</th>
 					<td id="contents"><select name="phone">
-							<option value=1 selected>010</option>
-							<option value="2">011</option>
-							<option value="3">017</option>
-							<option value="4">070</option>
-							<option value="5">080</option>
+							<option value="010" selected>010</option>
+							<option value="011">011</option>
+							<option value="017">017</option>
+							<option value="070">070</option>
+							<option value="080">080</option>
 					</select> - <input type="text" name="phone1" size="4" maxlength="4" value="${fn:split(memberInfo.phonenum, '-')[1]}"> - <input
 						type="text" name="phone2" size="4" maxlength="4" value="${fn:split(memberInfo.phonenum, '-')[2]}"></td>
 				</tr>

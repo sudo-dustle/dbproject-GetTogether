@@ -143,7 +143,7 @@
 				</tr>
 				<tr>
 					<th class="name">프로젝트 경험</th>
-					<td id="contents"><textarea rows="5" cols="70" name="experience" cols="50px" placeholder="간단하게 프로젝트 경험에 대해 서술해주세요."></textarea>
+					<td id="contents"><textarea rows="5" cols="70" name="experience" cols="50px" placeholder="간단하게 프로젝트 경험에 대해 서술해주세요." required></textarea>
 				</tr>
 				<tr>
 					<th colspan="2" class="title">
