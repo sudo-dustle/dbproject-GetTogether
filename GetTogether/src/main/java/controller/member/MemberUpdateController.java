@@ -17,13 +17,31 @@ public class MemberUpdateController implements Controller {
 		String passwd = request.getParameter("passwd");
 		String mname = request.getParameter("mname");
 		Date date = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("date"));
-		String phonenum = request.getParameter("phone") + "-" + request.getParameter("phone1") + "-" + request.getParameter("phone2");
+		String phonenum =  null;
 		String email = request.getParameter("email1") + "@" + request.getParameter("email2");
 		String school = request.getParameter("school");
 		String major = request.getParameter("major");
 		String field = null;
 		String language = null;
 		String experience = request.getParameter("experience");
+		
+		String phone1 = request.getParameter("phone");
+		System.out.println("phone1:"+phone1);
+		
+		switch (phone1) {
+		case "010":
+			phonenum = phone1 + "-" + request.getParameter("phone1") + "-" + request.getParameter("phone2");
+		case "011":
+			phonenum = phone1 + "-" + request.getParameter("phone1") + "-" + request.getParameter("phone2");
+		case "017":
+			phonenum = phone1 + "-" + request.getParameter("phone1") + "-" + request.getParameter("phone2");
+		case "070":
+			phonenum = phone1 + "-" + request.getParameter("phone1") + "-" + request.getParameter("phone2");
+		case "080":
+			phonenum = phone1 + "-" + request.getParameter("phone1") + "-" + request.getParameter("phone2");
+		default:
+			break;
+		}
 		
 		String[] word1 = request.getParameterValues("field");
 		
