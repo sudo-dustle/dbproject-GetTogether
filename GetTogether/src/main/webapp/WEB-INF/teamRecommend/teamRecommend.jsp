@@ -15,11 +15,17 @@
 <body>
 <script>
 	var conGroup;
-	var maxGroup = ${teamRecommendList.size()};
-	var maxGroupNum = (maxGroup - (maxGroup % 6)) / 6;
+	var maxGroup;
+	var maxGroupNum;
 	var lookupcnt = 0
+	
 	$(document).ready(() => {
 		conGroup = 0;
+		maxGroup = ${teamRecommendList.size()};
+		if (maxGroup % 6 == 0)
+			maxGroupNum = maxGroup/6 - 1;
+		else
+			maxGroupNum = (maxGroup - (maxGroup % 6))/ 6
 		$(".team-box").hide();
 		$(".group" + conGroup).show();
 	});
@@ -27,16 +33,20 @@
 	
 	const previous = () => {
 		conGroup--;
-		if (conGroup < 0)
+		if (conGroup < 0){
 			conGroup = maxGroupNum;
+		}
+
 		$(".team-box").hide();
 		$(".group" + conGroup).show();
 	}
 	
 	const next = () => {
 		conGroup++;
-		if (conGroup > maxGroupNum)
+		if (conGroup > maxGroupNum){
 			conGroup = 0;
+		}
+
 		$(".team-box").hide();
 		$(".group" + conGroup).show();
 	
