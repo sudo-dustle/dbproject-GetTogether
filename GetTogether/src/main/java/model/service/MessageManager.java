@@ -2,7 +2,6 @@ package model.service;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Logger;
 
 import model.Member;
 import model.Message;
@@ -13,7 +12,6 @@ public class MessageManager {
 	private static MessageManager messageMan = new MessageManager();
 	private MessageDAO messageDAO;
 	private MemberDAO memberDAO;
-	java.util.logging.Logger logger = Logger.getLogger(this.getClass().getName());
 
 	private MessageManager() {
 		try {
@@ -31,19 +29,6 @@ public class MessageManager {
 	public int create(Message message) throws SQLException{
 		return messageDAO.create(message);
 	}
-
-//	public int update(User user) throws SQLException, UserNotFoundException {
-//		int oldCommId = findUser(user.getUserId()).getCommId();
-//		if (user.getCommId() != oldCommId) { 	// 소속 커뮤티니가 변경됨
-//			Community comm = commDAO.findCommunity(oldCommId);  // 기존 소속 커뮤니티
-//			if (comm != null && user.getUserId().equals(comm.getChairId())) {
-//				// 사용자가 기존 소속 커뮤니티의 회장인 경우 -> 그 커뮤니티의 회장을 null로 변경 및 저장
-//				comm.setChairId(null);
-//				commDAO.updateChair(comm);
-//			}
-//		}
-//		return userDAO.update(user);
-//	}	
 	
 	public int deleteMessage(int msgId) throws SQLException, UserNotFoundException {
 		return messageDAO.deleteMessage(msgId);
