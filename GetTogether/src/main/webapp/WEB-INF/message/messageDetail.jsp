@@ -13,16 +13,19 @@
 </head>
 <script>
 const goMessageList = () => {
-	location.href="/GetTogether/message/list";
+	location.href="/GetTogether/message/list/received";
 }
 
 const deleteMessage = () => {
 	 if (confirm("정말 삭제하시겠습니까?") == true){
-		 //delete logic
-		 //정상적으로 삭제된다면
-		 alert("삭제되었습니다.");
+		 location.href="/GetTogether/message/delete?id=${message.id}";
 	 }
 }
+
+const goMessageForm = () => {
+	location.href="/GetTogether/message/create/form?memid=${message.sender.mid}";
+}
+
 </script>
 
 <body>
@@ -54,9 +57,9 @@ const deleteMessage = () => {
 			</tr>
 		</table>
 			<div id="message-type" class="message-type">
-			<button type="button" onclick="goMessageList();">목록</button>
-			<button type="button" onclick="deleteMessage();">삭제</button>
-			<button type="button">답장</button>
+			<button type="button" style="cursor:pointer" onclick="goMessageList();">목록</button>
+			<button type="button" style="cursor:pointer" onclick="deleteMessage();">삭제</button>
+			<button type="button" style="cursor:pointer" onclick="goMessageForm();">답장</button>
 		</div>
 	</div>
 	</div>

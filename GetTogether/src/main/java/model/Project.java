@@ -47,6 +47,15 @@ public class Project {
 		this.recommendCnt = recommendCnt;
 		this.lookupCnt = lookupCnt;
 	}
+	
+
+	public Project(int pid, String title, String subtitle, int applicationNum) {
+		super();
+		this.pid = pid;
+		this.title = title;
+		this.subtitle = subtitle;
+		this.applicationNum = applicationNum;
+	}
 
 	public Project( String title, String field, String language, String subtitle, Date executionStart,
 			Date executionEnd, Date applicationStart, Date applicationEnd, String goal, int applicationNum,
@@ -66,6 +75,12 @@ public class Project {
 		this.approve = approve;
 		this.mnum = mnum;
 		this.recommendCnt = recommendCnt;
+		this.lookupCnt = lookupCnt;
+	}
+	
+	public Project(int pid, int lookupCnt) {
+		super();
+		this.pid = pid;
 		this.lookupCnt = lookupCnt;
 	}
 
@@ -182,7 +197,7 @@ public class Project {
 	public void setLookupCnt(int lookupCnt) {
 		this.lookupCnt = lookupCnt;
 	}
-
+	
 	
 	public List<TeamMember> getMemberList() {
 		return memberList;

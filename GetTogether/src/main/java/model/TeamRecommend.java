@@ -2,19 +2,23 @@ package model;
 import java.util.Date;
 import java.util.List;
 public class TeamRecommend {
+	private int pid;
 	private String title;
 	private String subtitle;
 	private int lookupcnt;
+	private int recommendcnt;
 	private List<Member> memberList;
 	private List<Project> projectList;
 
 	public TeamRecommend() {}
 	
-	public TeamRecommend(String title, String subtitle, int lookupcnt) {
+	public TeamRecommend(int pid, String title, String subtitle, int lookupcnt, int recommendcnt) {
 		super();
+		this.pid = pid;
 		this.title = title;
 		this.subtitle = subtitle;
 		this.lookupcnt = lookupcnt;
+		this.recommendcnt = recommendcnt;
 	}
 
 	public TeamRecommend(List<Member> memberList, List<Project> projectList) {
@@ -23,6 +27,14 @@ public class TeamRecommend {
 		this.projectList = projectList;
 	}
 
+	
+	public int getRecommendcnt() {
+		return recommendcnt;
+	}
+
+	public void setRecommendcnt(int recommendcnt) {
+		this.recommendcnt = recommendcnt;
+	}
 
 	public List<Member> getMemberList() {
 		return memberList;
@@ -40,7 +52,15 @@ public class TeamRecommend {
 		this.projectList = projectList;
 	}
 
+	
 
+	public int getPid() {
+		return pid;
+	}
+
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
 
 	public String getTitle() {
 		return title;

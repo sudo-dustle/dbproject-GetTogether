@@ -2,18 +2,40 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel=stylesheet href="<c:url value='/css/common.css'/>" type="text/css">
-<header><h1> <a href="<c:url value='/'/>">모여봐요</a></h1></header>
+<header><a href="<c:url value='/'/>"> <img height = 200px src="<c:url value='/images/banner.png'/>"> </a></header>
+<script>
+	const viewMessage = () => {
+		window.open("<c:url value='/message/list/received'/>", "쪽지함", "width=800px,height=600px");
+	}
+</script>
 	<div>
-	<%-- 로그인 안되어 있을경우 따로 처리가 필요합니다. --%>
 	<ul>
+	<% if (session.getAttribute("memberId") == null) { %>
+	
 		<li class="header-item">
-			<a href="<c:url value='/member/login'/>">로그인</a>
+			<a href="<c:url value='/member/login/form'/>">로그인</a>
 		</li>
 		<li class="header-item">|</li>
 		<li class="header-item">
-			<a href="<c:url value='/member/signup/input'/>">회원가입</a>
+			<a href="<c:url value='/member/signup/form'/>">회원가입</a>
 		</li>
-		</ul>
+		
+		<%
+		}else
+			{%>
+			<li class="header-item">
+			<a href="#" onclick="viewMessage();">쪽지함</a>
+			</li>
+			<li class="header-item">|</li>
+			<li class="header-item">
+				<a href="<c:url value='/member/detail'/>">마이페이지</a>
+			</li>
+			<li class="header-item">|</li>
+			<li class="header-item">
+				<a href="<c:url value='/member/logout'/>">로그아웃</a>
+			</li>
+	<%}	%>
+	</ul>
 	</div>
 <nav>
 	<ul class="nav-container">

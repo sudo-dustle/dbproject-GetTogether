@@ -47,11 +47,34 @@ public class MessageDAO {
 	}
 
 	/**
+	 * 메세지삭제(하나)
+	*/
+	
+	public int deleteMessage(int msgId) throws SQLException {
+		String sql = "DELETE FROM MESSAGE WHERE MSG_ID=?";
+
+		try {	
+			int result = 0;
+			jdbcUtil.setSqlAndParameters(sql, new Object[] {msgId});
+			result += jdbcUtil.executeUpdate();
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}		
+		return 0;
+	}
+	
+	/**
 	 * 메세지삭제(여러개)
 	*/
 	
-	public int removeMessageList(int[] msgId) throws SQLException {
-		String sql = "DELETE FROM MESSAGE WHERE msgid=?";
+	public int deleteMessageList(int[] msgId) throws SQLException {
+		String sql = "DELETE FROM MESSAGE WHERE MSG_ID=?";
 
 		try {	
 			int result = 0;
@@ -125,7 +148,6 @@ public class MessageDAO {
 			List<Message> msgList = new ArrayList<Message>();
 			while (rs.next()) {
 				int msgid= rs.getInt("msg_id");
-				logger.info("msgid is "+ Integer.toString(msgid));
 				String title = rs.getString("title");
 				Date sendDate = rs.getDate("sendDate");
 				String content = rs.getString("content");
@@ -138,9 +160,7 @@ public class MessageDAO {
 				}
 				Member sender = new Member();
 				int snum = rs.getInt("sender");
-				logger.info("sender Number is "+ Integer.toString(snum));
 				sender.setMnum(snum);
-				logger.info("setted mNum" + Integer.toString(sender.getMnum()));
 				Member receiver = new Member();
 				Message msg = new Message (
 					msgid,
@@ -165,9 +185,9 @@ public class MessageDAO {
 	/**
 	 * sender가 현재 User인 메세지들을 반환.
 	 */
-	public List<Message> findSendedMessageList(int mNum) throws SQLException {
+	public List<Message> findSentMessageList(int mNum) throws SQLException {
 		String sql = "SELECT MSG_ID, TITLE, SENDDATE, CONTENT, CHECKED, SENDER, "
-				+ "RECEIVER FROM MESSAGE WHERE SENDER=?";
+				+ "RECEIVER FROM MESSAGE WHERE SENDER=? ORDER BY SENDDATE DESC";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {mNum});
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();

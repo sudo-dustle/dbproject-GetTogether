@@ -19,7 +19,7 @@ private JDBCUtil jdbcUtil = null;
 	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환
 	 */
 	public List<MemberRecommend> findRecommendMember() throws SQLException {
-        String sql = "SELECT mname, language " 
+        String sql = "SELECT mnum, mname, language " 
         		   + "FROM member" ;
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
@@ -28,6 +28,7 @@ private JDBCUtil jdbcUtil = null;
 			List<MemberRecommend> memberRecommend = new ArrayList<MemberRecommend>();	
 			while (rs.next()) {
 				MemberRecommend memberRecommendList = new MemberRecommend(		
+					rs.getInt("mnum"), 
 					rs.getString("mname"),
 					rs.getString("language"));
 				memberRecommend.add(memberRecommendList);			

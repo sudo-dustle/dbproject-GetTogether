@@ -4,7 +4,25 @@
 body{ 
 	font-size: 12pt; 
 }
+.btn-like{
+	border-radius: 5px;
+	font-size: 30px;
+    cursor: pointer;
+    text-align: center;
+    color: #DCDCDC;
+}
+.input-search {
+	border: none;
+	font-size: 20px;
+	border-radius: 3px;
+	width: 80%;
+	border: solid 1px #DCDCDC;
+}
 
+.button:hover {
+  color: white;
+  
+}
 .parent{
     width: 100%;
     margin: 40px 0 0 0;
@@ -47,7 +65,7 @@ body{
  .search-block{
      font-size: 20px;
          padding: 10px;
-         border:  solid 1px #9DB589;
+         border:  solid 1px rgb(107, 114, 110);
          width: 500px;
          margin-bottom: 10px;
        
@@ -59,6 +77,13 @@ body{
      width: 100px;
      margin-bottom: 10px;
  }
+ 
+ .select {
+	height: 24px;
+	border:  solid 1px #DCDCDC;
+ 	
+ }
+ 
  .select-btn{
      font-size: 20px;
      padding: 10px;
@@ -69,4 +94,16 @@ body{
  #search{
      margin: 10px;
      display: inline-block;
+     height: 25px;
+ }
+ 
+ .search-box {
+ 	padding: 20px 50px 20px;
+ 	float: right;
+ 	
+ }
+ 
+ .input-search {
+ 	height: 24px;
+	border:  solid 1px #DCDCDC;
  }

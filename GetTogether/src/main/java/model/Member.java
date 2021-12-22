@@ -18,7 +18,7 @@ public class Member {
 	
 	public Member() {}
 	
-	//시퀀스(mnum)없는 생성자
+	//mnum ����
 	public Member(String mid, String passwd, String mname, Date date, String phonenum, String email,
 			String school, String major, String field, String language, String experience)
 	{
@@ -35,7 +35,7 @@ public class Member {
 		this.experience = experience;
 	}
 	
-	//시퀀스(mnum)있는 생성자
+	//mnum ����
 	public Member(int mnum, String mid, String passwd, String mname, Date date, String phonenum, String email,
 			String school, String major, String field, String language, String experience)
 	{
@@ -53,6 +53,10 @@ public class Member {
 		this.experience = experience;
 	}
 
+	public Member(int mnum) {
+		this.mnum = mnum;
+	}
+	
 	public int getMnum() {
 		return mnum;
 	}

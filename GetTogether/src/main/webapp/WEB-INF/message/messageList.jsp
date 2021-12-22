@@ -5,6 +5,7 @@
 
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>쪽지함</title>
 <link rel=stylesheet href="<c:url value='/css/message.css' />" type="text/css">
@@ -17,8 +18,25 @@
 		});
 	}
 	
+	const receivedList = () => {
+		location.href="/GetTogether/message/list/received";
+	}
+	const sentList = () => {
+		location.href="/GetTogether/message/list/sent";
+	}
+	
+	
 	const createMessage = () => {
 		location.href="/GetTogether/message/create/form";
+	}
+	
+	const deleteMessage = () => {
+		//checkbox가 배열 형태로 넘어간다. (value는 msg.id)
+		if ($('input:checkbox[name="select"]:checked').length <= 0){
+			alert("선택된 메세지가 없습니다.");
+			return ;
+		}
+		form.submit();
 	}
 </script>
 </head>
@@ -28,10 +46,12 @@
 				<h2>쪽지함</h2>
 			</div>
 			<div class="message-type">
-				<button type="button">받은 쪽지</button>
-				<button type="button">보낸 쪽지</button>
+				<button type="button" style="cursor:pointer" onclick="receivedList();">받은 쪽지</button>
+				<button type="button" style="cursor:pointer" onclick="sentList();">보낸 쪽지</button>
 			</div>
-			<div>
+			
+			<form name="form" method="POST" action="<c:url value='/message/delete' />">
+				<div>
 				<table>
 				<thead>
 					<tr>
@@ -65,11 +85,12 @@
 					</c:forEach>
 				</tbody>
 				</table>
-				<div id="message-type" class="message-type">
-					<button type="button" onclick="createMessage();">쪽지 쓰기</button>
-					<button type="button">쪽지 삭제</button>
-				</div>
-			</div>
+					<div id="message-type" class="message-type">
+						<button type="button" style="cursor:pointer"  onclick="createMessage();">쪽지 쓰기</button>
+						<button type="button" style="cursor:pointer" onclick="deleteMessage();">쪽지 삭제</button>
+					</div>
+					</div>
+				</form>
 		</div>
 		
 </body>

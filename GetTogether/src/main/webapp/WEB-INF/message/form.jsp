@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>쪽지 쓰기</title>
 <link rel=stylesheet href="<c:url value='/css/message.css?adsd' />" type="text/css">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <script>
 const sendMessage = () => {
@@ -30,8 +30,15 @@ const sendMessage = () => {
 }
 
 const goMessageList = () => {
-	location.href="/GetTogether/message/list";
+	location.href="/GetTogether/message/list/received";
 }
+
+$(document).ready(() => {
+	var id = new URLSearchParams(location.search).get("memid");
+	$("#receiver").val(id);
+})
+
+
 </script>
 
 <body>
@@ -47,8 +54,9 @@ const goMessageList = () => {
 				<td><input id="title" name="title" maxlength="200"/></td>
 			</tr>
 			<tr>
-				<th>받는 사람(id)</th>
-				<td><input id="receiver" name="receiver" maxlength="20"/></td>
+				<th>받는 사람(id입력)</th>
+				<td><input id="receiver" name="receiver" maxlength="20"/>
+				</td>
 			</tr>		
 			<tr>
 				<th>내용</th>
@@ -58,8 +66,8 @@ const goMessageList = () => {
 			</tr>
 		</table>
 			<div id="message-type" class="message-type">
-			<button type="button" onclick="sendMessage();">보내기</button>
-			<button type="button" onclick="goMessageList();">목록으로</button>
+			<button type="button" style="cursor:pointer" onclick="sendMessage();">보내기</button>
+			<button type="button" style="cursor:pointer" onclick="goMessageList();">목록으로</button>
 		</div>
 		</form>
 	</div>

@@ -4,9 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import controller.member.MemberSessionUtils;
 import model.Member;
 import model.Message;
-import model.dao.MessageDAO;
+import model.service.MemberManager;
+import model.service.MessageManager;
 
 public class CreateMessageController implements Controller{
 	@Override
@@ -16,15 +18,15 @@ public class CreateMessageController implements Controller{
 		String title = request.getParameter("title");
 		String content = request.getParameter("msgcontent");
 		String receiverId = request.getParameter("receiver");
-		
-		Member sender = new Member();//id나 num으로 Membe객체를 가ㅕㅈ오는..
-		Member receiver = new Member();//id로 Member객체를 가져오는 Manager
-		sender.setMnum(3);
-		receiver.setMnum(2);
-		
+
+		MemberManager memberManager = MemberManager.getInstance();
+		Member receiver = memberManager.findMemberByMid(receiverId);
+		int senderNum = MemberSessionUtils.getLoginMemberNum(request.getSession());
+		Member sender = new Member();
+		sender.setMnum(senderNum);
+		MessageManager msgManager = MessageManager.getInstance();
 		Message message = new Message(receiver, sender, title, content);
-		MessageDAO msgDAO = new MessageDAO();
-		msgDAO.create(message);
-		return "redirect:/message/list";
+		msgManager.create(message);
+		return "redirect:/message/list/received";
 	}
 }

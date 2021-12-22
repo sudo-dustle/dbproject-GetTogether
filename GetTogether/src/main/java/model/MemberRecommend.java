@@ -4,6 +4,7 @@ import java.util.List;
 
 public class MemberRecommend {
 	
+	private int mnum;
 	private String mname;
 	private String language;
 	private List<Member> memberList;
@@ -12,8 +13,9 @@ public class MemberRecommend {
 	
 	public MemberRecommend() {}
 	
-	public MemberRecommend(String mname, String language) {
+	public MemberRecommend(int mnum, String mname, String language) {
 		super();
+		this.mnum = mnum;
 		this.mname = mname;
 		this.language = language;
 	}
@@ -24,6 +26,14 @@ public class MemberRecommend {
 
 	public void setMname(String mname) {
 		this.mname = mname;
+	}
+	
+	public int getMnum() {
+		return mnum;
+	}
+
+	public void setMnum(int mnum) {
+		this.mnum = mnum;
 	}
 
 	public String getLanguage() {
@@ -55,6 +65,5 @@ public class MemberRecommend {
 	public void setProjectList(List<Project> projectList) {
 		this.projectList = projectList;
 	}
-	
 	
 }

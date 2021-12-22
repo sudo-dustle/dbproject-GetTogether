@@ -1,133 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="java.util.*, model.*" %>
+<%@page import="java.util.*, model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%
-	List<Project> projectList = (List<Project>)request.getAttribute("projectList");
-%> --%>
+<%@ include file="../../../../WEB-INF/components/nav.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>프로젝트 검색 결과</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-*{
-	font-family: 'Jua', sans-serif;
-}
-
-body {
-	font-weight: bold;
-	font-size: 12pt;
-	color: #2F2F2F;
-	background-color: #F6F8ED;
-	text-align: center;
-}
-
-div.main {
-	text-align: center;
-	padding-top: 15px;
-	font-size: 25px;
-}
-
-div.banner {
-	background-color: #9DB589;
-	text-align: center;
-	padding: 20px;
-	font-size: 18pt;
-	color: #2F2F2F;
-}
-
-div.log {
-	text-align: right;
-}
-.search{
-	text-align: right;
-	margin-top: 10px;
-}
-p {
-	text-align: left;
-}
-.context {
-	display: inline-block;
-}
-table {
-	border-spacing: 30px;
-	font-size: 25px;
-}
-.project_context {
-	background-color: #9DB589;
-	width: 350px;
-	height: 250px;
-	text-align: left;
-	vertical-align: top;
-	padding-left: 10px;
-	padding-top: 20px;
-}
-</style>
+<link rel = stylesheet href= "<c:url value='/css/projectResult.css' />" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-<%-- 	<div class="main">
-		<h1>모여봐요</h1>
-	</div>
-	<P></P>
-	<div class="log">로그인 | 회원가입</div>
-
-	<div class="banner">프로젝트 목록 &nbsp;&nbsp;&nbsp;&nbsp; |
-		&nbsp;&nbsp;&nbsp;&nbsp; 프로젝트 관리 &nbsp;&nbsp;&nbsp;&nbsp; |
-		&nbsp;&nbsp;&nbsp;&nbsp; 팀원 추천</div>
-
+	<script>
+	var conGroup;
+	var maxGroup = ${projectList.size()};
+	var maxGroupNum = (maxGroup - (maxGroup % 6)) / 6;
+	var lookupcnt = 0
+	$(document).ready(() => {
+		conGroup = 0;
+		$(".team-box").hide();
+		$(".group" + conGroup).show();
+	});
 	
-	<%	
-		Project project1 = new Project(1, "프로젝트1", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-		Project project2 = new Project(2, "프로젝트2", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-		Project project3 = new Project(3, "프로젝트3", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-		Project project4 = new Project(4, "프로젝트4", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-		Project project5 = new Project(5, "프로젝트5", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-		Project project6 = new Project(6, "프로젝트6", "ㅇㅇ", "ㅇㅇ", "ㅇㅇ", "goal", 1, "description", true, 1, 1, 1);
-	%>
-
-	<div class="search">
-		<select style="height: 30px;">
-			<option value="1">제목</option>
-			<option value="2">작성자</option>
-		</select> 
-		<input type="text" style="height: 30px; width: 400px;">
+	const previous = () => {
+		conGroup--;
+		if (conGroup < 0)
+			conGroup = maxGroupNum;
+		$(".team-box").hide();
+		$(".group" + conGroup).show();
+	}
+	
+	const next = () => {
+		conGroup++;
+		if (conGroup > maxGroupNum)
+			conGroup = 0;
+		$(".team-box").hide();
+		$(".group" + conGroup).show();
+	
+	}
+	function send(theform){ //form 을 받는다.
+		if(theform.srhTxt.value==""){
+		alert("검색어를 입력 하세요.");
+		theform.search.focus(); //text 창으로 커서
+		return false;
+		}
+		theform.submit();
+	}
+</script>
+	<div>
+		<div style="float: right; margin: 25px 15px;">
+			<form method="GET" action="<c:url value='/project/search'/>">
+				<select name="selectTxt" style="height: 30px; width: 100px;">
+					<option value="0">제목</option>
+					<option value="1">작성자</option>
+				</select>
+				<input type="text" class="input-search" name="srhTxt" placeholder="검색하기" value="${srhTxt}" style="width: 300px; height: 31px; vertical-align: middle;"> 
+				<input type="button" class="option-button" value="검색" onClick="send(this.form);" style="height: 33px;width: 100px;">
+			</form>
+		</div>
 	</div>
-	<div class="context">
-	<table>
-			<tr>
-				<td>"project"의 검색결과 입니다.</td>
-			</tr>
-			<tr>
-			<td class="project_context">
-				<%=project1.getTitle() %>
-				<br>
-			</td>
-			<td class="project_context">
-				<%=project2.getTitle() %>
-				<br>
-			</td>
-			<td class="project_context">
-				<%=project3.getTitle() %>
-				<br>
-			</td>
-		</tr>
-		<tr>
-			<td class="project_context">
-				<%=project4.getTitle() %>
-				<br>
-			</td>
-			<td class="project_context">
-				<%=project5.getTitle() %>
-				<br>
-			</td>
-			<td class="project_context">
-				<%=project6.getTitle() %>
-				<br>
-			</td>
-		</tr>
-	</table>
-	</div> --%>
+	<div class="parent">
+	<button type="button" class="left-arrow" style = "cursor:pointer" id="left-arrow" onclick="previous();">
+	</button>
+		<div class="container" >
+		<%int i = 0;%>
+		   <c:forEach var="project" items="${projectList}" >
+		   <% String className = "group" + (i / 6); %>
+					<div id="id" class="team-box <%=className%>" style = "cursor:pointer;" onClick= "location.href = '<c:url value= '/project/detail?pid=${project.pid}'/>';">
+						<h2>${project.title}</h2>
+						<br>
+						<h3>${project.subtitle}</h3>
+						${project.lookupCnt}<br>
+					</div>
+				<%
+					i++;%>
+			</c:forEach>
+		</div>
+		<button type="button" class="right-arrow" id="right-arrow" style = "cursor:pointer" onclick="next();">
+		</button>
+	</div>
 </body>
 </html>
